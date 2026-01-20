@@ -50,7 +50,7 @@
       "type": "featured-collection",
       "settings": {
         "collection": "all",
-        "products_to_show": 8,
+        "products_to_show": 6,
         "title": "Featured products",
         "heading_size": "h1",
         "description": "",
@@ -59,7 +59,7 @@
         "columns_desktop": 3,
         "enable_desktop_slider": false,
         "full_width": false,
-        "show_view_all": false,
+        "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "image_ratio": "adapt",
