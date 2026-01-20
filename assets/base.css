@@ -74,6 +74,16 @@
   --shadow-visible: var(--media-shadow-visible);
 }
 
+/* outfit-500 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/outfit-v15-latin-500.woff2') format('woff2');
+}
+
+
 /* base */
 
 .page-width {
