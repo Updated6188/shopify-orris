@@ -108,7 +108,7 @@
     "sale_badge_color_scheme": "scheme-6d6d8958-0621-4421-83bc-583622316954",
     "sold_out_badge_color_scheme": "scheme-3",
     "brand_headline": "",
-    "brand_description": "<p>Skip the premium branding, extravagant bottles, and celebrity <br/>endorsements. We craft scents of equal quality at a fraction of the <br/>cost.</p>",
+    "brand_description": "<p>Skip the premium branding, extravagant bottles, and celebrity endorsements. We craft scents of equal quality at a fraction of the cost.</p>",
     "brand_image": "shopify://shop_images/logo-wide.png",
     "brand_image_width": 180,
     "social_facebook_link": "",
@@ -215,7 +215,7 @@
         "settings": {
           "background": "#b6713e",
           "background_gradient": "",
-          "text": "#fff",
+          "text": "#ffffff",
           "button": "#121212",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
