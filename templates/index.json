@@ -54,7 +54,7 @@
         "title": "Signature Scents",
         "heading_size": "h1",
         "description": "<p>Experience the art of modern perfumery with fragrances inspired by global icons and crafted with the soulful warmth of our homeland. Every scent tells a story of passion, character, and identity.</p>",
-        "show_description": true,
+        "show_description": false,
         "description_style": "body",
         "columns_desktop": 3,
         "enable_desktop_slider": false,
