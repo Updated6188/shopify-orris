@@ -251,7 +251,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 .text-body {
   font-size: 1.5rem;
   letter-spacing: 0.06rem;
-  line-height: calc(1 + 0.8 / var(--font-body-scale));
+  line-height: calc(1 + 0.6 / var(--font-body-scale));
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
@@ -870,7 +870,7 @@ summary::-webkit-details-marker {
 
 .subtitle {
   font-size: 1.8rem;
-  line-height: calc(1 + 0.8 / var(--font-body-scale));
+  line-height: calc(1 + 0.6 / var(--font-body-scale));
   letter-spacing: 0.06rem;
   color: rgba(var(--color-foreground), 0.7);
 }
@@ -2713,7 +2713,7 @@ details[open] .modal-overlay::after {
   width: 100%;
   height: 100%;
   padding: 0 5rem 0 1rem;
-  line-height: calc(1 + 0.8 / var(--font-body-scale));
+  line-height: calc(1 + 0.6 / var(--font-body-scale));
   position: relative;
 }
 
@@ -2834,7 +2834,7 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item {
-  padding: 1.2rem;
+  padding:1.2rem 2rem;
   text-decoration: none;
   color: rgba(var(--color-foreground), 0.75);
 }
@@ -3106,7 +3106,7 @@ details-disclosure > details {
   background-color: rgb(var(--color-badge-background));
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
-  word-break: break-word;
+  word-break: break-word; text-transform: uppercase;
 }
 
 .gradient {
@@ -3775,3 +3775,16 @@ details-disclosure > details {
 }
 #shopify-section-sections--20765242753254__17689805924efd7f13 {
 	background: #fcf7ee;
+<<<<<<< HEAD
+=======
+}
+.card-inspired-by {
+	font-size: 12px;
+}
+
+.button:hover,
+.button:focus,
+.button:focus-visible {
+  box-shadow: none !important;
+}
+>>>>>>> 12a0804338dea55e3f94f15c775b3d086ad7bb37
