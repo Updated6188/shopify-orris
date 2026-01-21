@@ -2955,7 +2955,7 @@ details-disclosure > details {
   background-color: rgb(var(--color-badge-background));
   border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
   color: rgb(var(--color-badge-foreground));
-  word-break: break-word;
+  word-break: break-word; text-transform: uppercase;
 }
 
 .gradient {
