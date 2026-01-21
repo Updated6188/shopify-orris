@@ -158,6 +158,8 @@
   /* font-size: calc(var(--font-heading-scale) * 1.6rem); */
   font-size: 22px;
   font-family: 'Outfit';
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 990px) {
