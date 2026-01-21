@@ -190,7 +190,8 @@ product-info {
 }
 
 .product-form__submit {
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
+  margin-bottom: 0; height: 46px;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
@@ -368,7 +369,7 @@ a.product__text {
 }
 .qty_with_cartBtn {
 	display: grid;
-	grid-template-columns: 140px 1fr; gap: 10px;
+	grid-template-columns: 120px 1fr; gap: 10px;
 }
 
 
