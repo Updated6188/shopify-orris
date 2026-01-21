@@ -232,6 +232,11 @@ product-info {
   margin: 2.5rem 0;
 }
 
+.product__description ul {list-style: none;}
+.product__description ul li {
+	list-style: disc;
+}
+
 .product__text {
   margin-bottom: 0;
 }
