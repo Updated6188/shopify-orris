@@ -166,9 +166,11 @@
               {%- endif -%}
 
               {%- if section.settings.newsletter_text != blank -%}
-                <p class="footer__newsletter-text inline-richtext">
-                  {{ section.settings.newsletter_text }}
-                </p>
+                <div class="rte">
+                  <p class="footer__newsletter-text inline-richtext">
+                    {{ section.settings.newsletter_text }}
+                  </p>
+                </div>
               {%- endif -%}
 
 
