@@ -960,29 +960,15 @@ summary::-webkit-details-marker {
   }
 /* New style for Footer */
 
-   .footer__blocks-wrapper .footer-block--menu {
-    flex: 0 0 16%;
-    max-width: calc(16% - 18px);
+   .footer__blocks-wrapper .footer-block--menu { 
+    flex: 0 0 calc(16% - 20px); 
+    max-width: calc(16% - 20px);  
   }
 
-  .footer__blocks-wrapper .footer-block:not(.footer-block--menu) {
-<<<<<<< HEAD
-    flex: 0 0 26%;
-    max-width: calc(26% - 18px);
-  }
-
+  .footer__blocks-wrapper .footer-block:not(.footer-block--menu),
   .footer__blocks-wrapper .footer-block--newsletter {
-    flex: 0 0 26%;
-    max-width: calc(26% - 18px);;
-=======
-    flex: 0 0 25%;
-    max-width: calc(25% - 18px);
-  }
-
-  .footer__blocks-wrapper .footer-block--newsletter {
-    flex: 0 0 25%;
-    max-width: calc(25% - 18px);
->>>>>>> 1064f0a6fb78d3965bb04f5f040ee38f7eae77ad
+    flex: 0 0 calc(25% - 20px);
+    max-width: calc(25% - 20px);
   }
 
 }
