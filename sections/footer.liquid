@@ -179,15 +179,18 @@
 
                 <div class="newsletter-form__field-wrapper">
                   <div class="field">
-                    <input
-                      type="email"
-                      name="contact[email]"
-                      class="field__input"
-                      placeholder="{{ 'newsletter.label' | t }}"
-                      required
-                    >
-                    <button type="submit" class="newsletter-form__button field__button">
-                      {{ 'newsletter.button_label' | t }}
+                    <span class="newsletterfield">
+                      <input
+                        type="email"
+                        name="contact[email]"
+                        class="field__input form-control"
+                        placeholder="{{ 'newsletter.label' | t }}"
+                        required
+                      >
+                    </span>
+                    <button type="submit" class="newsletter-form__button field__button button--primary">
+                      {% comment %} {{ 'newsletter.button_label' | t }} {% endcomment %}
+                       ➤
                     </button>
                   </div>
                 </div>
