@@ -1806,7 +1806,7 @@ details[open] > .share-button__fallback {
 
 .field__button {
   align-items: center;
-  background-color: transparent;
+  background-color: #B6713E;
   border: 0;
   color: currentColor;
   cursor: pointer;
