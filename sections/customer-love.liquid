@@ -15,15 +15,26 @@
                 {% for block in section.blocks %}
                 <div class="swiper-slide">
                     <div class="share_designSldes float-start w-100 position-relative">
-                        {% if block.settings.video_file %}
-                            <video class="swiper-video">
-                                <source src="{{block.settings.video_file.sources[0].url}}" type="{{block.settings.video_file.sources[0].mime_type}}">
-                            </video> 
-                            <div class="play-layer">Play Video</div>
-                        {% else %}
-                            <p>No video uploaded.</p>
-                        {% endif %}
-                    </div>
+  {% if block.settings.video_file != blank %}
+    <video
+      class="swiper-video"
+      playsinline
+      muted
+      preload="metadata"
+    >
+      {%- for source in block.settings.video_file.sources -%}
+        <source src="{{ source.url }}" type="{{ source.mime_type }}">
+      {%- endfor -%}
+    </video>
+
+    <button type="button" class="play-layer">
+      Play Video
+    </button>
+  {% else %}
+    <p>No video uploaded.</p>
+  {% endif %}
+</div>
+
                 </div>
                 {%- endfor -%}
             </div>
