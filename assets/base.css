@@ -256,7 +256,9 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
 }
-
+p {
+  line-height: 1.6;
+}
 h1,
 h2,
 h3,
