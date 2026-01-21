@@ -23,7 +23,7 @@
         "square_instagram_feed_insta_feed_g9dfET"
       ],
       "custom_css": [
-        "section {background: red;}"
+        "section {background-color: red !important;}"
       ],
       "settings": {
         "include_margins": true
