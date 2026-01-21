@@ -41,9 +41,9 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.newsletter-form__field-wrapper .field__input {
+/* .newsletter-form__field-wrapper .field__input {
   padding-right: 5rem;
-}
+} */
 
 .newsletter-form__field-wrapper .field {
   z-index: 0;
