@@ -3629,6 +3629,10 @@ details-disclosure > details {
 	font-size: 12px;
 }
 
+.shopify-payment-button__button--unbranded:before,
+.shopify-payment-button__button--unbranded:after,
+.button:hover:before,
+.button:hover:after,
 .button:hover,
 .button:focus,
 .button:focus-visible {
