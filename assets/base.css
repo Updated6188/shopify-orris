@@ -966,6 +966,15 @@ summary::-webkit-details-marker {
   }
 
   .footer__blocks-wrapper .footer-block:not(.footer-block--menu) {
+<<<<<<< HEAD
+    flex: 0 0 26%;
+    max-width: calc(26% - 18px);
+  }
+
+  .footer__blocks-wrapper .footer-block--newsletter {
+    flex: 0 0 26%;
+    max-width: calc(26% - 18px);;
+=======
     flex: 0 0 25%;
     max-width: calc(25% - 18px);
   }
@@ -973,6 +982,7 @@ summary::-webkit-details-marker {
   .footer__blocks-wrapper .footer-block--newsletter {
     flex: 0 0 25%;
     max-width: calc(25% - 18px);
+>>>>>>> 1064f0a6fb78d3965bb04f5f040ee38f7eae77ad
   }
 
 }
