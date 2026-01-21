@@ -1,3 +1,5 @@
+
+.footer__blocks-wrapper.grid { align-items: flex-start; }
 .footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
@@ -37,6 +39,7 @@
   .footer__content-top .grid {
     row-gap: 6rem;
     margin-bottom: 0;
+    column-gap: 30px;
   }
 }
 
@@ -128,7 +131,7 @@
 .footer-block--newsletter {
   display: flex;
   align-items: flex-end;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
   gap: 1rem;
 }
 
@@ -152,13 +155,15 @@
 .footer-block__heading {
   margin-bottom: 2rem;
   margin-top: 0;
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  /* font-size: calc(var(--font-heading-scale) * 1.6rem); */
+  font-size: 22px;
+  font-family: 'Outfit';
 }
 
 @media screen and (min-width: 990px) {
-  .footer-block__heading {
+  /* .footer-block__heading {
     font-size: calc(var(--font-heading-scale) * 1.8rem);
-  }
+  } */
 }
 
 .footer__list-social:empty,
