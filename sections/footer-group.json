@@ -67,6 +67,7 @@
         "color_scheme": "scheme-8ca59509-0a78-4f87-a9bd-d74afb43f526",
         "newsletter_enable": true,
         "newsletter_heading": "Newsletter",
+        "newsletter_text": "Signup for our newsletter to stay up to date on sales and events.",
         "enable_follow_on_shop": false,
         "show_social": true,
         "enable_country_selector": false,
