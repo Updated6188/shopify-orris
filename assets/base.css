@@ -2963,8 +2963,9 @@ details-disclosure > details {
 }
 
 .gradient {
-  background: rgb(var(--color-background));
-  background: var(--gradient-background);
+  /*background: rgb(var(--color-background));
+  background: var(--gradient-background);*/
+  background-color: #fcf7ee;;
   background-attachment: fixed;
 }
 
@@ -3627,9 +3628,7 @@ details-disclosure > details {
   }
 }
 
-#shopify-section-sections--20765242753254__17689805924efd7f13 {
-	background: #fcf7ee;
-}
+
 .card-inspired-by {
 	font-size: 12px;
 }
