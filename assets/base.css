@@ -74,6 +74,15 @@
   --shadow-visible: var(--media-shadow-visible);
 }
 
+/* outfit-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/outfit-v15-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 /* base */
 
 .page-width {
@@ -3639,4 +3648,5 @@ details-disclosure > details {
 .button:focus-visible {
   box-shadow: none !important;
 }
+
 

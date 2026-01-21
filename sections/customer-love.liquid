@@ -1,0 +1,173 @@
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+{{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
+
+
+<section class="share_design_sect share_design_sect--home">
+    <div class="page-width-full">
+        {%- if section.settings.heading != blank -%}
+            <h2>{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+            <p>{{ section.settings.description }}</p>
+        {%- endif -%}
+        <div class="share_design_Sldr float-start w-100 overflow-hidden position-relative">
+            <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                <div class="swiper-slide">
+                    <div class="share_designSldes float-start w-100 position-relative">
+                        {% if block.settings.video_file %}
+                            <video class="swiper-video">
+                                <source src="{{block.settings.video_file.sources[0].url}}" type="{{block.settings.video_file.sources[0].mime_type}}">
+                            </video> 
+                            <div class="play-layer">Play Video</div>
+                        {% else %}
+                            <p>No video uploaded.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {%- endfor -%}
+            </div>
+            <!-- Add Pagination
+            <div class="swiper-pagination"></div> -->
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const swiper2 = new Swiper(".share_design_Sldr", {
+            slidesPerView: "auto",
+            centeredSlides: false,
+            //initialSlide: 1,
+            spaceBetween: 20,
+            grabCursor: true,
+            freeMode: true,
+            loop: false,
+            watchSlidesVisibility: true,
+            speed: 2000,
+            /*autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },*/
+            keyboard: {
+            enabled: true,
+            },
+            /* pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },*/
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                slideChange: function () {
+                    const videos = document.querySelectorAll('.swiper-video');
+                    const layers = document.querySelectorAll('.play-layer');
+                    const currentIndex = this.activeIndex;
+
+                    // Pause all videos and show their layers
+                    videos.forEach((video, index) => {
+                        if (!video.paused) {
+                            video.pause();
+                            video.currentTime = 0; // Optionally reset the video
+                            layers[index].style.display = 'flex'; // Show the play layer again
+                        }
+                    });
+
+                    // Show the layer of the previous slide
+                    if (currentIndex > 0) {
+                        layers[currentIndex - 1].style.display = 'flex'; // Show previous slide's layer
+                    } else {
+                        layers[layers.length - 1].style.display = 'flex'; // Show last slide's layer for the loop
+                    }
+                }
+            }
+        });
+
+        // Play or pause video on click of the layer
+        const playLayers = document.querySelectorAll('.play-layer');
+        const videos = document.querySelectorAll('.swiper-video');
+
+        playLayers.forEach((layer, index) => {
+            layer.addEventListener('click', () => {
+                const video = videos[index];
+
+                // Play the video and hide its layer
+                video.play();
+                layer.style.display = 'none'; // Hide the play layer
+
+                // Pause other videos and show their layers
+                playLayers.forEach((otherLayer, otherIndex) => {
+                    if (otherIndex !== index) {
+                        otherLayer.style.display = 'flex'; // Show the play layer for other videos
+                        videos[otherIndex].pause(); // Pause other videos
+                    }
+                });
+
+                // Add click event to the video for pause functionality
+                video.addEventListener('click', () => {
+                    if (!video.paused) {
+                        video.pause();
+                        layer.style.display = 'flex'; // Show the play layer
+                    }
+                });
+            });
+        });
+        // Add event to show layer again when video is paused
+        videos.forEach((video, index) => {
+            video.addEventListener('pause', () => {
+                playLayers[index].style.display = 'flex'; // Show the play layer when video is paused
+            });
+        });
+    });
+</script>
+
+
+{% schema %}
+{
+  "name": "Customer Love",
+  "tag": "section",
+  "class": "section designShare",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings":[
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading Text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "Customer Love Description"
+    },
+  ],
+  "blocks": [
+    {
+      "type": "design_share_slide",
+      "name": "Design Share Slide",
+      "settings": [
+        {
+            "type": "video",
+            "id": "video_file",
+            "label": "Upload Video",
+            "info": "Upload a video file in MP4 format.",
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Love"
+    }
+  ]
+}
+{% endschema %}

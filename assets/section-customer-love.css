@@ -1,0 +1,44 @@
+.share_design_sect {
+  padding: 30px 0;
+}
+.share_design_sect h2 { font-size: 38px; font-family: 'Outfit'; font-weight: 500; text-transform: capitalize; text-align: center; }
+.share_design_sect p { text-align: center; padding-bottom: 20px; font-size: 16px; }
+
+
+.share_design_Sldr .swiper-wrapper { justify-content:flex-start !important; }
+.share_design_Sldr .swiper-slide { max-width:210px; }
+.share_designSldes { height:370px; }
+
+.share_design_sect--home .share_design_Sldr .swiper-slide { max-width:300px; }
+.share_design_sect--home .share_designSldes { height:540px; }
+
+.share_designSldes video { width:100%; height: 100%; float:left; object-fit: cover; object-position: top; }
+
+/*.swiper-video {
+    pointer-events: none; 
+}*/
+
+.play-layer {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background: var(--Lgorange);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  text-indent: -9999px;
+  right: 0;
+  margin: 0 auto;
+  transform: translateY(-50%);
+  border-radius: 50px;
+}
+.play-layer svg { width: 20px; height:15px; fill:var(--brownColor); }
+.play-layer:hover { background: #000; }
+.play-layer:hover svg { fill:#fff; }
+
+
