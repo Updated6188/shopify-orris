@@ -3,8 +3,8 @@
   float: left;
   width: 100%;
 }
-.share_design_sect h2 { font-size: 38px; font-family: 'Outfit'; font-weight: 500; text-transform: capitalize; text-align: center; }
-.share_design_sect p { text-align: center; padding-bottom: 20px; font-size: 16px; }
+.share_design_sect h2 { font-size: 38px; font-family: 'Outfit'; font-weight: 500; text-transform: capitalize; text-align: center; color: inherit;}
+.share_design_sect p { text-align: center; padding-bottom: 20px; font-size: 16px; color: inherit; }
 
 
 .share_design_Sldr { float: left; width: 100%; overflow: hidden; position: relative;}
