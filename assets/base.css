@@ -112,7 +112,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 @media screen and (min-width: 750px) {
   .page-width {
-    padding: 0 5rem;
+    padding: 0 2.75rem;
   }
 
   .header.page-width,
@@ -968,6 +968,25 @@ summary::-webkit-details-marker {
   .grid--2-col-tablet .grid__item {
     width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
   }
+
+  /* New style for Footer */
+
+   .footer__blocks-wrapper .footer-block--menu {
+    flex: 0 0 16%;
+    max-width: calc(16% - 18px);
+  }
+
+  .footer__blocks-wrapper .footer-block:not(.footer-block--menu) {
+    flex: 0 0 25%;
+    max-width: calc(25% - 18px);;
+  }
+
+  .footer__blocks-wrapper .footer-block--newsletter {
+    flex: 0 0 25%;
+    max-width: calc(25% - 18px);;
+  }
+  
+  
 }
 
 @media screen and (max-width: 989px) {
@@ -2818,7 +2837,139 @@ details[open] > .header__submenu {
 .header__menu-item {
   padding:1.2rem 2rem;
   text-decoration: none;
-  color: rgba(var(--color-foreground), 1);
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.header__menu-item:hover {
+  color: rgb(var(--color-foreground));
+}
+
+.header__menu-item span {
+  transition: text-decoration var(--duration-short) ease;
+}
+
+.header__menu-item:hover span {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+details[open] > .header__menu-item {
+  text-decoration: underline;
+}
+
+details[open]:hover > .header__menu-item {
+  text-decoration-thickness: 0.2rem;
+}
+
+details[open] > .header__menu-item .icon-caret {
+  transform: rotate(180deg);
+}
+
+.header__active-menu-item {
+  transition: text-decoration-thickness var(--duration-short) ease;
+  color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.header__menu-item:hover .header__active-menu-item {
+  text-decoration-thickness: 0.2rem;
+}
+
+.header__submenu {
+  transition: opacity var(--duration-default) ease, transform var(--duration-default) ease;
+}
+
+.global-settings-popup,
+.header__submenu.global-settings-popup {
+  border-radius: var(--popup-corner-radius);
+  border-color: rgba(var(--color-foreground), var(--popup-border-opacity));
+  border-style: solid;
+  border-width: var(--popup-border-width);
+  box-shadow: var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius)
+    rgba(var(--color-shadow), var(--popup-shadow-opacity));
+  z-index: -1;
+}
+
+.header__submenu.list-menu {
+  padding: 1rem 0;
+}
+
+.header__submenu .header__submenu {
+  background-color: rgba(var(--color-foreground), 0.03);
+  padding: 1rem 0;
+  margin: 1rem 0;
+}
+
+.header__submenu .header__menu-item:after {
+  right: 2rem;
+}
+
+.header__submenu .header__menu-item {
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+}
+
+.header__submenu .header__menu-item:hover {
+  text-decoration-line: underline;
+}
+
+.header__menu-item .icon-caret {
+  right: 0.8rem;
+}
+
+.header__submenu .icon-caret {
+  flex-shrink: 0;
+  margin-left: 1rem;
+  position: static;
+}
+
+header-menu > details,
+details-disclosure > details {
+  position: relative;
+}
+
+@keyframes animateMenuOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-1.5rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.overflow-hidden-mobile,
+.overflow-hidden-tablet,
+.overflow-hidden-desktop {
+  overflow: hidden;
+}
+
+@media screen and (min-width: 750px) {
+  .overflow-hidden-mobile {
+    overflow: auto;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .overflow-hidden-tablet {
+    overflow: auto;
+  }
+}
+
+.badge {
+  border: 1px solid transparent;
+  border-radius: var(--badge-corner-radius);
+  display: inline-block;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  line-height: 1;
+  padding: 0.5rem 1.3rem 0.6rem 1.3rem;
+  text-align: center;
+  background-color: rgb(var(--color-badge-background));
+  border-color: rgba(var(--color-b  color: rgba(var(--color-foreground), 1);
 }
 
 .header__menu-item:hover {
@@ -3625,6 +3776,8 @@ details-disclosure > details {
 }
 #shopify-section-sections--20765242753254__17689805924efd7f13 {
 	background: #fcf7ee;
+<<<<<<< HEAD
+=======
 }
 .card-inspired-by {
 	font-size: 12px;
@@ -3639,3 +3792,4 @@ details-disclosure > details {
 .button:focus-visible {
   box-shadow: none !important;
 }
+>>>>>>> 12a0804338dea55e3f94f15c775b3d086ad7bb37
