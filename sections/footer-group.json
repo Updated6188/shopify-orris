@@ -26,12 +26,6 @@
         "include_margins": false
       }
     },
-    "1768980282ce8ce816": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -87,7 +81,6 @@
   },
   "order": [
     "17689805924efd7f13",
-    "1768980282ce8ce816",
     "footer"
   ]
 }
