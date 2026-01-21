@@ -130,11 +130,20 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "customer_love_XnzffX": {
+      "type": "customer-love",
+      "name": "Customer Love",
+      "settings": {
+        "heading": "Customer Love",
+        "description": "“What’s your #OrrisRitual?” Share your Orris Legend moment on Instagram or TikTok  and get featured on our official page."
+      }
     }
   },
   "order": [
     "slideshow_ipcL9R",
     "featured_collection",
-    "image_with_text_jx3qLT"
+    "image_with_text_jx3qLT",
+    "customer_love_XnzffX"
   ]
 }
