@@ -160,12 +160,14 @@
               {{ card_product.title | escape }}
             </a>
           </h3>
-          {% assign inspired_by = product.metafields.custom.inspired_by.value %}
-          {% if inspired_by != blank %}
-            <div class="card-inspired-by">
-              Inspired by: {{ inspired_by }}
-            </div>
-          {% endif %}
+          {% assign inspired_by = card_product.metafields.custom.inspired_by.value %}
+
+{% if inspired_by != blank %}
+  <div class="card-inspired-by">
+    Inspired by: {{ inspired_by }}
+  </div>
+{% endif %}
+
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
@@ -616,12 +618,14 @@
               {{ 'onboarding.product_title' | t }}
             </a>
           </h3>
-          {% assign inspired_by = product.metafields.custom.inspired_by.value %}
+          {% assign inspired_by = card_product.metafields.custom.inspired_by.value %}
+
           {% if inspired_by != blank %}
             <div class="card-inspired-by">
               Inspired by: {{ inspired_by }}
             </div>
           {% endif %}
+
 
           <div class="card-information">
             {%- if show_vendor -%}
