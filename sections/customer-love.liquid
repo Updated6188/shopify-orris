@@ -57,74 +57,96 @@
     </div>
 </section>
 
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        const swiper2 = new Swiper(".share_design_Sldr", {
+            slidesPerView: "auto",
+            centeredSlides: false,
+            //initialSlide: 1,
+            spaceBetween: 20,
+            grabCursor: true,
+            freeMode: true,
+            loop: false,
+            watchSlidesVisibility: true,
+            speed: 2000,
+            /*autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },*/
+            keyboard: {
+            enabled: true,
+            },
+            /* pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },*/
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                slideChange: function () {
+                    const videos = document.querySelectorAll('.swiper-video');
+                    const layers = document.querySelectorAll('.play-layer');
+                    const currentIndex = this.activeIndex;
 
-  const swiper = new Swiper('.share_design_Sldr', {
-    slidesPerView: 'auto',
-    spaceBetween: 10,
-    grabCursor: true,
-    freeMode: true,
-    loop: false,
-    speed: 1000,
-    keyboard: { enabled: true },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    on: {
-      slideChange: function () {
-        resetVideos();
-      }
-    }
-  });
+                    // Pause all videos and show their layers
+                    videos.forEach((video, index) => {
+                        if (!video.paused) {
+                            video.pause();
+                            video.currentTime = 0; // Optionally reset the video
+                            layers[index].style.display = 'flex'; // Show the play layer again
+                        }
+                    });
 
-  const videos = document.querySelectorAll('.swiper-video');
-  const layers = document.querySelectorAll('.play-layer');
-
-  function resetVideos() {
-    videos.forEach((video, i) => {
-      video.pause();
-      video.currentTime = 0;
-      layers[i].style.display = 'flex';
-    });
-  }
-
-  layers.forEach((layer, index) => {
-    layer.addEventListener('click', function () {
-      resetVideos();
-
-      const video = videos[index];
-      layer.style.display = 'none';
-
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          layer.style.display = 'flex';
+                    // Show the layer of the previous slide
+                    if (currentIndex > 0) {
+                        layers[currentIndex - 1].style.display = 'flex'; // Show previous slide's layer
+                    } else {
+                        layers[layers.length - 1].style.display = 'flex'; // Show last slide's layer for the loop
+                    }
+                }
+            }
         });
-      }
-    });
-  });
 
-  videos.forEach((video, index) => {
-    video.addEventListener('click', function () {
-      video.pause();
-      layers[index].style.display = 'flex';
-    });
+        // Play or pause video on click of the layer
+        const playLayers = document.querySelectorAll('.play-layer');
+        const videos = document.querySelectorAll('.swiper-video');
 
-    video.addEventListener('pause', function () {
-      layers[index].style.display = 'flex';
-    });
-  });
+        playLayers.forEach((layer, index) => {
+            layer.addEventListener('click', () => {
+                const video = videos[index];
 
-});
+                // Play the video and hide its layer
+                video.play();
+                layer.style.display = 'none'; // Hide the play layer
+
+                // Pause other videos and show their layers
+                playLayers.forEach((otherLayer, otherIndex) => {
+                    if (otherIndex !== index) {
+                        otherLayer.style.display = 'flex'; // Show the play layer for other videos
+                        videos[otherIndex].pause(); // Pause other videos
+                    }
+                });
+
+                // Add click event to the video for pause functionality
+                video.addEventListener('click', () => {
+                    if (!video.paused) {
+                        video.pause();
+                        layer.style.display = 'flex'; // Show the play layer
+                    }
+                });
+            });
+        });
+        // Add event to show layer again when video is paused
+        videos.forEach((video, index) => {
+            video.addEventListener('pause', () => {
+                playLayers[index].style.display = 'flex'; // Show the play layer when video is paused
+            });
+        });
+    });
 </script>
-
-
 
 {% schema %}
 {
