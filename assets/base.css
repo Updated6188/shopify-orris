@@ -1909,6 +1909,7 @@ input[type='checkbox'] {
 .quantity {
   color: rgba(var(--color-foreground));
   position: relative;
+  border: 1px solid #D7D7D7;
   width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
   display: flex;
   border-radius: var(--inputs-radius);
@@ -3784,6 +3785,10 @@ details-disclosure > details {
 	font-size: 12px;
 }
 
+.shopify-payment-button__button--unbranded:before,
+.shopify-payment-button__button--unbranded:after,
+.button:hover:before,
+.button:hover:after,
 .button:hover,
 .button:focus,
 .button:focus-visible {

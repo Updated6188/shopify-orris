@@ -368,7 +368,7 @@ a.product__text {
 }
 .qty_with_cartBtn {
 	display: grid;
-	grid-template-columns: 140px 1fr;
+	grid-template-columns: 140px 1fr; gap: 10px;
 }
 
 
