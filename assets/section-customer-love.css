@@ -5,9 +5,10 @@
 .share_design_sect p { text-align: center; padding-bottom: 20px; font-size: 16px; }
 
 
+.share_design_Sldr { float: left; width: 100%; overflow: hidden; position: relative;}
 .share_design_Sldr .swiper-wrapper { justify-content:flex-start !important; }
 .share_design_Sldr .swiper-slide { max-width:210px; }
-.share_designSldes { height:370px; }
+.share_designSldes { height:370px; float: left; width: 100%; position: relative;}
 
 .share_design_sect--home .share_design_Sldr .swiper-slide { max-width:300px; }
 .share_design_sect--home .share_designSldes { height:540px; }
