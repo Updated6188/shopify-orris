@@ -133,10 +133,49 @@
     },
     "customer_love_XnzffX": {
       "type": "customer-love",
+      "blocks": {
+        "design_share_slide_kb6Qdm": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/Untitled-video-Made-with-Clipchamp-4.mp4"
+          }
+        },
+        "design_share_slide_HcdH9A": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/sg_1.mp4"
+          }
+        },
+        "design_share_slide_B979Pb": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/sg_2.mp4"
+          }
+        },
+        "design_share_slide_nQaFWi": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/sg_3.mp4"
+          }
+        },
+        "design_share_slide_rcm7f4": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/ol-1.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "design_share_slide_kb6Qdm",
+        "design_share_slide_HcdH9A",
+        "design_share_slide_B979Pb",
+        "design_share_slide_nQaFWi",
+        "design_share_slide_rcm7f4"
+      ],
       "name": "Customer Love",
       "settings": {
         "heading": "Customer Love",
-        "description": "“What’s your #OrrisRitual?” Share your Orris Legend moment on Instagram or TikTok  and get featured on our official page."
+        "description": "“What’s your #OrrisRitual?” Share your Orris Legend moment on Instagram or TikTok   and get featured on our official page."
       }
     }
   },
