@@ -166,7 +166,7 @@
               {%- endif -%}
 
               {%- if section.settings.newsletter_text != blank -%}
-                <p class="footer-block__des inline-richtext">
+                <p class="footer__newsletter-text inline-richtext">
                   {{ section.settings.newsletter_text }}
                 </p>
               {%- endif -%}
@@ -402,8 +402,8 @@
     {
       "type": "inline_richtext",
       "id": "newsletter_text",
-      "default": "sections.footer.settings.newsletter_text.default",
-      "label": "sections.footer.settings.newsletter_text.label"
+      "default": "Newsletter",
+      "label": "Subscribe to our newsletter"
     },
     {
       "type": "header",
