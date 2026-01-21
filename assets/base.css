@@ -1287,10 +1287,10 @@ button.shopify-payment-button__button--unbranded {
   left: var(--buttons-border-width);
   z-index: 1;
   border-radius: var(--buttons-radius);
-  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
+  /*box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
       rgba(var(--color-button-text), var(--border-opacity)),
     0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
-  transition: box-shadow var(--duration-short) ease;
+  transition: box-shadow var(--duration-short) ease;*/
 }
 
 .button:not([disabled]):hover::after,
@@ -1298,10 +1298,14 @@ button.shopify-payment-button__button--unbranded {
 .customer button:hover::after,
 .shopify-payment-button__button--unbranded:hover::after {
   --border-offset: 1.3px;
-  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
+  /*box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
       rgba(var(--color-button-text), var(--border-opacity)),
-    0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
+    0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));*/
 }
+
+button:hover { background-color: rgba(var(--alpha-button-background), #000); }
+/*.customer button, button.shopify-payment-button__button--unbranded  { background-color: rgba(var(--color-button), var(--alpha-button-background)); }*/
+
 
 .button--secondary:after {
   --border-opacity: var(--buttons-border-opacity);
@@ -1910,7 +1914,7 @@ input[type='checkbox'] {
   color: rgba(var(--color-foreground));
   position: relative;
   border: 1px solid #D7D7D7;
-  width: calc(14rem / var(--font-body-scale) + var(--inputs-border-width) * 2);
+  width: 100%;
   display: flex;
   border-radius: var(--inputs-radius);
   min-height: calc((var(--inputs-border-width) * 2) + 4.5rem);
@@ -3778,8 +3782,6 @@ details-disclosure > details {
 }
 #shopify-section-sections--20765242753254__17689805924efd7f13 {
 	background: #fcf7ee;
-<<<<<<< HEAD
-=======
 }
 .card-inspired-by {
 	font-size: 12px;
@@ -3794,4 +3796,3 @@ details-disclosure > details {
 .button:focus-visible {
   box-shadow: none !important;
 }
->>>>>>> 12a0804338dea55e3f94f15c775b3d086ad7bb37
