@@ -22,7 +22,9 @@
       "block_order": [
         "square_instagram_feed_insta_feed_g9dfET"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "section {background: red;}"
+      ],
       "settings": {
         "include_margins": true
       }
