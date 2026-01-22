@@ -28,7 +28,15 @@
 {%- endstyle -%}
  
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-
+  {%- if section.blocks.size > 0 -%}
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+      {%- when '@app' -%}
+        {% render block %}
+      {%- endcase -%}
+    {%- endfor -%}
+  {%- endif -%}
+  
   {%- liquid
     assign has_social_icons = false
 
@@ -63,12 +71,7 @@
 
   {%- if section.blocks.size > 0 -%}
     <div class="footer__content-top page-width">
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-        {%- when '@app' -%}
-          {% render block %}
-        {%- endcase -%}
-      {%- endfor -%}
+      
       <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet">
 
         {%- for block in section.blocks -%}
