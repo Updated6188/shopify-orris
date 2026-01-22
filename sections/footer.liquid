@@ -63,11 +63,12 @@
 
   {%- if section.blocks.size > 0 -%}
     <div class="footer__content-top page-width">
-      {%- case block.type -%}
-      {%- when '@app' -%}
-        {% render block %}
-      {%- endcase -%}
-      
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+        {%- when '@app' -%}
+          {% render block %}
+        {%- endcase -%}
+      {%- endfor -%}
       <div class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet">
 
         {%- for block in section.blocks -%}
