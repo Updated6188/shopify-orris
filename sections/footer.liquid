@@ -26,17 +26,18 @@
     }
   }
 {%- endstyle -%}
- 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  {%- if section.blocks.size > 0 -%}
+{%- if section.blocks.size > 0 -%}
+ <div class="instagramfeed">
+    
     {%- for block in section.blocks -%}
       {%- case block.type -%}
       {%- when '@app' -%}
         {% render block %}
       {%- endcase -%}
     {%- endfor -%}
-  {%- endif -%}
-  
+ </div>
+ {%- endif -%}
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   {%- liquid
     assign has_social_icons = false
 
