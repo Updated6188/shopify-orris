@@ -26,17 +26,6 @@
     }
   }
 {%- endstyle -%}
-{%- if section.blocks.size > 0 -%}
- <div class="instagramfeed">
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-      {%- when '@app' -%}
-        {% render block %}
-      {%- endcase -%}
-    {%- endfor -%}
- </div>
- {%- endif -%}
-
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
   {%- liquid
     assign has_social_icons = false
@@ -132,9 +121,9 @@
                       {%- if settings.brand_description != blank -%}
                         <div class="rte">{{ settings.brand_description }}</div>
                       {%- endif -%}
-                      {%- if block.settings.show_social and has_social_icons -%}
+                      {% comment %} {%- if block.settings.show_social and has_social_icons -%}
                         {%- render 'social-icons', class: 'footer__list-social' -%}
-                      {%- endif -%}
+                      {%- endif -%} {% endcomment %}
                     </div>
                   {%- when 'image' -%}
                     <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
@@ -205,7 +194,13 @@
               {%- endform -%}
 
             </div>
+            {%- if has_social_icons -%}
+              <div class="footer__newsletter-social">
+                {%- render 'social-icons', class: 'footer__list-social' -%}
+              </div>
+            {%- endif -%}
           </div>
+          
         {%- endif -%}
 
       </div>
