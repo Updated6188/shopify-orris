@@ -105,6 +105,11 @@
                     </h2>
                   </a>
                 </div>
+                {% assign inspired_by = product.metafields.custom.inspired_by.value %}
+                  {% if inspired_by != blank %}
+                    <div class="product-inspired-by">Inspired by: {{ inspired_by }}</div>
+                  {% endif %}
+
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                   {%- render 'price',
