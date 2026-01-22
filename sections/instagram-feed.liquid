@@ -14,7 +14,7 @@
   }
 {%- endstyle -%}
 {%- if section.blocks.size > 0 -%}
- <div class="instagramfeed color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+ <div class="instagramfeed section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
       {%- when '@app' -%}
