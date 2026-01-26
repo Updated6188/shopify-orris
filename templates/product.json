@@ -103,8 +103,11 @@
       "block_order": [
         "judge_me_reviews_review_widget_xPE8nh"
       ],
+      "custom_css": [
+        "{background: #fcf7ee;}"
+      ],
       "settings": {
-        "include_margins": true
+        "include_margins": false
       }
     },
     "related-products": {
