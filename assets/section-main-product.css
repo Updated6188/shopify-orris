@@ -147,7 +147,7 @@ product-info {
 /* Product form */
 
 .product-form {
-  display: block;
+  display: block; width: 100%; float:left;
 }
 
 .product-form__error-message-wrapper:not([hidden]) {
