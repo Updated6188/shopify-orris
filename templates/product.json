@@ -104,7 +104,7 @@
         "judge_me_reviews_review_widget_xPE8nh"
       ],
       "custom_css": [
-        "section{background: #fcf7ee;}"
+        "{background: #fcf7ee;}"
       ],
       "settings": {
         "include_margins": false
