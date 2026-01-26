@@ -257,6 +257,18 @@ a.product__text {
   margin-bottom:0;
 }
 
+
+.product-inspired-by {margin-bottom: 6px;}
+.sv-viewers{ margin: 10px 0; font-size: 14px;}
+.sv-viewers strong{ font-weight: 600;}
+.shipping_info { float: left; width: 100%; margin: 10px 0 15px; }
+.shipping_info ul{ float: left; width: 100%; border: 1px solid #D7D7D7; max-width: 500px; list-style: none; }
+.shipping_info ul li{ font-size: 14px; font-weight: 500; letter-spacing: 1px; font-family: var(--outfit); border-bottom: 1px solid #D7D7D7; padding: 15px 10px; }
+.shipping_info ul li:last-child{ border-bottom: 0;}
+.view_count{font-size: 15px;font-weight: 500;letter-spacing: 1px; margin-top: 8px;}
+
+
+
 .product__title > * {
   margin: 0;
 }
