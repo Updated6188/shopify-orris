@@ -78,9 +78,9 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "all-collections",
+        "collection": "mens",
         "products_to_show": 8,
-        "title": "Signature Scents",
+        "title": "Our Premium Men Collection",
         "heading_size": "h1",
         "description": "<p>Experience the art of modern perfumery with fragrances inspired by global icons and crafted with the soulful warmth of our homeland. Every scent tells a story of passion, character, and identity.</p>",
         "show_description": false,
