@@ -258,7 +258,7 @@ a.product__text {
 }
 
 
-.product-inspired-by {margin-bottom: 6px;}
+.product-inspired-by {margin-bottom: 6px;	font-size: 14px;	letter-spacing: 0.5px; }
 .sv-viewers{ margin: 0; font-size: 14px;}
 .sv-viewers strong{ font-weight: 600;}
 .shipping_info { float: left; width: 100%; margin: 0; }
@@ -268,7 +268,10 @@ a.product__text {
 .shipping_info ul li:last-child{ border-bottom: 0;}
 .view_count{font-size: 15px;font-weight: 500;letter-spacing: 1px; margin: 0; display: flex; }
 
-
+#judgeme_product_reviews {
+	max-width: 1600px !important;
+	padding: 0 30px;
+}
 
 .product__title > * {
   margin: 0;
