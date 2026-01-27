@@ -13,6 +13,7 @@
     }
   }
 
+  /* Layout */
   .privacyPg.section-{{ section.id }}-padding .policy_pages{
     display: grid;
     grid-template-columns: 1fr;
@@ -26,6 +27,7 @@
     }
   }
 
+  /* Sidebar */
   .privacyPg.section-{{ section.id }}-padding .sideNav{
     position: sticky;
     top: 16px;
@@ -51,6 +53,7 @@
     font-weight: 600;
   }
 
+  /* FAQ styles */
   .privacyPg.section-{{ section.id }}-padding .faq-group{
     margin-top: 22px;
   }
@@ -81,6 +84,7 @@
 <section class="privacyPg page-width section-{{ section.id }}-padding">
   <div class="policy_pages">
 
+    <!-- LEFT SIDEBAR -->
     <aside class="policy_left">
       <div class="sideNav float-start w-100">
         <ul>
@@ -102,6 +106,7 @@
       </div>
     </aside>
 
+    <!-- RIGHT CONTENT -->
     <div class="privacyRight">
 
       {%- if section.settings.show_page_title -%}
@@ -114,10 +119,12 @@
         </h1>
       {%- endif -%}
 
+      <!-- Page content ALWAYS shows -->
       <div class="rte">
         {{ page.content }}
       </div>
 
+      <!-- FAQ repeater -->
       {%- if section.blocks.size > 0 -%}
         <div class="faq-group">
           <div class="faq-wrap">

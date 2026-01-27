@@ -6,12 +6,26 @@
         "faq1": {
           "type": "faq_item",
           "settings": {
-            "question": "test",
-            "answer": "<p>599589</p>"
+            "question": "-",
+            "answer": "<p>-</p>"
+          }
+        },
+        "faq2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "-",
+            "answer": "<p>-</p>"
+          }
+        },
+        "faq3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "-",
+            "answer": "<p>-</p>"
           }
         }
       },
-      "block_order": ["faq1"],
+      "block_order": ["faq1", "faq2", "faq3"],
       "settings": {
         "nav_menu": "menu-for-policy",
         "show_page_title": true,
