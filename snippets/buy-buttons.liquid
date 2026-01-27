@@ -30,7 +30,6 @@
       data-section-id="{{ section.id }}"
     >
       <div class="product-form__error-message-wrapper" role="alert" hidden>
-        
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
         </span>
@@ -44,7 +43,6 @@
         novalidate: 'novalidate',
         data-type: 'add-to-cart-form'
       -%}
-      {% render 'orris-discovery-testers', product: product %} 
         <input
           type="hidden"
           name="id"
@@ -73,7 +71,6 @@
             endif
           -%}
           <div class="qty_with_cartBtn">
-            
           <div
                   id="Quantity-Form-{{ section.id }}"
                   class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
