@@ -237,10 +237,50 @@
             "icon": "shopify://shop_images/favicon.png",
             "text": "test"
           }
+        },
+        "marquee_item_yypaYd": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/favicon.png",
+            "text": "test"
+          }
+        },
+        "marquee_item_xFc4tg": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/favicon.png",
+            "text": "test"
+          }
+        },
+        "marquee_item_YXxFr8": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/favicon.png",
+            "text": "test"
+          }
+        },
+        "marquee_item_zFyX3A": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/favicon.png",
+            "text": "test"
+          }
+        },
+        "marquee_item_xNFUAn": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/favicon.png",
+            "text": "test"
+          }
         }
       },
       "block_order": [
-        "marquee_item_mDDR46"
+        "marquee_item_mDDR46",
+        "marquee_item_yypaYd",
+        "marquee_item_xFc4tg",
+        "marquee_item_YXxFr8",
+        "marquee_item_zFyX3A",
+        "marquee_item_xNFUAn"
       ],
       "name": "Marquee Section",
       "settings": {
