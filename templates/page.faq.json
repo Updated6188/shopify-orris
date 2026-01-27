@@ -11,10 +11,31 @@
   "sections": {
     "main": {
       "type": "page-sidebar",
+      "blocks": {
+        "faq_item_NCGAx3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Your question here",
+            "answer": "<p>Your answer here.</p>"
+          }
+        },
+        "faq_item_wp6m9N": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Your question here",
+            "answer": "<p>Your answer here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_NCGAx3",
+        "faq_item_wp6m9N"
+      ],
       "settings": {
         "nav_menu": "menu-for-policy",
+        "show_page_title": true,
         "custom_title": "",
-        "custom_content": "",
+        "faq_heading": "Frequently Asked Questions",
         "padding_top": 100,
         "padding_bottom": 100
       }
