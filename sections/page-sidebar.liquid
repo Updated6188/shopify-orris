@@ -111,20 +111,22 @@
     <!-- RIGHT CONTENT -->
     <div class="privacyRight">
 
-      <h1>
-        {%- if section.settings.custom_title != blank -%}
-          {{ section.settings.custom_title | escape }}
-        {%- else -%}
-          {{ page.title | escape }}
-        {%- endif -%}
-      </h1>
+      {%- if section.settings.show_page_title -%}
+        <h1>
+          {%- if section.settings.custom_title != blank -%}
+            {{ section.settings.custom_title | escape }}
+          {%- else -%}
+            {{ page.title | escape }}
+          {%- endif -%}
+        </h1>
+      {%- endif -%}
 
       <!-- Page content ALWAYS shows -->
       <div class="rte">
         {{ page.content }}
       </div>
 
-      <!-- FAQ repeater -->
+      <!-- FAQ repeater (ONLY shows when filled) -->
       {%- if section.blocks.size > 0 -%}
         <div class="faq-group">
           <div class="faq-wrap">
@@ -132,15 +134,19 @@
               {%- if block.type == 'faq_item' -%}
                 {%- assign q = block.settings.question -%}
                 {%- assign a = block.settings.answer -%}
+                {%- assign q_clean = q | strip -%}
+                {%- assign a_text = a | strip -%}
 
-                {%- if q != blank or a != blank -%}
+                {%- comment -%}
+                  We use "-" as placeholder default.
+                  Show only when question != "-" AND answer != "<p>-</p>"
+                {%- endcomment -%}
+                {%- if q_clean != blank and q_clean != '-' and a_text != blank and a_text != '<p>-</p>' -%}
                   <details {{ block.shopify_attributes }}>
-                    <summary>{{ q | default: 'FAQ' | escape }}</summary>
-                    {%- if a != blank -%}
-                      <div class="faq-content rte">
-                        {{ a }}
-                      </div>
-                    {%- endif -%}
+                    <summary>{{ q_clean | escape }}</summary>
+                    <div class="faq-content rte">
+                      {{ a }}
+                    </div>
                   </details>
                 {%- endif -%}
               {%- endif -%}
@@ -163,6 +169,12 @@
       "type": "link_list",
       "id": "nav_menu",
       "label": "Left sidebar menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_page_title",
+      "label": "Show page title",
+      "default": true
     },
     {
       "type": "text",
@@ -203,26 +215,26 @@
           "type": "text",
           "id": "question",
           "label": "Question",
-          "default": "Your question here"
+          "default": "-"
         },
         {
           "type": "richtext",
           "id": "answer",
           "label": "Answer",
-          "default": "<p>Your answer here.</p>"
+          "default": "<p>-</p>"
         }
       ]
     }
   ],
   "presets": [
-  {
-    "name": "Sidebar page",
-    "blocks": [
-      { "type": "faq_item" },
-      { "type": "faq_item" },
-      { "type": "faq_item" }
-    ]
-  }
+    {
+      "name": "Sidebar page",
+      "blocks": [
+        { "type": "faq_item" },
+        { "type": "faq_item" },
+        { "type": "faq_item" }
+      ]
+    }
   ]
 }
 {% endschema %}
