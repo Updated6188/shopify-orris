@@ -3636,7 +3636,9 @@ details-disclosure > details {
 
 .shopify-section {
 	background: #fcf7ee;
-} 
+	width: 100%;
+	float: left;
+}
 .card-inspired-by {
 	font-size: 14px;
 	margin-bottom: 10px;
@@ -3653,8 +3655,11 @@ details-disclosure > details {
 }
 
 /* mds style start */
+
 .w-100 { width: 100%;}
 .float-start { float: left;}
+
+
 .fragrance-accords {
   margin: 20px 0;
   border-top: 1px solid #d7d7d7;
