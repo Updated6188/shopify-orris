@@ -9,7 +9,12 @@
  */
 {
   "sections": {
-    "main": { "type": "page-sidebar" }
+    "main": {
+      "type": "page-sidebar",
+      "settings": {}
+    }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
