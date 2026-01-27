@@ -6,9 +6,35 @@
   margin-bottom: 3rem;
 } */
 
-.singleBnr { padding:90px 0 50px; min-height: 350px; margin-bottom: 80px; }
-.singleBnr::before { content:""; position: absolute; left: 0; top: 0; background: var(--warmWhite); opacity: 0.2; width: 100%; height:100%; z-index: 1; }
-.singleBnr h1 {
+  .singleBnr {
+    position: relative;
+    min-height: 300px; /* adjust height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+     margin-bottom: 70px;
+  }
+  .singleBnr::before { content:""; position: absolute; left: 0; top: 0; background: var(--warmWhite); opacity: 0.2; width: 100%; height:100%; z-index: 1; }
+
+  .singleBnr .container {
+    position: relative;
+    z-index: 2;
+    width: min(1200px, 100%);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .singleBnrImg {
+    opacity:0.4;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .singleBnr h1 {
 	margin: 0 0 10px;
 }
 .singleBnr p {
@@ -17,8 +43,6 @@
   max-width: 950px;
   margin: 0 auto;
 }
-
-.singleBnrImg { opacity:0.4; }
 
 /* for policy pages style start */
 

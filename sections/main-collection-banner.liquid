@@ -1,96 +1,35 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-{{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }} {% endcomment %}
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  /* Center content */
-  .collection-hero.collection-hero--bg .collection-hero__inner {
-    position: relative;
-    min-height: 320px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+{%- assign bg_image = nil -%}
 
-  @media screen and (min-width: 750px) {
-    .collection-hero.collection-hero--bg .collection-hero__inner {
-      min-height: 420px;
-    }
-  }
-
-  /* Background image layer */
-  .collection-hero.collection-hero--bg .collection-hero__bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  /* Optional overlay for readability (adjust opacity if needed) */
-  .collection-hero.collection-hero--bg .collection-hero__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,.28);
-  }
-
-  /* Keep text above background */
-  .collection-hero.collection-hero--bg .collection-hero__text-wrapper {
-    position: relative;
-    z-index: 2;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  /* If no bg image, keep normal padding behavior */
-  .collection-hero:not(.collection-hero--bg) .collection-hero__inner {
-    text-align: center;
-  }
-
-  /* Mobile padding (keep your existing logic, but for bg too) */
-  @media screen and (max-width: 749px) {
-    .collection-hero.collection-hero--bg .collection-hero__inner {
-      padding-top: 3rem;
-      padding-bottom: calc({{ settings.media_shadow_vertical_offset | at_least: 0 }}px + 3rem);
-    }
-  }
-{%- endstyle -%}
-
-{%- assign use_bg = false -%}
 {%- if section.settings.show_collection_image and collection.image -%}
-  {%- assign use_bg = true -%}
+  {%- assign bg_image = collection.image -%}
 {%- endif -%}
 
-<div
-  class="collection-hero{% if use_bg %} collection-hero--bg{% endif %} color-{{ section.settings.color_scheme }} gradient"
-  {% if use_bg %}
-    style="--collection-hero-bg: url({{ collection.image | image_url: width: 2000 }});"
-  {% endif %}
->
-  {%- if use_bg -%}
-    <div
-      class="collection-hero__bg"
-      style="background-image: var(--collection-hero-bg);"
-      aria-hidden="true"
-    ></div>
-    <div class="collection-hero__overlay" aria-hidden="true"></div>
-  {%- endif -%}
+<section class="singleBnr text-center d-flex flex-wrap justify-content-center align-items-end position-relative section-{{ section.id }}-padding">
+  <div class="container position-relative z-index-2">
+    <h1>
+      <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
+      {{ collection.title | escape }}
+    </h1>
 
-  <div class="collection-hero__inner page-width {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    <div class="collection-hero__text-wrapper">
-      <h1 class="collection-hero__title">
-        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
-        {{- collection.title | escape -}}
-      </h1>
-
-      {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">
+    {%- if section.settings.show_collection_description -%}
+      {%- if collection.description != blank -%}
           {{ collection.description }}
-        </div>
       {%- endif -%}
-    </div>
+    {%- endif -%}
   </div>
-</div>
+
+  {%- if bg_image != blank -%}
+    <div
+      class="singleBnrImg position-absolute top-0 start-0 w-100 h-100 bg-default"
+      style="background-image:url({{ bg_image | image_url: width: 2000 }});"
+      aria-hidden="true"
+    >&nbsp</div>
+  {%- endif -%}
+</section>
 
 {% schema %}
 {
