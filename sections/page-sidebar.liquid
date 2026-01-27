@@ -1,6 +1,6 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
-<section class="privacyPg SectionSpce page-width section-{{ section.id }}-padding">
+<div class="privacyPg w-100 float-start page-width section-{{ section.id }}-padding">
   
     <div class="policy_pages w-100 float-start">
       
@@ -24,7 +24,7 @@
             {%- endif -%}
           </ul>
         </div>
-        
+
         <div class="PrivacyDes float-start w-100">
           <h1 class="ft-size-30 text-uppercase mb-4">
             {%- if section.settings.custom_title != blank -%}
@@ -46,7 +46,7 @@
     
     </div>
   
-</section>
+</div>
 
 {% schema %}
 {
