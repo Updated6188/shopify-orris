@@ -1,175 +1,125 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .page-sidebar-wrap-{{ section.id }}{
+  /* Keep Dawn padding controls (optional) */
+  .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
+
   @media screen and (min-width: 750px) {
-    .page-sidebar-wrap-{{ section.id }}{
+    .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 
-  .page-sidebar-{{ section.id }}{
+  /* If your theme is NOT loading Bootstrap, make layout still work */
+  .privacyPg.section-{{ section.id }}-padding .row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px;
   }
 
-  @media screen and (min-width: 990px){
-    .page-sidebar-{{ section.id }}{
-      grid-template-columns: 280px 1fr;
+  @media (min-width: 768px) {
+    .privacyPg.section-{{ section.id }}-padding .row {
+      grid-template-columns: 340px 1fr;
       align-items: start;
     }
   }
 
-  .page-sidebar__nav-{{ section.id }}{
-    position: sticky;
-    top: 16px;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 12px;
-    padding: 14px;
-    background: rgb(var(--color-background));
-  }
-
-  .page-sidebar__title-{{ section.id }}{
-    margin: 0 0 10px;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  .page-sidebar__links-{{ section.id }}{
+  /* Sidebar */
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
-  .page-sidebar__links-{{ section.id }} li + li{
-    margin-top: 6px;
-  }
-
-  .page-sidebar__links-{{ section.id }} a{
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul li a {
     display: block;
-    padding: 10px 10px;
-    border-radius: 10px;
+    padding: 12px 12px;
     text-decoration: none;
     color: inherit;
+    border-radius: 10px;
   }
 
-  .page-sidebar__links-{{ section.id }} a[aria-current="page"],
-  .page-sidebar__links-{{ section.id }} a.is-active{
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.current-menu-item > a,
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.is-active > a {
     background: rgba(0,0,0,.06);
     font-weight: 600;
   }
-
-  .page-sidebar__content-{{ section.id }}{
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 12px;
-    padding: 18px;
-    background: rgb(var(--color-background));
-  }
-
-  .page-sidebar__content-{{ section.id }} .rte{
-    margin-top: 12px;
-  }
 {%- endstyle -%}
 
-<div class="page-width page-sidebar-wrap-{{ section.id }}">
-  <div class="page-sidebar-{{ section.id }}">
-    <!-- Left Nav -->
-    <aside class="page-sidebar__nav-{{ section.id }}">
-      {%- if section.settings.nav_title != blank -%}
-        <p class="page-sidebar__title-{{ section.id }}">{{ section.settings.nav_title | escape }}</p>
-      {%- endif -%}
+<section class="privacyPg SectionSpce section-{{ section.id }}-padding">
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-md-5 col-lg-4 col-xl-3">
+        <div class="sideNav float-start w-100">
+          <ul>
+            {%- if section.settings.nav_menu != blank -%}
+              {%- for link in section.settings.nav_menu.links -%}
+                {%- assign is_active = false -%}
+                {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
 
-      {%- if section.settings.nav_menu != blank -%}
-        <ul class="page-sidebar__links-{{ section.id }}">
-          {%- for link in section.settings.nav_menu.links -%}
-            {%- assign active = false -%}
-            {%- if link.url == page.url -%}{%- assign active = true -%}{%- endif -%}
-
-            <li>
-              <a
-                href="{{ link.url }}"
-                {% if active %}class="is-active" aria-current="page"{% endif %}
-              >
-                {{ link.title | escape }}
-              </a>
-
-              {%- if section.settings.show_children and link.links.size > 0 -%}
-                <ul class="page-sidebar__links-{{ section.id }}" style="margin-top:8px; margin-left:10px;">
-                  {%- for child in link.links -%}
-                    {%- assign child_active = false -%}
-                    {%- if child.url == page.url -%}{%- assign child_active = true -%}{%- endif -%}
-                    <li>
-                      <a href="{{ child.url }}" {% if child_active %}class="is-active" aria-current="page"{% endif %}>
-                        {{ child.title | escape }}
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
-            </li>
-          {%- endfor -%}
-        </ul>
-      {%- else -%}
-        <p class="rte">Select a menu from section settings.</p>
-      {%- endif -%}
-    </aside>
-
-    <!-- Right Content -->
-    <main class="page-sidebar__content-{{ section.id }}">
-      <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-        {%- if section.settings.heading != blank -%}
-          {{ section.settings.heading | escape }}
-        {%- else -%}
-          {{ page.title | escape }}
-        {%- endif -%}
-      </h1>
-
-      <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {%- if section.settings.custom_content != blank -%}
-          {{ section.settings.custom_content }}
-        {%- else -%}
-          {{ page.content }}
-        {%- endif -%}
+                <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
+                  <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
+                    {{ link.title | escape }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            {%- else -%}
+              <li class="menu-item">
+                <a href="#">Select a menu in section settings</a>
+              </li>
+            {%- endif -%}
+          </ul>
+        </div>
       </div>
-    </main>
+
+      <div class="col-md-7 col-lg-8 col-xl-9">
+        <div class="PrivacyDes float-start w-100">
+          <h1 class="ft-size-30 text-uppercase mb-4">
+            {%- if section.settings.custom_title != blank -%}
+              {{ section.settings.custom_title | escape }}
+            {%- else -%}
+              {{ page.title | escape }}
+            {%- endif -%}
+          </h1>
+
+          <div class="rte">
+            {%- if section.settings.custom_content != blank -%}
+              {{ section.settings.custom_content }}
+            {%- else -%}
+              {{ page.content }}
+            {%- endif -%}
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
-  "name": "Page with left sidebar",
+  "name": "Privacy sidebar page",
+  "tag": "section",
+  "class": "section",
   "settings": [
     {
+      "type": "link_list",
+      "id": "nav_menu",
+      "label": "Left sidebar menu"
+    },
+    {
       "type": "text",
-      "id": "heading",
-      "label": "Custom heading (optional)"
+      "id": "custom_title",
+      "label": "Custom title (optional)"
     },
     {
       "type": "richtext",
       "id": "custom_content",
       "label": "Custom content (optional, overrides page content)"
-    },
-    {
-      "type": "text",
-      "id": "nav_title",
-      "label": "Sidebar title",
-      "default": "Help Center"
-    },
-    {
-      "type": "link_list",
-      "id": "nav_menu",
-      "label": "Sidebar menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_children",
-      "label": "Show dropdown children links",
-      "default": true
     },
     {
       "type": "header",
@@ -183,7 +133,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 36
+      "default": 0
     },
     {
       "type": "range",
@@ -193,12 +143,12 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 36
+      "default": 0
     }
   ],
   "presets": [
     {
-      "name": "Page with left sidebar"
+      "name": "Privacy sidebar page"
     }
   ]
 }
