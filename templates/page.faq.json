@@ -12,6 +12,27 @@
     "main": {
       "type": "page-sidebar",
       "blocks": {
+        "faq1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Orris Eau De Parfume?",
+            "answer": "<p>Eau de Parfum (EDP) is a type of fragrance that contains a higher concentration of perfume oils than other types like Eau de Toilette or Eau de Cologne. Typically, Eau de Parfum has a fragrance concentration of around 15% to 30% (we use 30%), making it more long-lasting and stronger.</p><p>Because of its higher concentration, Eau de Parfum lasts longer on the skin, usually between 4 to 6 hours or more, depending on the notes and the individual’s skin chemistry. It strikes a good balance between intensity and wearability, which is why it’s one of the most popular types of fragrance.</p>"
+          }
+        },
+        "faq2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is an impression? Are you selling the original designer fragrances?",
+            "answer": "<p>Orris Perfumes are made in Pakistan, we sell premium high quality impressions of designer fragrances. With years of experience and dedication, we create that same identical scent that you already know and love.</p><p>Orris Perfumes competes with the designer brands. It does not use their fragrances and is not associated in any way with the designer brands or their manufacturers. All trademarks are property of their respective owners. We are in compliance with the Federal Trade Commission’s Statement of Policy Regarding Comparative Advertising.</p>"
+          }
+        },
+        "faq3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long will the fragrance bottle last?",
+            "answer": "<p>A 50 ml bottle will last at least 1-2 months if used daily.</p>"
+          }
+        },
         "faq_item_YTj9cH": {
           "type": "faq_item",
           "settings": {
@@ -46,38 +67,17 @@
             "question": "Are your perfume vegan?",
             "answer": "<p>Orris products do not contain any animal-derived ingredients, and also do not contain beeswax or honey. Our products are never tested on animals.</p>"
           }
-        },
-        "faq1": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What is Orris Eau De Parfume?",
-            "answer": "<p>Eau de Parfum (EDP) is a type of fragrance that contains a higher concentration of perfume oils than other types like Eau de Toilette or Eau de Cologne. Typically, Eau de Parfum has a fragrance concentration of around 15% to 30% (we use 30%), making it more long-lasting and stronger.</p><p>Because of its higher concentration, Eau de Parfum lasts longer on the skin, usually between 4 to 6 hours or more, depending on the notes and the individual’s skin chemistry. It strikes a good balance between intensity and wearability, which is why it’s one of the most popular types of fragrance.</p>"
-          }
-        },
-        "faq2": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What is an impression? Are you selling the original designer fragrances?",
-            "answer": "<p>Orris Perfumes are made in Pakistan, we sell premium high quality impressions of designer fragrances. With years of experience and dedication, we create that same identical scent that you already know and love.</p><p>Orris Perfumes competes with the designer brands. It does not use their fragrances and is not associated in any way with the designer brands or their manufacturers. All trademarks are property of their respective owners. We are in compliance with the Federal Trade Commission’s Statement of Policy Regarding Comparative Advertising.</p>"
-          }
-        },
-        "faq3": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How long will the fragrance bottle last?",
-            "answer": "<p>A 50 ml bottle will last at least 1-2 months if used daily.</p>"
-          }
         }
       },
       "block_order": [
+        "faq1",
+        "faq2",
+        "faq3",
         "faq_item_YTj9cH",
         "faq_item_WAGxgL",
         "faq_item_BpYxed",
         "faq_item_KXMi6D",
-        "faq_item_DhNxTL",
-        "faq1",
-        "faq2",
-        "faq3"
+        "faq_item_DhNxTL"
       ],
       "settings": {
         "nav_menu": "menu-for-policy",
