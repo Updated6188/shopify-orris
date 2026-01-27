@@ -34,3 +34,22 @@
   height: 52.5rem;
 }
  
+
+.sideNav { border: 1px solid #dcdcdc; }
+.sideNav ul li {
+  border-bottom: 1px solid #dcdcdc;
+  width: 100%;
+  float: left;
+}
+
+.sideNav ul li a { display: block; font-family: var(--outfit); font-weight: 300; font-size: 16px; color: var(--black); padding: 15px 28px 16px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;}
+.sideNav ul li a:hover,
+.sideNav ul li.current-menu-item a { background:var(--brownColor); color:var(--white); }
+
+
+.PrivacyDes h2 { font-size:22px; text-transform:capitalize; margin-bottom: 15px; margin-top: 10px; float: left; width: 100%;}
+.PrivacyDes p { font-size:16px; line-height:1.4; margin-bottom: 15px; }
+
+.PrivacyDes ul { padding-left:15px; }
+.PrivacyDes ul li { font-size:16px; line-height:1.4; margin-bottom:20px; list-style:decimal; }
+.PrivacyDes ul li:last-child { margin-bottom: 0; }
