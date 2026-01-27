@@ -1,8 +1,8 @@
 {%- comment -%}
-  Fake Recent Orders Popup
-  - Show -> Hold -> Hide -> Wait -> Next (no flicker)
-  - Single delay setting: settings.fake_orders_delay
-  - Smooth close with NO flash (clears all timers + hard kill flag)
+  Fake Recent Orders Popup (Fade-in / Fade-out)
+  - No display:none toggling (prevents flicker)
+  - Smooth close (fade out) + hard stop
+  - Random product each cycle from chosen collection
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
@@ -49,7 +49,7 @@
         <div class="fake-order-text">
           <div class="fake-order-line1">
             <strong class="fo-name">Someone</strong>
-            from <span class="fo-city">a city</span>
+            from <strong class="fo-city">a city</strong>
           </div>
           <div class="fake-order-line2">
             purchased <strong class="fo-product">a product</strong>
@@ -63,7 +63,6 @@
   </div>
 
   <style>
-    .fake-order-popup{ display:none; }
     .fake-order-popup{
       position: fixed;
       left: 16px;
@@ -78,7 +77,26 @@
       padding: 12px;
       font-size: 14px;
       line-height: 1.25;
+
+      /* Hidden state (no display:none) */
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(10px);
+
+      transition: opacity .28s ease, transform .28s ease, visibility 0s linear .28s;
+      will-change: opacity, transform;
     }
+
+    /* Visible state */
+    .fake-order-popup.is-visible{
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition: opacity .28s ease, transform .28s ease, visibility 0s;
+    }
+
     .fake-order-inner{ display:flex; gap:10px; align-items:center; }
     .fake-order-img img{ border-radius: 10px; display:block; }
     .fake-order-line1, .fake-order-line2, .fake-order-line3{ margin: 2px 0; }
@@ -96,12 +114,6 @@
       opacity: .65;
     }
     .fake-order-close:hover{ opacity: 1; }
-
-    .fake-order-popup.is-show{ display:block; animation: foIn .25s ease; }
-    .fake-order-popup.is-hide{ animation: foOut .22s ease; }
-
-    @keyframes foIn{ from{ transform: translateY(10px); opacity:0;} to{ transform: translateY(0); opacity:1;} }
-    @keyframes foOut{ from{ transform: translateY(0); opacity:1;} to{ transform: translateY(10px); opacity:0;} }
   </style>
 
   <script>
@@ -122,14 +134,6 @@
 
       var popup = document.getElementById("fakeOrderPopup");
       if (!popup) return;
-
-      var onlySuffix = "{{ settings.fake_orders_template_suffix | escape }}";
-      {% if product and product.template_suffix %}
-        var currentSuffix = {{ product.template_suffix | json }};
-      {% else %}
-        var currentSuffix = "";
-      {% endif %}
-      if (onlySuffix && isProduct && currentSuffix !== onlySuffix) return;
 
       var closeBtn = popup.querySelector(".fake-order-close");
       var elName = popup.querySelector(".fo-name");
@@ -196,21 +200,15 @@
         return true;
       }
 
-      // HARD kill flag (prevents any future show)
+      // Timers
       var killed = false;
+      var tStart=null, tHold=null, tNext=null;
 
-      // Separate timers (so we can clear ALL)
-      var tStart = null;
-      var tHold = null;
-      var tHideAnim = null;
-      var tNext = null;
-
-      function clearAllTimers(){
-        if (tStart) window.clearTimeout(tStart);
-        if (tHold) window.clearTimeout(tHold);
-        if (tHideAnim) window.clearTimeout(tHideAnim);
-        if (tNext) window.clearTimeout(tNext);
-        tStart = tHold = tHideAnim = tNext = null;
+      function clearTimers(){
+        if (tStart) clearTimeout(tStart);
+        if (tHold) clearTimeout(tHold);
+        if (tNext)  clearTimeout(tNext);
+        tStart=tHold=tNext=null;
       }
 
       function showPopup(){
@@ -223,24 +221,12 @@
         elCity.textContent = pick(cities, "your area");
         elTime.textContent = formatTime(rand(minMinutes, maxMinutes));
 
-        popup.classList.remove("is-hide");
-        popup.classList.add("is-show");
-        popup.style.display = "block";
+        popup.classList.add("is-visible");
       }
 
-      function hidePopup(done){
+      function hidePopup(){
         if (killed) return;
-
-        popup.classList.add("is-hide");
-
-        // after animation completes
-        tHideAnim = window.setTimeout(function(){
-          popup.classList.remove("is-show");
-          popup.classList.remove("is-hide");
-          popup.style.display = "none";
-          tHideAnim = null;
-          if (typeof done === "function") done();
-        }, 230);
+        popup.classList.remove("is-visible");
       }
 
       function loop(){
@@ -248,51 +234,36 @@
 
         showPopup();
 
-        // stay visible
-        tHold = window.setTimeout(function(){
+        tHold = setTimeout(function(){
           tHold = null;
+          hidePopup();
 
-          hidePopup(function(){
-            if (killed) return;
-
-            // wait then next popup
-            tNext = window.setTimeout(function(){
-              tNext = null;
-              loop();
-            }, delayBetween);
-          });
+          tNext = setTimeout(function(){
+            tNext = null;
+            loop();
+          }, delayBetween);
 
         }, showFor);
       }
 
-      // Prevent the wrapper link from reacting when clicking close
       closeBtn.addEventListener("click", function(e){
         e.preventDefault();
         e.stopPropagation();
         if (killed) return;
 
-        killed = true;          // stop everything instantly
-        clearAllTimers();       // IMPORTANT: clears all scheduled calls
+        killed = true;
+        clearTimers();
 
-        // Smoothly hide if currently visible
-        if (popup.classList.contains("is-show") && popup.style.display !== "none") {
-          // temporarily allow hide animation even though killed
-          killed = false;
-          hidePopup(function(){
-            killed = true;
-          });
-        } else {
-          popup.style.display = "none";
-        }
+        // Smooth close: just fade out
+        popup.classList.remove("is-visible");
       });
 
-      // No products = no popup
       if (!products || !products.length) return;
 
-      tStart = window.setTimeout(function(){
+      tStart = setTimeout(function(){
         tStart = null;
         loop();
-      }, 1200);
+      }, 900);
 
     })();
   </script>
