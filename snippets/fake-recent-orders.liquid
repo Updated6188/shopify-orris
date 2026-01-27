@@ -1,8 +1,8 @@
 {%- comment -%}
   Fake Recent Orders Popup
-  - No flicker: Show -> Hold -> Hide -> Wait -> Next
-  - Single delay: settings.fake_orders_delay
-  - Smooth close: animate out then stop
+  - Show -> Hold -> Hide -> Wait -> Next (no flicker)
+  - Single delay setting: settings.fake_orders_delay
+  - Smooth close with NO flash (clears all timers + hard kill flag)
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
@@ -87,6 +87,7 @@
       position:absolute;
       top: 6px;
       right: 8px;
+      z-index: 2;
       border: 0;
       background: transparent;
       font-size: 20px;
@@ -177,16 +178,12 @@
         return products[Math.floor(Math.random() * products.length)];
       }
       function setProduct(p){
-        if (!p || !p.title) {
-          elProd.textContent = "this item";
-          linkEl.href = "#";
-          linkEl.style.pointerEvents = "none";
-          if (imgWrap) imgWrap.style.display = "none";
-          return;
-        }
+        if (!p || !p.title) return false;
+
         elProd.textContent = p.title;
         linkEl.href = p.url || "#";
         linkEl.style.pointerEvents = p.url ? "auto" : "none";
+
         if (imgEl && imgWrap) {
           if (p.img) {
             imgEl.src = p.img;
@@ -196,70 +193,107 @@
             imgWrap.style.display = "none";
           }
         }
+        return true;
       }
 
-      var stopped = false;
-      var timer = null;
-      var closing = false;
+      // HARD kill flag (prevents any future show)
+      var killed = false;
+
+      // Separate timers (so we can clear ALL)
+      var tStart = null;
+      var tHold = null;
+      var tHideAnim = null;
+      var tNext = null;
+
+      function clearAllTimers(){
+        if (tStart) window.clearTimeout(tStart);
+        if (tHold) window.clearTimeout(tHold);
+        if (tHideAnim) window.clearTimeout(tHideAnim);
+        if (tNext) window.clearTimeout(tNext);
+        tStart = tHold = tHideAnim = tNext = null;
+      }
 
       function showPopup(){
-        if (stopped || closing) return;
+        if (killed) return;
 
         var p = pickProduct();
+        if (!setProduct(p)) return;
+
         elName.textContent = pick(names, "Someone");
         elCity.textContent = pick(cities, "your area");
         elTime.textContent = formatTime(rand(minMinutes, maxMinutes));
-        setProduct(p);
 
         popup.classList.remove("is-hide");
         popup.classList.add("is-show");
         popup.style.display = "block";
       }
 
-      function hidePopup(callback){
-        if (stopped) return;
+      function hidePopup(done){
+        if (killed) return;
+
         popup.classList.add("is-hide");
-        window.setTimeout(function(){
+
+        // after animation completes
+        tHideAnim = window.setTimeout(function(){
           popup.classList.remove("is-show");
           popup.classList.remove("is-hide");
           popup.style.display = "none";
-          if (typeof callback === "function") callback();
+          tHideAnim = null;
+          if (typeof done === "function") done();
         }, 230);
       }
 
       function loop(){
-        if (stopped || closing) return;
+        if (killed) return;
 
         showPopup();
 
-        timer = window.setTimeout(function(){
+        // stay visible
+        tHold = window.setTimeout(function(){
+          tHold = null;
+
           hidePopup(function(){
-            timer = window.setTimeout(function(){
+            if (killed) return;
+
+            // wait then next popup
+            tNext = window.setTimeout(function(){
+              tNext = null;
               loop();
             }, delayBetween);
           });
+
         }, showFor);
       }
 
+      // Prevent the wrapper link from reacting when clicking close
       closeBtn.addEventListener("click", function(e){
         e.preventDefault();
-        if (closing) return;
-        closing = true;
-        stopped = true;
+        e.stopPropagation();
+        if (killed) return;
 
-        window.clearTimeout(timer);
+        killed = true;          // stop everything instantly
+        clearAllTimers();       // IMPORTANT: clears all scheduled calls
 
-        // Smooth close: animate out if currently visible
+        // Smoothly hide if currently visible
         if (popup.classList.contains("is-show") && popup.style.display !== "none") {
-          hidePopup(function(){ /* done */ });
+          // temporarily allow hide animation even though killed
+          killed = false;
+          hidePopup(function(){
+            killed = true;
+          });
         } else {
           popup.style.display = "none";
         }
       });
 
+      // No products = no popup
       if (!products || !products.length) return;
 
-      timer = window.setTimeout(loop, 1200);
+      tStart = window.setTimeout(function(){
+        tStart = null;
+        loop();
+      }, 1200);
+
     })();
   </script>
 {%- endif -%}
