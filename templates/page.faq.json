@@ -12,6 +12,20 @@
     "main": {
       "type": "page-sidebar",
       "blocks": {
+        "faq_item_YTj9cH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return a purchased product?",
+            "answer": "<p>Sure you can! <a href=\"https://orris.pk/\">CLICK HERE</a> to tracking your order</p>"
+          }
+        },
+        "faq_item_WAGxgL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I track my order?",
+            "answer": "<p>Absolutely! <a href=\"https://orris.pk/\">CLICK HERE</a> to track your order.</p>"
+          }
+        },
         "faq_item_BpYxed": {
           "type": "faq_item",
           "settings": {
@@ -56,6 +70,8 @@
         }
       },
       "block_order": [
+        "faq_item_YTj9cH",
+        "faq_item_WAGxgL",
         "faq_item_BpYxed",
         "faq_item_KXMi6D",
         "faq_item_DhNxTL",
