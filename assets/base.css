@@ -3655,9 +3655,17 @@ details-disclosure > details {
 }
 
 /* mds style start */
+:root {
+--black: black;
+--white: white;
+--brownColor: #B6713E;
+--warmWhite: #fcf7ee;
+--Lgorange: #ecdec1;
+}
 
 .w-100 { width: 100%;}
 .float-start { float: left;}
+.text-uppercase { text-transform: uppercase;}
 
 
 .fragrance-accords {
