@@ -11,9 +11,28 @@
   "sections": {
     "main": {
       "type": "page-sidebar",
+      "blocks": {
+        "faq_item_74ajLd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "2",
+            "answer": "<p>222</p>"
+          }
+        },
+        "faq_item_k9BGHd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "test",
+            "answer": "<p>599589</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_74ajLd",
+        "faq_item_k9BGHd"
+      ],
       "settings": {
         "nav_menu": "menu-for-policy",
-        "show_page_title": true,
         "custom_title": "",
         "padding_top": 100,
         "padding_bottom": 100
