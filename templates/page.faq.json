@@ -25,36 +25,27 @@
         "collapsible_row_nzi8wx": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Collapsible row 1",
             "icon": "check_mark",
-            "row_content": "",
+            "row_content": "<p>Collapsible row 1</p>",
             "page": ""
           }
         },
         "collapsible_row_9W3HX4": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Collapsible row 2",
             "icon": "check_mark",
-            "row_content": "",
+            "row_content": "<p>Collapsible row 2</p>",
             "page": ""
           }
         },
         "collapsible_row_JdDKhR": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
+            "heading": "Collapsible row 3",
             "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_G3BTjz": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
+            "row_content": "<p><br/>Collapsible row 3<br/><br/></p>",
             "page": ""
           }
         }
@@ -62,8 +53,7 @@
       "block_order": [
         "collapsible_row_nzi8wx",
         "collapsible_row_9W3HX4",
-        "collapsible_row_JdDKhR",
-        "collapsible_row_G3BTjz"
+        "collapsible_row_JdDKhR"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
