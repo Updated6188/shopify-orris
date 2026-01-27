@@ -33,25 +33,11 @@
             "answer": "<p>A 50 ml bottle will last at least 1-2 months if used daily.</p>"
           }
         },
-        "faq_item_YTj9cH": {
+        "faq_item_DhNxTL": {
           "type": "faq_item",
           "settings": {
-            "question": "Can I return a purchased product?",
-            "answer": "<p>Sure you can! <a href=\"https://orris.pk/\">CLICK HERE</a> to tracking your order</p>"
-          }
-        },
-        "faq_item_WAGxgL": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Can I track my order?",
-            "answer": "<p>Absolutely! <a href=\"https://orris.pk/\">CLICK HERE</a> to track your order.</p>"
-          }
-        },
-        "faq_item_BpYxed": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Which country do you ship to?",
-            "answer": "<p>We ship all over pakistan.</p>"
+            "question": "Are your perfume vegan?",
+            "answer": "<p>Orris products do not contain any animal-derived ingredients, and also do not contain beeswax or honey. Our products are never tested on animals.</p>"
           }
         },
         "faq_item_KXMi6D": {
@@ -61,11 +47,25 @@
             "answer": "<p>We endeavor to process and ship your order within 1-2 business days from the time payment is received. Shipping times can vary between 4 – 7 business days in Pakistan and between 10 – 21 business days internationally.</p>"
           }
         },
-        "faq_item_DhNxTL": {
+        "faq_item_BpYxed": {
           "type": "faq_item",
           "settings": {
-            "question": "Are your perfume vegan?",
-            "answer": "<p>Orris products do not contain any animal-derived ingredients, and also do not contain beeswax or honey. Our products are never tested on animals.</p>"
+            "question": "Which country do you ship to?",
+            "answer": "<p>We ship all over pakistan.</p>"
+          }
+        },
+        "faq_item_WAGxgL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I track my order?",
+            "answer": "<p>Absolutely! <a href=\"https://orris.pk/\">CLICK HERE</a> to track your order.</p>"
+          }
+        },
+        "faq_item_YTj9cH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return a purchased product?",
+            "answer": "<p>Sure you can! <a href=\"https://orris.pk/\">CLICK HERE</a> to tracking your order</p>"
           }
         }
       },
@@ -73,11 +73,11 @@
         "faq1",
         "faq2",
         "faq3",
-        "faq_item_YTj9cH",
-        "faq_item_WAGxgL",
-        "faq_item_BpYxed",
+        "faq_item_DhNxTL",
         "faq_item_KXMi6D",
-        "faq_item_DhNxTL"
+        "faq_item_BpYxed",
+        "faq_item_WAGxgL",
+        "faq_item_YTj9cH"
       ],
       "settings": {
         "nav_menu": "menu-for-policy",
