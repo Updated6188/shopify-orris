@@ -46,6 +46,43 @@
         "accessibility_info": "Slideshow about our brand"
       }
     },
+    "marquee_bar_iWdepB": {
+      "type": "marquee-bar",
+      "blocks": {
+        "marquee_item_mDDR46": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/artboard_1.webp",
+            "text": "Free Shipping"
+          }
+        },
+        "marquee_item_yypaYd": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/artboard_2.webp",
+            "text": "24*7 Customer Support"
+          }
+        },
+        "marquee_item_xFc4tg": {
+          "type": "marquee_item",
+          "settings": {
+            "icon": "shopify://shop_images/artboard_3.webp",
+            "text": "15 Days Return Policy"
+          }
+        }
+      },
+      "block_order": [
+        "marquee_item_mDDR46",
+        "marquee_item_yypaYd",
+        "marquee_item_xFc4tg"
+      ],
+      "name": "Marquee Section",
+      "settings": {
+        "section_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection_VANH7E": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -226,67 +263,6 @@
         "section_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "padding_top": 36,
         "padding_bottom": 0
-      }
-    },
-    "marquee_bar_iWdepB": {
-      "type": "marquee-bar",
-      "blocks": {
-        "marquee_item_mDDR46": {
-          "type": "marquee_item",
-          "settings": {
-            "icon": "shopify://shop_images/favicon.png",
-            "text": "CERTIFIED PRODUCTS"
-          }
-        },
-        "marquee_item_yypaYd": {
-          "type": "marquee_item",
-          "settings": {
-            "icon": "shopify://shop_images/favicon.png",
-            "text": "100% SECURE PAYMENTS"
-          }
-        },
-        "marquee_item_xFc4tg": {
-          "type": "marquee_item",
-          "settings": {
-            "icon": "shopify://shop_images/favicon.png",
-            "text": "FROM PROFESSIONALS FOR PROFESSIONALS"
-          }
-        },
-        "marquee_item_YXxFr8": {
-          "type": "marquee_item",
-          "settings": {
-            "icon": "shopify://shop_images/favicon.png",
-            "text": "NO ANIMAL CRUELTY"
-          }
-        },
-        "marquee_item_zFyX3A": {
-          "type": "marquee_item",
-          "settings": {
-            "icon": "shopify://shop_images/favicon.png",
-            "text": "SHIPPING IN 24 HOURS"
-          }
-        },
-        "marquee_item_xNFUAn": {
-          "type": "marquee_item",
-          "settings": {
-            "icon": "shopify://shop_images/favicon.png",
-            "text": "NO HARMFUL INGREDIENTS"
-          }
-        }
-      },
-      "block_order": [
-        "marquee_item_mDDR46",
-        "marquee_item_yypaYd",
-        "marquee_item_xFc4tg",
-        "marquee_item_YXxFr8",
-        "marquee_item_zFyX3A",
-        "marquee_item_xNFUAn"
-      ],
-      "name": "Marquee Section",
-      "settings": {
-        "section_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     }
   },

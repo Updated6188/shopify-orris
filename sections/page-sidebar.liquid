@@ -53,7 +53,7 @@
     font-weight: 600;
   }
 
-  /* FAQ spacing + styles */
+  /* FAQ styles */
   .privacyPg.section-{{ section.id }}-padding .faq-group{
     margin-top: 22px;
   }
@@ -111,52 +111,51 @@
     <!-- RIGHT CONTENT -->
     <div class="privacyRight">
 
-      {%- if section.settings.show_page_title -%}
-        <h1>
-          {%- if section.settings.custom_title != blank -%}
-            {{ section.settings.custom_title | escape }}
-          {%- else -%}
-            {{ page.title | escape }}
-          {%- endif -%}
-        </h1>
-      {%- endif -%}
+      <h1>
+        {%- if section.settings.custom_title != blank -%}
+          {{ section.settings.custom_title | escape }}
+        {%- else -%}
+          {{ page.title | escape }}
+        {%- endif -%}
+      </h1>
 
       <!-- Page content ALWAYS shows -->
       <div class="rte">
         {{ page.content }}
       </div>
 
-      <!-- FAQ repeater (blocks) -->
-      <div class="faq-group">
-        <div class="faq-wrap">
-          {%- for block in section.blocks -%}
-            {%- if block.type == 'faq_item' -%}
-              {%- assign q = block.settings.question -%}
-              {%- assign a = block.settings.answer -%}
+      <!-- FAQ repeater -->
+      {%- if section.blocks.size > 0 -%}
+        <div class="faq-group">
+          <div class="faq-wrap">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'faq_item' -%}
+                {%- assign q = block.settings.question -%}
+                {%- assign a = block.settings.answer -%}
 
-              {%- if q != blank or a != blank -%}
-                <details {{ block.shopify_attributes }}>
-                  <summary>{{ q | default: 'FAQ' | escape }}</summary>
-                  {%- if a != blank -%}
-                    <div class="faq-content rte">
-                      {{ a }}
-                    </div>
-                  {%- endif -%}
-                </details>
+                {%- if q != blank or a != blank -%}
+                  <details {{ block.shopify_attributes }}>
+                    <summary>{{ q | default: 'FAQ' | escape }}</summary>
+                    {%- if a != blank -%}
+                      <div class="faq-content rte">
+                        {{ a }}
+                      </div>
+                    {%- endif -%}
+                  </details>
+                {%- endif -%}
               {%- endif -%}
-            {%- endif -%}
-          {%- endfor -%}
+            {%- endfor -%}
+          </div>
         </div>
-      </div>
+      {%- endif -%}
 
     </div>
-
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Privacy sidebar page",
+  "name": "Sidebar page (Policies + FAQs)",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -164,12 +163,6 @@
       "type": "link_list",
       "id": "nav_menu",
       "label": "Left sidebar menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_page_title",
-      "label": "Show page title",
-      "default": true
     },
     {
       "type": "text",
@@ -188,7 +181,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 0
+      "default": 100
     },
     {
       "type": "range",
@@ -198,7 +191,7 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 0
+      "default": 100
     }
   ],
   "blocks": [
@@ -223,7 +216,7 @@
   ],
   "presets": [
     {
-      "name": "Privacy sidebar page",
+      "name": "Sidebar page (Policies + FAQs)",
       "blocks": [
         { "type": "faq_item" },
         { "type": "faq_item" },

@@ -17,7 +17,31 @@
         "custom_title": "",
         "padding_top": 100,
         "padding_bottom": 100
-      }
+      },
+      "blocks": {
+        "faq1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Question 1",
+            "answer": "<p>Answer 1</p>"
+          }
+        },
+        "faq2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Question 2",
+            "answer": "<p>Answer 2</p>"
+          }
+        },
+        "faq3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Question 3",
+            "answer": "<p>Answer 3</p>"
+          }
+        }
+      },
+      "block_order": ["faq1", "faq2", "faq3"]
     }
   },
   "order": ["main"]
