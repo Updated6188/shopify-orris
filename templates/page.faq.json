@@ -12,6 +12,20 @@
     "main": {
       "type": "page-sidebar",
       "blocks": {
+        "faq_item_KXMi6D": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I receive my order?",
+            "answer": "<p>We endeavor to process and ship your order within 1-2 business days from the time payment is received. Shipping times can vary between 4 – 7 business days in Pakistan and between 10 – 21 business days internationally.</p>"
+          }
+        },
+        "faq_item_DhNxTL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your perfume vegan?",
+            "answer": "<p>Orris products do not contain any animal-derived ingredients, and also do not contain beeswax or honey. Our products are never tested on animals.</p>"
+          }
+        },
         "faq1": {
           "type": "faq_item",
           "settings": {
@@ -35,6 +49,8 @@
         }
       },
       "block_order": [
+        "faq_item_KXMi6D",
+        "faq_item_DhNxTL",
         "faq1",
         "faq2",
         "faq3"
