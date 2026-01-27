@@ -86,7 +86,9 @@
         <ul>
           {%- if section.settings.nav_menu != blank -%}
             {%- for link in section.settings.nav_menu.links -%}
-              {%- assign is_active = link.url == page.url -%}
+              {%- assign is_active = false -%}
+              {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
+
               <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
                 <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
                   {{ link.title | escape }}
