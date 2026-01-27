@@ -115,7 +115,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "mens",
+        "collection": "men",
         "products_to_show": 8,
         "title": "Our Premium Men Collection",
         "heading_size": "h1",
