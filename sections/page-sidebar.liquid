@@ -13,7 +13,7 @@
     }
   }
 
-  /* Layout: left sidebar + right content */
+  /* Layout */
   .privacyPg.section-{{ section.id }}-padding .policy_pages{
     display: grid;
     grid-template-columns: 1fr;
@@ -55,11 +55,33 @@
 
   /* Right content spacing */
   .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap{
-    margin-top: 16px;
+    margin-top: 18px;
   }
-
   .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap:first-child{
     margin-top: 0;
+  }
+
+  /* FAQ / Collapsible */
+  .privacyPg.section-{{ section.id }}-padding .faq-wrap details{
+    border: 1px solid rgba(0,0,0,.10);
+    border-radius: 12px;
+    padding: 12px 14px;
+    background: rgb(var(--color-background));
+  }
+  .privacyPg.section-{{ section.id }}-padding .faq-wrap details + details{
+    margin-top: 10px;
+  }
+  .privacyPg.section-{{ section.id }}-padding .faq-wrap summary{
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    outline: none;
+  }
+  .privacyPg.section-{{ section.id }}-padding .faq-wrap summary::-webkit-details-marker{
+    display:none;
+  }
+  .privacyPg.section-{{ section.id }}-padding .faq-wrap .faq-content{
+    margin-top: 10px;
   }
 {%- endstyle -%}
 
@@ -90,8 +112,9 @@
       </div>
     </aside>
 
-    <!-- RIGHT CONTENT (blocks area) -->
+    <!-- RIGHT CONTENT -->
     <div class="privacyRight">
+
       {%- if section.settings.show_page_title -%}
         <h1>
           {%- if section.settings.custom_title != blank -%}
@@ -102,25 +125,21 @@
         </h1>
       {%- endif -%}
 
+      <!-- Page content ALWAYS shows -->
+      <div class="rte">
+        {{ page.content }}
+      </div>
+
+      <!-- Extra blocks (optional) -->
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
           <div class="block-gap" {{ block.shopify_attributes }}>
             {%- case block.type -%}
 
-              {%- when 'page_content' -%}
-                <div class="rte">
-                  {{ page.content }}
-                </div>
-
               {%- when 'rich_text' -%}
                 <div class="rte">
                   {{ block.settings.content }}
                 </div>
-
-              {%- when 'title' -%}
-                <h2{% if block.settings.heading_class != blank %} class="{{ block.settings.heading_class }}"{% endif %}>
-                  {{ block.settings.heading | escape }}
-                </h2>
 
               {%- when 'image' -%}
                 {%- if block.settings.image != blank -%}
@@ -133,17 +152,37 @@
                   </div>
                 {%- endif -%}
 
+              {%- when 'faq' -%}
+                <div class="faq-wrap">
+                  {%- if block.settings.faq_title != blank -%}
+                    <h2>{{ block.settings.faq_title | escape }}</h2>
+                  {%- endif -%}
+
+                  {%- for i in (1..8) -%}
+                    {%- assign q_key = 'q' | append: i -%}
+                    {%- assign a_key = 'a' | append: i -%}
+                    {%- assign q_val = block.settings[q_key] -%}
+                    {%- assign a_val = block.settings[a_key] -%}
+
+                    {%- if q_val != blank and a_val != blank -%}
+                      <details>
+                        <summary>{{ q_val | escape }}</summary>
+                        <div class="faq-content rte">
+                          {{ a_val }}
+                        </div>
+                      </details>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+
               {%- when 'divider' -%}
                 <hr>
 
             {%- endcase -%}
           </div>
         {%- endfor -%}
-      {%- else -%}
-        <div class="rte">
-          {{ page.content }}
-        </div>
       {%- endif -%}
+
     </div>
 
   </div>
@@ -198,40 +237,56 @@
   ],
   "blocks": [
     {
-      "type": "page_content",
-      "name": "Page content"
+      "type": "faq",
+      "name": "FAQ (Collapsible)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_title",
+          "label": "FAQ heading",
+          "default": "Frequently Asked Questions"
+        },
+
+        { "type": "text", "id": "q1", "label": "Question 1", "default": "Question 1" },
+        { "type": "richtext", "id": "a1", "label": "Answer 1", "default": "<p>Answer 1</p>" },
+
+        { "type": "text", "id": "q2", "label": "Question 2", "default": "Question 2" },
+        { "type": "richtext", "id": "a2", "label": "Answer 2", "default": "<p>Answer 2</p>" },
+
+        { "type": "text", "id": "q3", "label": "Question 3", "default": "Question 3" },
+        { "type": "richtext", "id": "a3", "label": "Answer 3", "default": "<p>Answer 3</p>" },
+
+        { "type": "text", "id": "q4", "label": "Question 4", "default": "Question 4" },
+        { "type": "richtext", "id": "a4", "label": "Answer 4", "default": "<p>Answer 4</p>" },
+
+        { "type": "text", "id": "q5", "label": "Question 5", "default": "Question 5" },
+        { "type": "richtext", "id": "a5", "label": "Answer 5", "default": "<p>Answer 5</p>" },
+
+        { "type": "text", "id": "q6", "label": "Question 6", "default": "Question 6" },
+        { "type": "richtext", "id": "a6", "label": "Answer 6", "default": "<p>Answer 6</p>" },
+
+        { "type": "text", "id": "q7", "label": "Question 7", "default": "Question 7" },
+        { "type": "richtext", "id": "a7", "label": "Answer 7", "default": "<p>Answer 7</p>" },
+
+        { "type": "text", "id": "q8", "label": "Question 8", "default": "Question 8" },
+        { "type": "richtext", "id": "a8", "label": "Answer 8", "default": "<p>Answer 8</p>" }
+      ]
     },
     {
       "type": "rich_text",
-      "name": "Rich text",
+      "name": "Rich text (extra)",
       "settings": [
         {
           "type": "richtext",
           "id": "content",
-          "label": "Content"
-        }
-      ]
-    },
-    {
-      "type": "title",
-      "name": "Heading",
-      "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Section title"
-        },
-        {
-          "type": "text",
-          "id": "heading_class",
-          "label": "Heading class (optional)"
+          "label": "Content",
+          "default": "<p>Add extra content here.</p>"
         }
       ]
     },
     {
       "type": "image",
-      "name": "Image",
+      "name": "Image (extra)",
       "settings": [
         {
           "type": "image_picker",
@@ -249,7 +304,7 @@
     {
       "name": "Privacy sidebar page",
       "blocks": [
-        { "type": "page_content" }
+        { "type": "faq" }
       ]
     }
   ]
