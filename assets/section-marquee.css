@@ -15,7 +15,7 @@
     will-change: transform;
     -webkit-animation: marquee 25s linear infinite;
     animation: marquee 25s linear infinite;
-    padding: 0 130px;
+    padding: 0 50px;
 }
 .marquee__item ul { gap:30px; justify-content:center; }
 .marqueeBox { gap:8px; margin-right: 30px; display: inline-flex; flex-wrap: wrap; align-items: center;}
