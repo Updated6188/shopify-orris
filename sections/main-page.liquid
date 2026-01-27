@@ -8,10 +8,10 @@
   /* Banner layout fixes for Dawn (no Bootstrap) */
   .section-{{ section.id }}-padding.singleBnr {
     position: relative;
-    min-height: 420px; /* adjust height */
+    min-height: 300px; /* adjust height */
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     text-align: center;
   }
 
@@ -43,8 +43,7 @@
 
 <section class="singleBnr text-center d-flex flex-wrap justify-content-center align-items-end position-relative section-{{ section.id }}-padding">
   <div class="container position-relative z-index-2">
-    <h1 class="ft-size-50 ft-size-lg-40 ft-size-md-35 ft-size-sm-30 fw-medium letter-spacing-p6 text-capitalize mb-2
-      main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <h1>
       
       {%- if section.settings.heading != blank -%}
         {{ section.settings.heading | escape }}
@@ -59,9 +58,7 @@
     {%- endif -%}
 
     {%- if banner_desc != blank -%}
-      <div class="archive-description rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-        {{ banner_desc }}
-      </div>
+      {{ banner_desc }}
     {%- endif -%}
   </div>
 
