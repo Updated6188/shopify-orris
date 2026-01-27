@@ -19,7 +19,7 @@
 }
 .marquee__item ul { gap:30px; justify-content:center; }
 .marqueeBox { gap:8px; margin-right: 30px; display: inline-flex; flex-wrap: wrap; align-items: center;}
-.marqueeText { font-size: 16px; color: #000; line-height: 1; letter-spacing: 1px; font-family: 'Outfit'; }
+.marqueeText { font-size: 16px; color: #000; line-height: 1; letter-spacing: 1px; font-family: 'Outfit'; text-transform: uppercase;}
 .marqueeIcon { width:32px; display: flex; flex-wrap: wrap; }
 .marqueeIcon img { width: 100%;  max-width: 100%;}
 
