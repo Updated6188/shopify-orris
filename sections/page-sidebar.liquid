@@ -1,7 +1,6 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  /* Keep Dawn padding controls (optional) */
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -13,54 +12,139 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  {%- endstyle -%}
+
+  /* Layout: left sidebar + right content */
+  .privacyPg.section-{{ section.id }}-padding .policy_pages{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  @media (min-width: 990px){
+    .privacyPg.section-{{ section.id }}-padding .policy_pages{
+      grid-template-columns: 300px 1fr;
+      align-items: start;
+    }
+  }
+
+  /* Sidebar styling */
+  .privacyPg.section-{{ section.id }}-padding .sideNav{
+    position: sticky;
+    top: 16px;
+  }
+
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul li a{
+    display: block;
+    padding: 12px 12px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 10px;
+  }
+
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.current-menu-item > a,
+  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.is-active > a{
+    background: rgba(0,0,0,.06);
+    font-weight: 600;
+  }
+
+  /* Right content spacing */
+  .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap{
+    margin-top: 16px;
+  }
+{%- endstyle -%}
 
 <section class="privacyPg page-width section-{{ section.id }}-padding">
-  
-    <div class="policy_pages">
-      
-        <div class="sideNav float-start w-100">
-          <ul>
-            {%- if section.settings.nav_menu != blank -%}
-              {%- for link in section.settings.nav_menu.links -%}
-                {%- assign is_active = false -%}
-                {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
+  <div class="policy_pages">
 
-                <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
-                  <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
-                    {{ link.title | escape }}
-                  </a>
-                </li>
-              {%- endfor -%}
-            {%- else -%}
-              <li class="menu-item">
-                <a href="#">Select a menu in section settings</a>
+    <!-- LEFT SIDEBAR (separate) -->
+    <aside class="policy_left">
+      <div class="sideNav float-start w-100">
+        <ul>
+          {%- if section.settings.nav_menu != blank -%}
+            {%- for link in section.settings.nav_menu.links -%}
+              {%- assign is_active = false -%}
+              {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
+
+              <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
+                <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
+                  {{ link.title | escape }}
+                </a>
               </li>
-            {%- endif -%}
-          </ul>
-        </div>
+            {%- endfor -%}
+          {%- else -%}
+            <li class="menu-item">
+              <a href="#">Select a menu in section settings</a>
+            </li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </aside>
 
-        <div class="PrivacyDes float-start w-100">
-          <h1>
-            {%- if section.settings.custom_title != blank -%}
-              {{ section.settings.custom_title | escape }}
-            {%- else -%}
-              {{ page.title | escape }}
-            {%- endif -%}
-          </h1>
+    <!-- RIGHT CONTENT (blocks area) -->
+    <div class="privacyRight">
+      {%- if section.settings.show_page_title -%}
+        <h1>
+          {%- if section.settings.custom_title != blank -%}
+            {{ section.settings.custom_title | escape }}
+          {%- else -%}
+            {{ page.title | escape }}
+          {%- endif -%}
+        </h1>
+      {%- endif -%}
 
-          <div class="rte">
-            {%- if section.settings.custom_content != blank -%}
-              {{ section.settings.custom_content }}
-            {%- else -%}
-              {{ page.content }}
-            {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <div class="block-gap" {{ block.shopify_attributes }}>
+            {%- case block.type -%}
+
+              {%- when 'rich_text' -%}
+                <div class="rte">
+                  {{ block.settings.content }}
+                </div>
+
+              {%- when 'page_content' -%}
+                <div class="rte">
+                  {{ page.content }}
+                </div>
+
+              {%- when 'title' -%}
+                <h2 class="{{ block.settings.heading_class }}">
+                  {{ block.settings.heading | escape }}
+                </h2>
+
+              {%- when 'image' -%}
+                {%- if block.settings.image != blank -%}
+                  <div>
+                    {{
+                      block.settings.image
+                      | image_url: width: 1800
+                      | image_tag: loading: 'lazy'
+                    }}
+                  </div>
+                {%- endif -%}
+
+              {%- when 'divider' -%}
+                <hr>
+
+            {%- endcase -%}
           </div>
+        {%- endfor -%}
 
+      {%- else -%}
+        {%- comment -%} fallback if no blocks added {%- endcomment -%}
+        <div class="rte">
+          {{ page.content }}
         </div>
-    
+      {%- endif -%}
     </div>
-  
+
+  </div>
 </section>
 
 {% schema %}
@@ -75,14 +159,15 @@
       "label": "Left sidebar menu"
     },
     {
+      "type": "checkbox",
+      "id": "show_page_title",
+      "label": "Show page title",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "custom_title",
       "label": "Custom title (optional)"
-    },
-    {
-      "type": "richtext",
-      "id": "custom_content",
-      "label": "Custom content (optional, overrides page content)"
     },
     {
       "type": "header",
@@ -109,9 +194,62 @@
       "default": 0
     }
   ],
+  "blocks": [
+    {
+      "type": "page_content",
+      "name": "Page content"
+    },
+    {
+      "type": "rich_text",
+      "name": "Rich text",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Section title"
+        },
+        {
+          "type": "text",
+          "id": "heading_class",
+          "label": "Heading class (optional)",
+          "default": ""
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider"
+    }
+  ],
   "presets": [
     {
-      "name": "Privacy sidebar page"
+      "name": "Privacy sidebar page",
+      "blocks": [
+        { "type": "page_content" }
+      ]
     }
   ]
 }
