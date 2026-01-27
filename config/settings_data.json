@@ -129,6 +129,11 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+    "fake_orders_show_on": "all",
+    "fake_orders_min_minutes": 21,
+    "fake_orders_min_delay": 3000,
+    "fake_orders_max_delay": 5000,
+    "fake_orders_show_for": 3000,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
