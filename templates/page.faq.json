@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -6,8 +15,8 @@
         "faq1": {
           "type": "faq_item",
           "settings": {
-            "question": "-",
-            "answer": "<p>-</p>"
+            "question": "Test",
+            "answer": "<p>Test</p>"
           }
         },
         "faq2": {
@@ -25,7 +34,11 @@
           }
         }
       },
-      "block_order": ["faq1", "faq2", "faq3"],
+      "block_order": [
+        "faq1",
+        "faq2",
+        "faq3"
+      ],
       "settings": {
         "nav_menu": "menu-for-policy",
         "show_page_title": true,
@@ -35,5 +48,7 @@
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
