@@ -14,21 +14,61 @@
   }
 {%- endstyle -%}
 
-<div class="page-width page-width--narrow section-{{ section.id }}-padding">
-  <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
-  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+<section class="singleBnr text-center d-flex flex-wrap justify-content-center align-items-end position-relative section-{{ section.id }}-padding">
+  <div class="container position-relative z-index-2">
+    <h1 class="ft-size-50 ft-size-lg-40 ft-size-md-35 ft-size-sm-30 fw-medium letter-spacing-p6 text-capitalize mb-2
+      main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      
+      {%- if section.settings.heading != blank -%}
+        {{ section.settings.heading | escape }}
+      {%- else -%}
+        {{ page.title | escape }}
+      {%- endif -%}
+    </h1>
+
+    {%- assign banner_desc = section.settings.description -%}
+    {%- if banner_desc == blank and page.content != blank -%}
+      {%- assign banner_desc = page.content -%}
+    {%- endif -%}
+
+    {%- if banner_desc != blank -%}
+      <div class="archive-description rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ banner_desc }}
+      </div>
+    {%- endif -%}
   </div>
-</div>
+
+  {%- if section.settings.bg_image != blank -%}
+    <div
+      class="singleBnrImg position-absolute top-0 start-0 w-100 h-100 bg-default"
+      style="background-image:url({{ section.settings.bg_image | image_url: width: 2000 }});"
+    ></div>
+  {%- else -%}
+    <div class="singleBnrImg position-absolute top-0 start-0 w-100 h-100 bg-default"></div>
+  {%- endif -%}
+</section>
 
 {% schema %}
 {
-  "name": "t:sections.main-page.name",
+  "name": "Main page (Banner)",
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Banner heading (leave empty to use page title)"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Banner description (leave empty to use page content)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Banner background image"
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
