@@ -128,32 +128,28 @@
 
       <!-- FAQ repeater (ONLY shows when filled) -->
       {%- if section.blocks.size > 0 -%}
-        <div class="faq-group">
-          <div class="faq-wrap">
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'faq_item' -%}
-                {%- assign q = block.settings.question -%}
-                {%- assign a = block.settings.answer -%}
-                {%- assign q_clean = q | strip -%}
-                {%- assign a_text = a | strip -%}
-
-                {%- comment -%}
-                  We use "-" as placeholder default.
-                  Show only when question != "-" AND answer != "<p>-</p>"
-                {%- endcomment -%}
-                {%- if q_clean != blank and q_clean != '-' and a_text != blank and a_text != '<p>-</p>' -%}
-                  <details {{ block.shopify_attributes }}>
-                    <summary>{{ q_clean | escape }}</summary>
-                    <div class="faq-content rte">
-                      {{ a }}
-                    </div>
-                  </details>
-                {%- endif -%}
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
+    <div class="faq-group">
+        <div class="faq-wrap">
+        {%- for block in section.blocks -%}
+            {%- if block.type == 'faq_item' -%}
+            {%- assign q = block.settings.question -%}
+            {%- assign a = block.settings.answer -%}
+            {%- assign q_clean = q | strip -%}
+            {%- assign a_plain = a | strip_html | strip -%}
+            {%- if q_clean != blank and q_clean != '-' and a_plain != blank and a_plain != '-' -%}
+                <details {{ block.shopify_attributes }}>
+                <summary>{{ q_clean | escape }}</summary>
+                <div class="faq-content rte">
+                    {{ a }}
+                </div>
+                </details>
+            {%- endif -%}
+            {%- endif -%}
+        {%- endfor -%}
         </div>
-      {%- endif -%}
+    </div>
+    {%- endif -%}
+
 
     </div>
   </div>
