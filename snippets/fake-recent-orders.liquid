@@ -1,52 +1,79 @@
 {%- comment -%}
-  Fake Recent Orders Popup (Theme snippet)
-
-  Fixes included:
-  - Works even if an old inline style="display:none" is still being output somewhere (forces display via JS)
-  - Removes duplicate #fakeOrderPopup elements if they exist (keeps the last one)
-  - Textareas (names/cities) are split into arrays
-  - Compatible with your latest schema ranges
+  Fake Recent Orders Popup
+  - Always shows random product (name + image + link)
+  - Works on all pages
+  - Does NOT use current product, so product page won't repeat same product
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
   {%- assign _names = settings.fake_orders_names | newline_to_br | split: '<br />' -%}
   {%- assign _cities = settings.fake_orders_cities | newline_to_br | split: '<br />' -%}
 
+  {%- assign _limit = settings.fake_orders_products_limit | default: 30 -%}
+
+  {%- assign _col = blank -%}
+  {%- if settings.fake_orders_source_collection != blank -%}
+    {%- assign _col = collections[settings.fake_orders_source_collection] -%}
+  {%- endif -%}
+  {%- if _col == blank or _col == empty -%}
+    {%- assign _col = collections.all -%}
+  {%- endif -%}
+
+  {%- capture products_json -%}
+    [
+      {%- assign count = 0 -%}
+      {%- if _col and _col.products_count > 0 -%}
+        {%- for p in _col.products limit: _limit -%}
+          {%- assign img = '' -%}
+          {%- if p.featured_image != blank -%}
+            {%- assign img = p.featured_image | image_url: width: 120 -%}
+          {%- endif -%}
+
+          {
+            "title": {{ p.title | escape | json }},
+            "url": {{ p.url | json }},
+            "img": {{ img | json }}
+          }{% unless forloop.last %},{% endunless %}
+          {%- assign count = count | plus: 1 -%}
+        {%- endfor -%}
+      {%- endif -%}
+    ]
+  {%- endcapture -%}
+
   <div id="fakeOrderPopup" class="fake-order-popup" aria-live="polite">
     <button class="fake-order-close" type="button" aria-label="Close">×</button>
 
-    <div class="fake-order-inner">
-      {%- if settings.fake_orders_show_image and product and product.featured_image -%}
+    <a class="fake-order-link" href="#" style="text-decoration:none; color:inherit;">
+      <div class="fake-order-inner">
         <div class="fake-order-img">
           <img
-            src="{{ product.featured_image | image_url: width: 120 }}"
-            alt="{{ product.title | escape }}"
+            class="fo-img"
+            src=""
+            alt=""
             loading="lazy"
             width="60"
             height="60"
           >
         </div>
-      {%- endif -%}
 
-      <div class="fake-order-text">
-        <div class="fake-order-line1">
-          <strong class="fo-name">Someone</strong>
-          from <span class="fo-city">a city</span>
-        </div>
-        <div class="fake-order-line2">
-          purchased <strong class="fo-product">this item</strong>
-        </div>
-        <div class="fake-order-line3">
-          <span class="fo-time">just now</span>
+        <div class="fake-order-text">
+          <div class="fake-order-line1">
+            <strong class="fo-name">Someone</strong>
+            from <span class="fo-city">a city</span>
+          </div>
+          <div class="fake-order-line2">
+            purchased <strong class="fo-product">a product</strong>
+          </div>
+          <div class="fake-order-line3">
+            <span class="fo-time">just now</span>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 
   <style>
-    /* Hidden by default */
     .fake-order-popup{ display:none; }
-
     .fake-order-popup{
       position: fixed;
       left: 16px;
@@ -77,17 +104,15 @@
       opacity: .65;
     }
     .fake-order-close:hover{ opacity: 1; }
-
     .fake-order-popup.is-show{ display:block; animation: foIn .25s ease; }
     .fake-order-popup.is-hide{ animation: foOut .2s ease; }
-
     @keyframes foIn{ from{ transform: translateY(10px); opacity:0;} to{ transform: translateY(0); opacity:1;} }
     @keyframes foOut{ from{ transform: translateY(0); opacity:1;} to{ transform: translateY(10px); opacity:0;} }
   </style>
 
   <script>
     (function(){
-      var showOn = "{{ settings.fake_orders_show_on }}"; // all, product, home
+      var showOn = "{{ settings.fake_orders_show_on }}";
       var pageType = {{ request.page_type | json }};
       var isProduct = pageType === "product";
       var isHome = pageType === "index";
@@ -95,18 +120,15 @@
       if (showOn === "product" && !isProduct) return;
       if (showOn === "home" && !isHome) return;
 
-      // Remove duplicates (if old code/snippet exists)
+      // Remove duplicates
       var popups = document.querySelectorAll("#fakeOrderPopup");
       if (popups.length > 1) {
-        for (var i = 0; i < popups.length - 1; i++) {
-          popups[i].remove();
-        }
+        for (var i = 0; i < popups.length - 1; i++) popups[i].remove();
       }
 
       var popup = document.getElementById("fakeOrderPopup");
       if (!popup) return;
 
-      // Optional: Only show on specific product template suffix
       var onlySuffix = "{{ settings.fake_orders_template_suffix | escape }}";
       {% if product and product.template_suffix %}
         var currentSuffix = {{ product.template_suffix | json }};
@@ -120,31 +142,29 @@
       var elCity = popup.querySelector(".fo-city");
       var elProd = popup.querySelector(".fo-product");
       var elTime = popup.querySelector(".fo-time");
+      var linkEl = popup.querySelector(".fake-order-link");
+      var imgEl  = popup.querySelector(".fo-img");
+      var imgWrap = popup.querySelector(".fake-order-img");
 
-      // Fake data (textarea -> arrays)
       var names = {{ _names | json }};
       var cities = {{ _cities | json }};
 
-      // Minutes range (schema: min 1..121 step 2, max 10..720 step 10)
+      // Build products array from Liquid safely (no double JSON parsing)
+      var products = {{ products_json | strip_newlines }};
+
+      function clean(arr){
+        return (arr || []).map(function(x){ return (x || "").trim(); }).filter(Boolean);
+      }
+      names = clean(names);
+      cities = clean(cities);
+
       var minMinutes = Number({{ settings.fake_orders_min_minutes | json }}) || 5;
       var maxMinutes = Number({{ settings.fake_orders_max_minutes | json }}) || 120;
       if (minMinutes > maxMinutes) { var t = minMinutes; minMinutes = maxMinutes; maxMinutes = t; }
 
-      // Product text
-      var productTitle = {{ product.title | default: "this item" | escape | json }};
-
-      // Timing
-      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;   // ms
-      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000; // ms
-      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;   // ms
-
-      function clean(arr){
-        return (arr || [])
-          .map(function(x){ return (x || "").trim(); })
-          .filter(Boolean);
-      }
-      names = clean(names);
-      cities = clean(cities);
+      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;
+      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000;
+      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;
 
       function pick(arr, fallback){
         if (!arr || !arr.length) return fallback;
@@ -159,6 +179,35 @@
         var hours = Math.round(mins / 60);
         return hours + (hours === 1 ? " hour ago" : " hours ago");
       }
+      function pickProduct(){
+        if (!products || !products.length) return null;
+        return products[Math.floor(Math.random() * products.length)];
+      }
+
+      // Ensure image+title always show (if product has no image, we hide image container)
+      function setProduct(p){
+        if (!p || !p.title) {
+          elProd.textContent = "this item";
+          linkEl.href = "#";
+          linkEl.style.pointerEvents = "none";
+          if (imgWrap) imgWrap.style.display = "none";
+          return;
+        }
+
+        elProd.textContent = p.title;
+        linkEl.href = p.url || "#";
+        linkEl.style.pointerEvents = p.url ? "auto" : "none";
+
+        if (imgEl && imgWrap) {
+          if (p.img) {
+            imgEl.src = p.img;
+            imgEl.alt = p.title;
+            imgWrap.style.display = "block";
+          } else {
+            imgWrap.style.display = "none";
+          }
+        }
+      }
 
       var stopped = false;
       var hideTimer = null;
@@ -167,16 +216,17 @@
       function showOnce(){
         if (stopped) return;
 
+        var p = pickProduct();
+
         elName.textContent = pick(names, "Someone");
         elCity.textContent = pick(cities, "your area");
-        elProd.textContent = productTitle;
         elTime.textContent = formatTime(rand(minMinutes, maxMinutes));
+
+        setProduct(p);
 
         popup.classList.remove("is-hide");
         popup.classList.add("is-show");
-
-        // IMPORTANT: override any inline style="display:none" from old code
-        popup.style.display = "block";
+        popup.style.display = "block"; // force show even if any old inline display:none exists
 
         clearTimeout(hideTimer);
         hideTimer = setTimeout(function(){
@@ -196,12 +246,16 @@
         loopTimer = setTimeout(showOnce, rand(minDelay, maxDelay));
       }
 
-      closeBtn.addEventListener("click", function(){
+      closeBtn.addEventListener("click", function(e){
+        e.preventDefault();
         stopped = true;
         clearTimeout(hideTimer);
         clearTimeout(loopTimer);
         popup.style.display = "none";
       });
+
+      // If products array is empty, don't run (so you know to select a collection)
+      if (!products || !products.length) return;
 
       setTimeout(showOnce, rand(1500, 3500));
     })();
