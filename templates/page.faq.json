@@ -11,18 +11,6 @@
   "sections": {
     "main": {
       "type": "page-sidebar",
-      "blocks": {
-        "faq_item_7K9yUg": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Your question here",
-            "answer": "<p>Your answer here.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_item_7K9yUg"
-      ],
       "settings": {
         "nav_menu": "menu-for-policy",
         "show_page_title": true,
