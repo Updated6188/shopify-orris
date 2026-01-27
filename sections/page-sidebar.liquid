@@ -1,6 +1,7 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Keep Dawn padding controls (optional) */
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -12,152 +13,59 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  /* Layout */
-  .privacyPg.section-{{ section.id }}-padding .policy_pages{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  @media (min-width: 990px){
-    .privacyPg.section-{{ section.id }}-padding .policy_pages{
-      grid-template-columns: 300px 1fr;
-      align-items: start;
-    }
-  }
-
-  /* Sidebar */
-  .privacyPg.section-{{ section.id }}-padding .sideNav{
-    position: sticky;
-    top: 16px;
-  }
-
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li a{
-    display: block;
-    padding: 12px 12px;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 10px;
-  }
-
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.current-menu-item > a,
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.is-active > a{
-    background: rgba(0,0,0,.06);
-    font-weight: 600;
-  }
-
-  /* FAQ styles */
-  .privacyPg.section-{{ section.id }}-padding .faq-group{
-    margin-top: 22px;
-  }
-
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap details{
-    border: 1px solid rgba(0,0,0,.10);
-    border-radius: 12px;
-    padding: 12px 14px;
-    background: rgb(var(--color-background));
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap details + details{
-    margin-top: 10px;
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap summary{
-    cursor: pointer;
-    font-weight: 600;
-    list-style: none;
-    outline: none;
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap summary::-webkit-details-marker{
-    display:none;
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap .faq-content{
-    margin-top: 10px;
-  }
-{%- endstyle -%}
+  {%- endstyle -%}
 
 <section class="privacyPg page-width section-{{ section.id }}-padding">
-  <div class="policy_pages">
+  
+    <div class="policy_pages">
+      
+        <div class="sideNav float-start w-100">
+          <ul>
+            {%- if section.settings.nav_menu != blank -%}
+              {%- for link in section.settings.nav_menu.links -%}
+                {%- assign is_active = false -%}
+                {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="policy_left">
-      <div class="sideNav float-start w-100">
-        <ul>
-          {%- if section.settings.nav_menu != blank -%}
-            {%- for link in section.settings.nav_menu.links -%}
-              {%- assign is_active = false -%}
-              {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
-
-              <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
-                <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
-                  {{ link.title | escape }}
-                </a>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
+                  <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
+                    {{ link.title | escape }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            {%- else -%}
+              <li class="menu-item">
+                <a href="#">Select a menu in section settings</a>
               </li>
-            {%- endfor -%}
-          {%- else -%}
-            <li class="menu-item">
-              <a href="#">Select a menu in section settings</a>
-            </li>
-          {%- endif -%}
-        </ul>
-      </div>
-    </aside>
-
-    <!-- RIGHT CONTENT -->
-    <div class="privacyRight">
-
-      {%- if section.settings.show_page_title -%}
-        <h1>
-          {%- if section.settings.custom_title != blank -%}
-            {{ section.settings.custom_title | escape }}
-          {%- else -%}
-            {{ page.title | escape }}
-          {%- endif -%}
-        </h1>
-      {%- endif -%}
-
-      <!-- Page content ALWAYS shows -->
-      <div class="rte">
-        {{ page.content }}
-      </div>
-
-      <!-- FAQ repeater (ONLY shows when filled) -->
-      {%- if section.blocks.size > 0 -%}
-    <div class="faq-group">
-        <div class="faq-wrap">
-        {%- for block in section.blocks -%}
-            {%- if block.type == 'faq_item' -%}
-            {%- assign q = block.settings.question -%}
-            {%- assign a = block.settings.answer -%}
-            {%- assign q_clean = q | strip -%}
-            {%- assign a_plain = a | strip_html | strip -%}
-            {%- if q_clean != blank and q_clean != '-' and a_plain != blank and a_plain != '-' -%}
-                <details {{ block.shopify_attributes }}>
-                <summary>{{ q_clean | escape }}</summary>
-                <div class="faq-content rte">
-                    {{ a }}
-                </div>
-                </details>
             {%- endif -%}
-            {%- endif -%}
-        {%- endfor -%}
+          </ul>
         </div>
-    </div>
-    {%- endif -%}
 
+        <div class="PrivacyDes float-start w-100">
+          <h1>
+            {%- if section.settings.custom_title != blank -%}
+              {{ section.settings.custom_title | escape }}
+            {%- else -%}
+              {{ page.title | escape }}
+            {%- endif -%}
+          </h1>
 
+          <div class="rte">
+            {%- if section.settings.custom_content != blank -%}
+              {{ section.settings.custom_content }}
+            {%- else -%}
+              {{ page.content }}
+            {%- endif -%}
+          </div>
+
+        </div>
+    
     </div>
-  </div>
+  
 </section>
 
 {% schema %}
 {
-  "name": "Sidebar page",
+  "name": "Privacy sidebar page",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -167,15 +75,14 @@
       "label": "Left sidebar menu"
     },
     {
-      "type": "checkbox",
-      "id": "show_page_title",
-      "label": "Show page title",
-      "default": true
-    },
-    {
       "type": "text",
       "id": "custom_title",
       "label": "Custom title (optional)"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_content",
+      "label": "Custom content (optional, overrides page content)"
     },
     {
       "type": "header",
@@ -189,7 +96,7 @@
       "step": 4,
       "unit": "px",
       "label": "Top padding",
-      "default": 100
+      "default": 0
     },
     {
       "type": "range",
@@ -199,37 +106,12 @@
       "step": 4,
       "unit": "px",
       "label": "Bottom padding",
-      "default": 100
-    }
-  ],
-  "blocks": [
-    {
-      "type": "faq_item",
-      "name": "FAQ item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "question",
-          "label": "Question",
-          "default": "-"
-        },
-        {
-          "type": "richtext",
-          "id": "answer",
-          "label": "Answer",
-          "default": "<p>-</p>"
-        }
-      ]
+      "default": 0
     }
   ],
   "presets": [
     {
-      "name": "Sidebar page",
-      "blocks": [
-        { "type": "faq_item" },
-        { "type": "faq_item" },
-        { "type": "faq_item" }
-      ]
+      "name": "Privacy sidebar page"
     }
   ]
 }
