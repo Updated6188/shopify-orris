@@ -1,8 +1,8 @@
 {%- comment -%}
   Fake Recent Orders Popup
-  - Always shows random product (name + image + link)
-  - Works on all pages
-  - Does NOT use current product, so product page won't repeat same product
+  - No flicker: Show -> Hold -> Hide -> Wait -> Next
+  - Single delay setting: settings.fake_orders_delay
+  - Random product each time (from chosen collection)
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
@@ -21,20 +21,17 @@
 
   {%- capture products_json -%}
     [
-      {%- assign count = 0 -%}
       {%- if _col and _col.products_count > 0 -%}
         {%- for p in _col.products limit: _limit -%}
           {%- assign img = '' -%}
           {%- if p.featured_image != blank -%}
             {%- assign img = p.featured_image | image_url: width: 120 -%}
           {%- endif -%}
-
           {
             "title": {{ p.title | escape | json }},
             "url": {{ p.url | json }},
             "img": {{ img | json }}
           }{% unless forloop.last %},{% endunless %}
-          {%- assign count = count | plus: 1 -%}
         {%- endfor -%}
       {%- endif -%}
     ]
@@ -46,14 +43,7 @@
     <a class="fake-order-link" href="#" style="text-decoration:none; color:inherit;">
       <div class="fake-order-inner">
         <div class="fake-order-img">
-          <img
-            class="fo-img"
-            src=""
-            alt=""
-            loading="lazy"
-            width="60"
-            height="60"
-          >
+          <img class="fo-img" src="" alt="" loading="lazy" width="60" height="60">
         </div>
 
         <div class="fake-order-text">
@@ -92,6 +82,7 @@
     .fake-order-inner{ display:flex; gap:10px; align-items:center; }
     .fake-order-img img{ border-radius: 10px; display:block; }
     .fake-order-line1, .fake-order-line2, .fake-order-line3{ margin: 2px 0; }
+
     .fake-order-close{
       position:absolute;
       top: 6px;
@@ -104,8 +95,10 @@
       opacity: .65;
     }
     .fake-order-close:hover{ opacity: 1; }
+
     .fake-order-popup.is-show{ display:block; animation: foIn .25s ease; }
     .fake-order-popup.is-hide{ animation: foOut .2s ease; }
+
     @keyframes foIn{ from{ transform: translateY(10px); opacity:0;} to{ transform: translateY(0); opacity:1;} }
     @keyframes foOut{ from{ transform: translateY(0); opacity:1;} to{ transform: translateY(10px); opacity:0;} }
   </style>
@@ -148,8 +141,6 @@
 
       var names = {{ _names | json }};
       var cities = {{ _cities | json }};
-
-      // Build products array from Liquid safely (no double JSON parsing)
       var products = {{ products_json | strip_newlines }};
 
       function clean(arr){
@@ -162,9 +153,12 @@
       var maxMinutes = Number({{ settings.fake_orders_max_minutes | json }}) || 120;
       if (minMinutes > maxMinutes) { var t = minMinutes; minMinutes = maxMinutes; maxMinutes = t; }
 
-      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;
-      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000;
-      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;
+      var showFor = Number({{ settings.fake_orders_show_for | json }}) || 5500;
+      var delayBetween = Number({{ settings.fake_orders_delay | json }}) || 12000;
+
+      // safety clamps
+      if (showFor < 1500) showFor = 1500;
+      if (delayBetween < 1000) delayBetween = 1000;
 
       function pick(arr, fallback){
         if (!arr || !arr.length) return fallback;
@@ -184,7 +178,6 @@
         return products[Math.floor(Math.random() * products.length)];
       }
 
-      // Ensure image+title always show (if product has no image, we hide image container)
       function setProduct(p){
         if (!p || !p.title) {
           elProd.textContent = "this item";
@@ -193,7 +186,6 @@
           if (imgWrap) imgWrap.style.display = "none";
           return;
         }
-
         elProd.textContent = p.title;
         linkEl.href = p.url || "#";
         linkEl.style.pointerEvents = p.url ? "auto" : "none";
@@ -210,54 +202,62 @@
       }
 
       var stopped = false;
-      var hideTimer = null;
-      var loopTimer = null;
+      var timer = null;
 
-      function showOnce(){
+      function showPopup(){
         if (stopped) return;
 
         var p = pickProduct();
-
         elName.textContent = pick(names, "Someone");
         elCity.textContent = pick(cities, "your area");
         elTime.textContent = formatTime(rand(minMinutes, maxMinutes));
-
         setProduct(p);
 
         popup.classList.remove("is-hide");
         popup.classList.add("is-show");
-        popup.style.display = "block"; // force show even if any old inline display:none exists
-
-        clearTimeout(hideTimer);
-        hideTimer = setTimeout(function(){
-          popup.classList.add("is-hide");
-          setTimeout(function(){
-            popup.classList.remove("is-show");
-            popup.classList.remove("is-hide");
-            popup.style.display = "none";
-          }, 220);
-        }, showFor);
-
-        scheduleNext();
+        popup.style.display = "block";
       }
 
-      function scheduleNext(){
-        clearTimeout(loopTimer);
-        loopTimer = setTimeout(showOnce, rand(minDelay, maxDelay));
+      function hidePopup(){
+        if (stopped) return;
+
+        popup.classList.add("is-hide");
+        window.setTimeout(function(){
+          popup.classList.remove("is-show");
+          popup.classList.remove("is-hide");
+          popup.style.display = "none";
+        }, 220);
+      }
+
+      function loop(){
+        if (stopped) return;
+
+        showPopup();
+
+        // Hold visible
+        timer = window.setTimeout(function(){
+          hidePopup();
+
+          // Wait after hiding, then next popup
+          timer = window.setTimeout(function(){
+            loop();
+          }, delayBetween);
+
+        }, showFor);
       }
 
       closeBtn.addEventListener("click", function(e){
         e.preventDefault();
         stopped = true;
-        clearTimeout(hideTimer);
-        clearTimeout(loopTimer);
+        window.clearTimeout(timer);
         popup.style.display = "none";
       });
 
-      // If products array is empty, don't run (so you know to select a collection)
+      // If no products loaded, don't run (select a collection)
       if (!products || !products.length) return;
 
-      setTimeout(showOnce, rand(1500, 3500));
+      // Start cleanly
+      timer = window.setTimeout(loop, 1200);
     })();
   </script>
 {%- endif -%}

@@ -1528,24 +1528,14 @@
       "step": 10,
       "default": 120
     },
-
     {
       "type": "range",
-      "id": "fake_orders_min_delay",
-      "label": "Min delay between popups (ms)",
+      "id": "fake_orders_delay",
+      "label": "Delay between popups (ms)",
       "min": 2000,
-      "max": 8000,
-      "step": 500,
-      "default": 6000
-    },
-    {
-      "type": "range",
-      "id": "fake_orders_max_delay",
-      "label": "Max delay between popups (ms)",
-      "min": 3000,
-      "max": 8000,
+      "max": 9000,
       "step": 1000,
-      "default": 8000
+      "default": 4000
     },
     {
       "type": "range",
