@@ -1451,5 +1451,104 @@
         "default": "scheme-1"
       }
     ]
-  }
+  },
+  {
+  "name": "Fake Recent Orders Popup",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fake_orders_enabled",
+      "label": "Enable fake recent orders popup",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "fake_orders_show_on",
+      "label": "Show on",
+      "default": "product",
+      "options": [
+        { "value": "all", "label": "All pages" },
+        { "value": "product", "label": "Product pages only" },
+        { "value": "home", "label": "Homepage only" }
+      ]
+    },
+    {
+      "type": "collection",
+      "id": "fake_orders_source_collection",
+      "label": "Product source collection (optional)"
+    },
+    {
+      "type": "range",
+      "id": "fake_orders_products_limit",
+      "label": "How many products to use (higher = more variety)",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "fake_orders_show_image",
+      "label": "Show product image (product pages)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "fake_orders_template_suffix",
+      "label": "Only show on product template suffix (optional)"
+    },
+    {
+      "type": "textarea",
+      "id": "fake_orders_names",
+      "label": "Names (one per line)",
+      "default": "Ahmed\nAyesha\nHassan\nFatima\nAli\nSara\nUsman\nHira"
+    },
+    {
+      "type": "textarea",
+      "id": "fake_orders_cities",
+      "label": "Cities (one per line)",
+      "default": "Karachi\nLahore\nIslamabad\nRawalpindi\nFaisalabad\nMultan"
+    },
+
+    {
+      "type": "range",
+      "id": "fake_orders_min_minutes",
+      "label": "Minimum minutes ago",
+      "min": 1,
+      "max": 121,
+      "step": 2,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "fake_orders_max_minutes",
+      "label": "Maximum minutes ago",
+      "min": 10,
+      "max": 720,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "fake_orders_delay",
+      "label": "Delay between popups (ms)",
+      "min": 2000,
+      "max": 9000,
+      "step": 1000,
+      "default": 4000
+    },
+    {
+      "type": "range",
+      "id": "fake_orders_show_for",
+      "label": "Popup visible duration (ms)",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "default": 5500
+    }
+  ]
+}
+
 ]
+
+
