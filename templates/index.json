@@ -52,21 +52,21 @@
         "marquee_item_mDDR46": {
           "type": "marquee_item",
           "settings": {
-            "icon": "shopify://shop_images/favicon.png",
+            "icon": "shopify://shop_images/artboard_1.webp",
             "text": "Free Shipping"
           }
         },
         "marquee_item_yypaYd": {
           "type": "marquee_item",
           "settings": {
-            "icon": "shopify://shop_images/favicon.png",
+            "icon": "shopify://shop_images/artboard_2.webp",
             "text": "24*7 Customer Support"
           }
         },
         "marquee_item_xFc4tg": {
           "type": "marquee_item",
           "settings": {
-            "icon": "shopify://shop_images/favicon.png",
+            "icon": "shopify://shop_images/artboard_3.webp",
             "text": "FROM PROFESSIONALS FOR PROFESSIONALS"
           }
         }
