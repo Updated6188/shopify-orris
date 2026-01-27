@@ -53,15 +53,12 @@
     font-weight: 600;
   }
 
-  /* Right content spacing */
-  .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap{
-    margin-top: 18px;
-  }
-  .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap:first-child{
-    margin-top: 0;
+  /* Right spacing */
+  .privacyPg.section-{{ section.id }}-padding .privacyRight .faq-group{
+    margin-top: 22px;
   }
 
-  /* FAQ / Collapsible */
+  /* FAQ styles */
   .privacyPg.section-{{ section.id }}-padding .faq-wrap details{
     border: 1px solid rgba(0,0,0,.10);
     border-radius: 12px;
@@ -130,58 +127,27 @@
         {{ page.content }}
       </div>
 
-      <!-- Extra blocks (optional) -->
-      {%- if section.blocks.size > 0 -%}
-        {%- for block in section.blocks -%}
-          <div class="block-gap" {{ block.shopify_attributes }}>
-            {%- case block.type -%}
+      <!-- FAQ group (repeater blocks) -->
+      <div class="faq-group">
+        {%- if section.settings.faq_heading != blank -%}
+          <h2>{{ section.settings.faq_heading | escape }}</h2>
+        {%- endif -%}
 
-              {%- when 'rich_text' -%}
-                <div class="rte">
-                  {{ block.settings.content }}
-                </div>
-
-              {%- when 'image' -%}
-                {%- if block.settings.image != blank -%}
-                  <div>
-                    {{
-                      block.settings.image
-                      | image_url: width: 1800
-                      | image_tag: loading: 'lazy'
-                    }}
+        <div class="faq-wrap">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq_item' -%}
+              {%- if block.settings.question != blank and block.settings.answer != blank -%}
+                <details {{ block.shopify_attributes }}>
+                  <summary>{{ block.settings.question | escape }}</summary>
+                  <div class="faq-content rte">
+                    {{ block.settings.answer }}
                   </div>
-                {%- endif -%}
-
-              {%- when 'faq' -%}
-                <div class="faq-wrap">
-                  {%- if block.settings.faq_title != blank -%}
-                    <h2>{{ block.settings.faq_title | escape }}</h2>
-                  {%- endif -%}
-
-                  {%- for i in (1..8) -%}
-                    {%- assign q_key = 'q' | append: i -%}
-                    {%- assign a_key = 'a' | append: i -%}
-                    {%- assign q_val = block.settings[q_key] -%}
-                    {%- assign a_val = block.settings[a_key] -%}
-
-                    {%- if q_val != blank and a_val != blank -%}
-                      <details>
-                        <summary>{{ q_val | escape }}</summary>
-                        <div class="faq-content rte">
-                          {{ a_val }}
-                        </div>
-                      </details>
-                    {%- endif -%}
-                  {%- endfor -%}
-                </div>
-
-              {%- when 'divider' -%}
-                <hr>
-
-            {%- endcase -%}
-          </div>
-        {%- endfor -%}
-      {%- endif -%}
+                </details>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
 
     </div>
 
@@ -211,6 +177,12 @@
       "label": "Custom title (optional)"
     },
     {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
       "type": "header",
       "content": "Padding"
     },
@@ -237,74 +209,31 @@
   ],
   "blocks": [
     {
-      "type": "faq",
-      "name": "FAQ (Collapsible)",
+      "type": "faq_item",
+      "name": "FAQ item",
       "settings": [
         {
           "type": "text",
-          "id": "faq_title",
-          "label": "FAQ heading",
-          "default": "Frequently Asked Questions"
+          "id": "question",
+          "label": "Question",
+          "default": "Your question here"
         },
-
-        { "type": "text", "id": "q1", "label": "Question 1", "default": "Question 1" },
-        { "type": "richtext", "id": "a1", "label": "Answer 1", "default": "<p>Answer 1</p>" },
-
-        { "type": "text", "id": "q2", "label": "Question 2", "default": "Question 2" },
-        { "type": "richtext", "id": "a2", "label": "Answer 2", "default": "<p>Answer 2</p>" },
-
-        { "type": "text", "id": "q3", "label": "Question 3", "default": "Question 3" },
-        { "type": "richtext", "id": "a3", "label": "Answer 3", "default": "<p>Answer 3</p>" },
-
-        { "type": "text", "id": "q4", "label": "Question 4", "default": "Question 4" },
-        { "type": "richtext", "id": "a4", "label": "Answer 4", "default": "<p>Answer 4</p>" },
-
-        { "type": "text", "id": "q5", "label": "Question 5", "default": "Question 5" },
-        { "type": "richtext", "id": "a5", "label": "Answer 5", "default": "<p>Answer 5</p>" },
-
-        { "type": "text", "id": "q6", "label": "Question 6", "default": "Question 6" },
-        { "type": "richtext", "id": "a6", "label": "Answer 6", "default": "<p>Answer 6</p>" },
-
-        { "type": "text", "id": "q7", "label": "Question 7", "default": "Question 7" },
-        { "type": "richtext", "id": "a7", "label": "Answer 7", "default": "<p>Answer 7</p>" },
-
-        { "type": "text", "id": "q8", "label": "Question 8", "default": "Question 8" },
-        { "type": "richtext", "id": "a8", "label": "Answer 8", "default": "<p>Answer 8</p>" }
-      ]
-    },
-    {
-      "type": "rich_text",
-      "name": "Rich text (extra)",
-      "settings": [
         {
           "type": "richtext",
-          "id": "content",
-          "label": "Content",
-          "default": "<p>Add extra content here.</p>"
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Your answer here.</p>"
         }
       ]
-    },
-    {
-      "type": "image",
-      "name": "Image (extra)",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    },
-    {
-      "type": "divider",
-      "name": "Divider"
     }
   ],
   "presets": [
     {
       "name": "Privacy sidebar page",
       "blocks": [
-        { "type": "faq" }
+        { "type": "faq_item" },
+        { "type": "faq_item" },
+        { "type": "faq_item" }
       ]
     }
   ]
