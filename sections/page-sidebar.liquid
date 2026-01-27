@@ -27,7 +27,7 @@
     }
   }
 
-  /* Sidebar styling */
+  /* Sidebar */
   .privacyPg.section-{{ section.id }}-padding .sideNav{
     position: sticky;
     top: 16px;
@@ -57,12 +57,16 @@
   .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap{
     margin-top: 16px;
   }
+
+  .privacyPg.section-{{ section.id }}-padding .privacyRight .block-gap:first-child{
+    margin-top: 0;
+  }
 {%- endstyle -%}
 
 <section class="privacyPg page-width section-{{ section.id }}-padding">
   <div class="policy_pages">
 
-    <!-- LEFT SIDEBAR (separate) -->
+    <!-- LEFT SIDEBAR -->
     <aside class="policy_left">
       <div class="sideNav float-start w-100">
         <ul>
@@ -103,18 +107,18 @@
           <div class="block-gap" {{ block.shopify_attributes }}>
             {%- case block.type -%}
 
-              {%- when 'rich_text' -%}
-                <div class="rte">
-                  {{ block.settings.content }}
-                </div>
-
               {%- when 'page_content' -%}
                 <div class="rte">
                   {{ page.content }}
                 </div>
 
+              {%- when 'rich_text' -%}
+                <div class="rte">
+                  {{ block.settings.content }}
+                </div>
+
               {%- when 'title' -%}
-                <h2 class="{{ block.settings.heading_class }}">
+                <h2{% if block.settings.heading_class != blank %} class="{{ block.settings.heading_class }}"{% endif %}>
                   {{ block.settings.heading | escape }}
                 </h2>
 
@@ -135,9 +139,7 @@
             {%- endcase -%}
           </div>
         {%- endfor -%}
-
       {%- else -%}
-        {%- comment -%} fallback if no blocks added {%- endcomment -%}
         <div class="rte">
           {{ page.content }}
         </div>
@@ -223,8 +225,7 @@
         {
           "type": "text",
           "id": "heading_class",
-          "label": "Heading class (optional)",
-          "default": ""
+          "label": "Heading class (optional)"
         }
       ]
     },
