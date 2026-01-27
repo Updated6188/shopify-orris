@@ -12,7 +12,7 @@
     "main": {
       "type": "page-sidebar",
       "settings": {
-        "nav_menu": "main-menu",
+        "nav_menu": "menu-for-policy",
         "custom_title": "",
         "custom_content": "",
         "padding_top": 0,
