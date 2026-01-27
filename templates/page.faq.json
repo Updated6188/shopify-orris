@@ -11,6 +11,18 @@
   "sections": {
     "main": {
       "type": "page-sidebar",
+      "blocks": {
+        "faq_item_3TnEA9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Your question here",
+            "answer": "<p>Your answer here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_3TnEA9"
+      ],
       "settings": {
         "nav_menu": "menu-for-policy",
         "show_page_title": true,
