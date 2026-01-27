@@ -131,10 +131,11 @@
     "cart_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
     "fake_orders_show_on": "all",
     "fake_orders_source_collection": "all-collections",
+    "fake_orders_cities": "Karachi\nLahore\nFaisalabad\nRawalpindi\nGujranwala\nMultan\nHyderabad\nPeshawar\nQuetta\nIslamabad\nSargodha\nSialkot\nBahawalpur\nJhang\nSheikhupura\nGujrat\nSukkur\nLarkana\nRahim Yar Khan\nMari Abad\nDera Ghazi Khan\nBhawana\nMardan\nNawabshah\nShah Faisal Town\nChiniot\nKasur\nJhelum\nQasimabad\nKhairpur Tamiwali\nMirpur Khas\nIslamkot\nKotri\nSahiwal\nMandi Bahauddin\nJacobabad\nChakwal\nPattan Tehsil\nHub\nAttock\nMingora\nTando Allahyar\nPanjgur\nWazirabad\nAbbottabad\nTalagang\nWah Cantonment\nOkara",
     "fake_orders_min_minutes": 21,
+    "fake_orders_show_for": 4000,
     "fake_orders_min_delay": 3000,
     "fake_orders_max_delay": 5000,
-    "fake_orders_show_for": 4000,
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
