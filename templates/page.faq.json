@@ -12,6 +12,13 @@
     "main": {
       "type": "page-sidebar",
       "blocks": {
+        "faq_item_BpYxed": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Which country do you ship to?",
+            "answer": "<p>We ship all over pakistan.</p>"
+          }
+        },
         "faq_item_KXMi6D": {
           "type": "faq_item",
           "settings": {
@@ -49,6 +56,7 @@
         }
       },
       "block_order": [
+        "faq_item_BpYxed",
         "faq_item_KXMi6D",
         "faq_item_DhNxTL",
         "faq1",
