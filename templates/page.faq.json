@@ -11,6 +11,34 @@
   "sections": {
     "main": {
       "type": "page-sidebar",
+      "blocks": {
+        "faq_item_HFaiPF": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Your question here",
+            "answer": "<p>Your answer here.</p>"
+          }
+        },
+        "faq_item_yNKy37": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Your question here",
+            "answer": "<p>Your answer here.</p>"
+          }
+        },
+        "faq_item_ELFPFW": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Your question here",
+            "answer": "<p>Your answer here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_HFaiPF",
+        "faq_item_yNKy37",
+        "faq_item_ELFPFW"
+      ],
       "settings": {
         "nav_menu": "menu-for-policy",
         "show_page_title": true,
