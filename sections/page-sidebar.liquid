@@ -54,31 +54,84 @@
   }
 
   /* FAQ styles */
-  .privacyPg.section-{{ section.id }}-padding .faq-group{
-    margin-top: 22px;
-  }
+  /* FAQ accordion like screenshot */
+.privacyPg.section-{{ section.id }}-padding .faq-group{
+  margin-top: 22px;
+}
 
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap details{
-    border: 1px solid rgba(0,0,0,.10);
-    border-radius: 12px;
-    padding: 12px 14px;
-    background: rgb(var(--color-background));
+.privacyPg.section-{{ section.id }}-padding .faq-accordion{
+  border-top: 1px solid rgba(0,0,0,.12);
+}
+
+.privacyPg.section-{{ section.id }}-padding .faq-item{
+  border-bottom: 1px solid rgba(0,0,0,.12);
+  padding: 0;
+  margin: 0;
+}
+
+.privacyPg.section-{{ section.id }}-padding .faq-summary{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.privacyPg.section-{{ section.id }}-padding .faq-summary::-webkit-details-marker{
+  display:none;
+}
+
+.privacyPg.section-{{ section.id }}-padding .faq-question{
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+@media (max-width: 749px){
+  .privacyPg.section-{{ section.id }}-padding .faq-question{
+    font-size: 18px;
   }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap details + details{
-    margin-top: 10px;
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap summary{
-    cursor: pointer;
-    font-weight: 600;
-    list-style: none;
-    outline: none;
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap summary::-webkit-details-marker{
-    display:none;
-  }
-  .privacyPg.section-{{ section.id }}-padding .faq-wrap .faq-content{
-    margin-top: 10px;
-  }
+}
+
+.privacyPg.section-{{ section.id }}-padding .faq-icon{
+  width: 18px;
+  height: 18px;
+  position: relative;
+  flex: 0 0 18px;
+}
+
+/* plus sign */
+.privacyPg.section-{{ section.id }}-padding .faq-icon:before,
+.privacyPg.section-{{ section.id }}-padding .faq-icon:after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background: rgba(0,0,0,.9);
+  transform: translate(-50%, -50%);
+}
+
+/* vertical line of plus */
+.privacyPg.section-{{ section.id }}-padding .faq-icon:after{
+  width: 2px;
+  height: 18px;
+}
+
+/* when open -> turn plus into minus */
+.privacyPg.section-{{ section.id }}-padding details[open] .faq-icon:after{
+  height: 0;
+}
+
+/* answer spacing */
+.privacyPg.section-{{ section.id }}-padding .faq-content{
+  padding: 0 0 18px 0;
+  max-width: 920px;
+}
+
 {%- endstyle -%}
 
 <section class="privacyPg page-width section-{{ section.id }}-padding">
@@ -126,28 +179,32 @@
 
       <!-- FAQ repeater -->
       {%- if section.blocks.size > 0 -%}
-  <div class="faq-group">
-    <div class="faq-wrap">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'faq_item' -%}
-          {%- assign q_clean = block.settings.question | strip -%}
-          {%- assign a_plain = block.settings.answer | strip_html | strip -%}
+        <div class="faq-group">
+            <div class="faq-accordion">
+            {%- for block in section.blocks -%}
+                {%- if block.type == 'faq_item' -%}
+                {%- assign q = block.settings.question | strip -%}
+                {%- assign a_plain = block.settings.answer | strip_html | strip -%}
 
-          {%- if q_clean != blank and q_clean != '-' and a_plain != blank and a_plain != '-' -%}
-            <details {{ block.shopify_attributes }}>
-              <summary>{{ q_clean | escape }}</summary>
-              <div class="faq-content rte">
-                {{ block.settings.answer }}
-              </div>
-            </details>
-          {%- endif -%}
+                {%- if q != blank or a_plain != blank -%}
+                    <details class="faq-item" {{ block.shopify_attributes }}>
+                    <summary class="faq-summary">
+                        <span class="faq-question">{{ q | default: 'FAQ' | escape }}</span>
+                        <span class="faq-icon" aria-hidden="true"></span>
+                    </summary>
+
+                    {%- if a_plain != blank -%}
+                        <div class="faq-content rte">
+                        {{ block.settings.answer }}
+                        </div>
+                    {%- endif -%}
+                    </details>
+                {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+            </div>
+        </div>
         {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
-{%- endif -%}
-
-
     </div>
   </div>
 </section>
