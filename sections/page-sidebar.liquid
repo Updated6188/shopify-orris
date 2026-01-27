@@ -1,55 +1,5 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  /* Keep Dawn padding controls (optional) */
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  /* If your theme is NOT loading Bootstrap, make layout still work */
-  .privacyPg.section-{{ section.id }}-padding .row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  @media (min-width: 768px) {
-    .privacyPg.section-{{ section.id }}-padding .row {
-      grid-template-columns: 340px 1fr;
-      align-items: start;
-    }
-  }
-
-  /* Sidebar */
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li a {
-    display: block;
-    padding: 12px 12px;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 10px;
-  }
-
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.current-menu-item > a,
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.is-active > a {
-    background: rgba(0,0,0,.06);
-    font-weight: 600;
-  }
-{%- endstyle -%}
-
 <section class="privacyPg SectionSpce page-width section-{{ section.id }}-padding">
   <div class="container">
     <div class="row gy-5">
