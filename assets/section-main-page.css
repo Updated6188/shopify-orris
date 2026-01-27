@@ -18,22 +18,17 @@
 
 .singleBnrImg { opacity:0.65; }
 
-@media screen and (min-width: 750px) {
-  .main-page-title {
-    margin-bottom: 4rem;
-  }
+/* for policy pages style start */
+
+.SectionSpce {
+	padding: 100px 0;
 }
 
-.page-placeholder-wrapper {
-  display: flex;
-  justify-content: center;
+.policy_pages {
+	display: grid;
+	grid-template-columns: 380px 1fr;
+	gap: 40px;
 }
-
-.page-placeholder {
-  width: 52.5rem;
-  height: 52.5rem;
-}
- 
 
 .sideNav { border: 1px solid #dcdcdc; }
 .sideNav ul li {
@@ -53,3 +48,25 @@
 .PrivacyDes ul { padding-left:15px; }
 .PrivacyDes ul li { font-size:16px; line-height:1.4; margin-bottom:20px; list-style:decimal; }
 .PrivacyDes ul li:last-child { margin-bottom: 0; }
+
+
+/* for policy pages style end */
+
+
+@media screen and (min-width: 750px) {
+  .main-page-title {
+    margin-bottom: 4rem;
+  }
+}
+
+.page-placeholder-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.page-placeholder {
+  width: 52.5rem;
+  height: 52.5rem;
+}
+ 
+

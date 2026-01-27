@@ -1,9 +1,9 @@
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 <section class="privacyPg SectionSpce page-width section-{{ section.id }}-padding">
-  <div class="container">
-    <div class="row gy-5">
-      <div class="col-md-5 col-lg-4 col-xl-3">
+  
+    <div class="policy_pages w-100 float-start">
+      
         <div class="sideNav float-start w-100">
           <ul>
             {%- if section.settings.nav_menu != blank -%}
@@ -24,9 +24,7 @@
             {%- endif -%}
           </ul>
         </div>
-      </div>
-
-      <div class="col-md-7 col-lg-8 col-xl-9">
+        
         <div class="PrivacyDes float-start w-100">
           <h1 class="ft-size-30 text-uppercase mb-4">
             {%- if section.settings.custom_title != blank -%}
@@ -45,9 +43,9 @@
           </div>
 
         </div>
-      </div>
+    
     </div>
-  </div>
+  
 </section>
 
 {% schema %}
