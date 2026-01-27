@@ -15,8 +15,8 @@
         "faq_item_NCGAx3": {
           "type": "faq_item",
           "settings": {
-            "question": "Your question here",
-            "answer": "<p>Your answer here.</p>"
+            "question": "Some Question",
+            "answer": "<p>Some answer</p>"
           }
         },
         "faq_item_wp6m9N": {
