@@ -53,12 +53,11 @@
     font-weight: 600;
   }
 
-  /* Right spacing */
-  .privacyPg.section-{{ section.id }}-padding .privacyRight .faq-group{
+  /* FAQ spacing + styles */
+  .privacyPg.section-{{ section.id }}-padding .faq-group{
     margin-top: 22px;
   }
 
-  /* FAQ styles */
   .privacyPg.section-{{ section.id }}-padding .faq-wrap details{
     border: 1px solid rgba(0,0,0,.10);
     border-radius: 12px;
@@ -127,21 +126,22 @@
         {{ page.content }}
       </div>
 
-      <!-- FAQ group (repeater blocks) -->
+      <!-- FAQ repeater (blocks) -->
       <div class="faq-group">
-        {%- if section.settings.faq_heading != blank -%}
-          <h2>{{ section.settings.faq_heading | escape }}</h2>
-        {%- endif -%}
-
         <div class="faq-wrap">
           {%- for block in section.blocks -%}
             {%- if block.type == 'faq_item' -%}
-              {%- if block.settings.question != blank and block.settings.answer != blank -%}
+              {%- assign q = block.settings.question -%}
+              {%- assign a = block.settings.answer -%}
+
+              {%- if q != blank or a != blank -%}
                 <details {{ block.shopify_attributes }}>
-                  <summary>{{ block.settings.question | escape }}</summary>
-                  <div class="faq-content rte">
-                    {{ block.settings.answer }}
-                  </div>
+                  <summary>{{ q | default: 'FAQ' | escape }}</summary>
+                  {%- if a != blank -%}
+                    <div class="faq-content rte">
+                      {{ a }}
+                    </div>
+                  {%- endif -%}
                 </details>
               {%- endif -%}
             {%- endif -%}
@@ -175,12 +175,6 @@
       "type": "text",
       "id": "custom_title",
       "label": "Custom title (optional)"
-    },
-    {
-      "type": "text",
-      "id": "faq_heading",
-      "label": "FAQ heading",
-      "default": "Frequently Asked Questions"
     },
     {
       "type": "header",
