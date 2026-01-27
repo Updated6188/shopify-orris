@@ -15,11 +15,11 @@
     will-change: transform;
     -webkit-animation: marquee 25s linear infinite;
     animation: marquee 25s linear infinite;
-    padding: 0 50px;
+    padding: 0 10px;
 }
 .marquee__item ul { gap:30px; justify-content:center; }
-.marqueeBox { gap:8px; margin-right: 18vw; display: inline-flex; flex-wrap: wrap; align-items: center;}
-.marqueeText { font-size: 18px; color: #000; line-height: 1; letter-spacing: 1px; font-family: 'Outfit'; text-transform: uppercase;}
+.marqueeBox { gap:8px; margin-right: 5vw; display: inline-flex; flex-wrap: wrap; align-items: center;}
+.marqueeText { margin-top: 7px; font-size: 18px; color: #000; line-height: 1; letter-spacing: 1px; font-family: 'Outfit'; text-transform: uppercase;}
 .marqueeIcon { width:45px; display: flex; flex-wrap: wrap; }
 .marqueeIcon img { width: 100%;  max-width: 100%;}
 

@@ -40,6 +40,18 @@
         </div>
       {% endfor %}
   </div>
+  <div class="marquee__item">
+      {% for block in section.blocks %}
+        <div class="marqueeBox">
+          <div class="marqueeIcon">
+            <img src="{{ block.settings.icon | img_url: 'medium' }}" alt="">
+          </div>
+          <div class="marqueeText">
+            {{ block.settings.text }}
+          </div>
+        </div>
+      {% endfor %}
+  </div>
 </section>
 {% schema %}
 {
