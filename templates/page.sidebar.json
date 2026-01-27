@@ -9,18 +9,7 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "page-sidebar",
-      "settings": {
-        "nav_menu": "menu-for-policy",
-        "custom_title": "",
-        "custom_content": "",
-        "padding_top": 100,
-        "padding_bottom": 100
-      }
-    }
+    "main": { "type": "page-sidebar" }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }
