@@ -1,6 +1,11 @@
 {%- comment -%}
   Fake Recent Orders Popup (Theme snippet)
-  Fix: removed inline display:none (it was blocking the popup)
+
+  Fixes included:
+  - Works even if an old inline style="display:none" is still being output somewhere (forces display via JS)
+  - Removes duplicate #fakeOrderPopup elements if they exist (keeps the last one)
+  - Textareas (names/cities) are split into arrays
+  - Compatible with your latest schema ranges
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
@@ -39,7 +44,7 @@
   </div>
 
   <style>
-    /* hidden by default */
+    /* Hidden by default */
     .fake-order-popup{ display:none; }
 
     .fake-order-popup{
@@ -82,7 +87,7 @@
 
   <script>
     (function(){
-      var showOn = "{{ settings.fake_orders_show_on }}";
+      var showOn = "{{ settings.fake_orders_show_on }}"; // all, product, home
       var pageType = {{ request.page_type | json }};
       var isProduct = pageType === "product";
       var isHome = pageType === "index";
@@ -90,6 +95,18 @@
       if (showOn === "product" && !isProduct) return;
       if (showOn === "home" && !isHome) return;
 
+      // Remove duplicates (if old code/snippet exists)
+      var popups = document.querySelectorAll("#fakeOrderPopup");
+      if (popups.length > 1) {
+        for (var i = 0; i < popups.length - 1; i++) {
+          popups[i].remove();
+        }
+      }
+
+      var popup = document.getElementById("fakeOrderPopup");
+      if (!popup) return;
+
+      // Optional: Only show on specific product template suffix
       var onlySuffix = "{{ settings.fake_orders_template_suffix | escape }}";
       {% if product and product.template_suffix %}
         var currentSuffix = {{ product.template_suffix | json }};
@@ -98,30 +115,33 @@
       {% endif %}
       if (onlySuffix && isProduct && currentSuffix !== onlySuffix) return;
 
-      var popup = document.getElementById("fakeOrderPopup");
-      if (!popup) return;
-
       var closeBtn = popup.querySelector(".fake-order-close");
       var elName = popup.querySelector(".fo-name");
       var elCity = popup.querySelector(".fo-city");
       var elProd = popup.querySelector(".fo-product");
       var elTime = popup.querySelector(".fo-time");
 
+      // Fake data (textarea -> arrays)
       var names = {{ _names | json }};
       var cities = {{ _cities | json }};
 
+      // Minutes range (schema: min 1..121 step 2, max 10..720 step 10)
       var minMinutes = Number({{ settings.fake_orders_min_minutes | json }}) || 5;
       var maxMinutes = Number({{ settings.fake_orders_max_minutes | json }}) || 120;
       if (minMinutes > maxMinutes) { var t = minMinutes; minMinutes = maxMinutes; maxMinutes = t; }
 
+      // Product text
       var productTitle = {{ product.title | default: "this item" | escape | json }};
 
-      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;
-      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000;
-      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;
+      // Timing
+      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;   // ms
+      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000; // ms
+      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;   // ms
 
       function clean(arr){
-        return (arr || []).map(function(x){ return (x || "").trim(); }).filter(Boolean);
+        return (arr || [])
+          .map(function(x){ return (x || "").trim(); })
+          .filter(Boolean);
       }
       names = clean(names);
       cities = clean(cities);
@@ -155,12 +175,16 @@
         popup.classList.remove("is-hide");
         popup.classList.add("is-show");
 
+        // IMPORTANT: override any inline style="display:none" from old code
+        popup.style.display = "block";
+
         clearTimeout(hideTimer);
         hideTimer = setTimeout(function(){
           popup.classList.add("is-hide");
           setTimeout(function(){
             popup.classList.remove("is-show");
             popup.classList.remove("is-hide");
+            popup.style.display = "none";
           }, 220);
         }, showFor);
 
