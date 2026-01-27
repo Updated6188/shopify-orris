@@ -15,15 +15,15 @@
         "faq1": {
           "type": "faq_item",
           "settings": {
-            "question": "Test 1",
-            "answer": "<p>Test1</p>"
+            "question": "",
+            "answer": ""
           }
         },
         "faq2": {
           "type": "faq_item",
           "settings": {
-            "question": "test 2",
-            "answer": "<p>test 2</p>"
+            "question": "",
+            "answer": ""
           }
         },
         "faq3": {
