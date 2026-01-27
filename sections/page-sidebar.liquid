@@ -14,30 +14,30 @@
   }
 
   /* Layout */
-  .privacyPg.section-{{ section.id }}-padding .policy_pages{
+  .policy_pages{
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 30px;
   }
 
   @media (min-width: 990px){
-    .privacyPg.section-{{ section.id }}-padding .policy_pages{
+    .policy_pages{
       grid-template-columns: 380px 1fr;
       align-items: start;
     }
   }
-.privacyPg.section-{{ section.id }}-padding .sideNav { border: 1px solid #dcdcdc; }
-.privacyPg.section-{{ section.id }}-padding .sideNav ul { width: 100%; float: left; padding: 0; margin:0; list-style: none;  }
-.privacyPg.section-{{ section.id }}-padding .sideNav ul li {
+.sideNav { border: 1px solid #dcdcdc; }
+.sideNav ul { width: 100%; float: left; padding: 0; margin:0; list-style: none;  }
+.sideNav ul li {
   border-bottom: 1px solid #dcdcdc;
   width: 100%;
   float: left;
 }
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li a { display: block; font-family: var(--outfit); font-weight: 300; font-size: 16px; color: var(--black); padding: 12px 28px 13px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;}
+  .sideNav ul li a { display: block; font-family: var(--outfit); font-weight: 300; font-size: 16px; color: var(--black); padding: 12px 28px 13px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;}
 
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li a:hover,
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.current-menu-item > a,
-  .privacyPg.section-{{ section.id }}-padding .sideNav ul li.is-active > a{
+  .sideNav ul li a:hover,
+  .sideNav ul li.current-menu-item > a,
+  .sideNav ul li.is-active > a{
     background: var(--brownColor); color: var(--white);
   }
 
@@ -52,11 +52,6 @@
 
 
   /* FAQ styles */
-  /* FAQ accordion like screenshot */
-.privacyPg.section-{{ section.id }}-padding .faq-group{
-  /*margin-top: 22px;*/
-}
-
 .privacyPg.section-{{ section.id }}-padding .faq-accordion{
   border-top: 1px solid rgba(0,0,0,.12);
 }
