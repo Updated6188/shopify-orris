@@ -23,14 +23,14 @@
           "type": "faq_item",
           "settings": {
             "question": "What is an impression? Are you selling the original designer fragrances?",
-            "answer": "<p>Orris Perfumes are made in Pakistan, we sell premium high quality impressions of esigner fragrances. With years of experience and <br/>dedication, we create that same identical scent that you already know and love.</p><p>Orris Perfumes competes with the designer brands. It does not use their fragrances and is not associated in any way with the designer brands or their manufacturers. All trademarks are property of their respective owners. We are in compliance with the Federal Trade Commission’s Statement of Policy Regarding Comparative Advertising.</p>"
+            "answer": "<p>Orris Perfumes are made in Pakistan, we sell premium high quality impressions of designer fragrances. With years of experience and dedication, we create that same identical scent that you already know and love.</p><p>Orris Perfumes competes with the designer brands. It does not use their fragrances and is not associated in any way with the designer brands or their manufacturers. All trademarks are property of their respective owners. We are in compliance with the Federal Trade Commission’s Statement of Policy Regarding Comparative Advertising.</p>"
           }
         },
         "faq3": {
           "type": "faq_item",
           "settings": {
-            "question": "3",
-            "answer": "<p>3</p>"
+            "question": "How long will the fragrance bottle last?",
+            "answer": "<p>A 50 ml bottle will last at least 1-2 months if used daily.</p>"
           }
         }
       },
