@@ -12,6 +12,9 @@
     "main": {
       "type": "main-page",
       "settings": {
+        "heading": "What Our Customers Say About ORRIS",
+        "description": "<p>At <strong>ORRIS</strong>, every scent tells a story — and our customers are the storytellers.<br/>Read genuine reviews and experiences from people who discovered their <strong>signature scent</strong> through our collection.</p>",
+        "bg_image": "shopify://shop_images/Perfume-421-scaled.jpg",
         "padding_top": 28,
         "padding_bottom": 28
       }
