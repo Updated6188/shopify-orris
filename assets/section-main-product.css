@@ -190,8 +190,8 @@ product-info {
 }
 
 .product-form__submit {
-  /*margin-bottom: 1rem;*/
-  margin-bottom: 0; height: 46px;
+  margin-bottom: 1rem;
+   height: 46px;
 }
 
 .product-form__submit[aria-disabled='true'] + .shopify-payment-button .shopify-payment-button__button[disabled],
@@ -1520,3 +1520,17 @@ a.product__text {
     border: none;
   }
 }
+
+
+.quantity-new { display: grid; grid-template-columns: 120px 1fr; gap: 10px; margin: 0 0 10px; }
+.quantity-new .product-form__input { margin-bottom: 0; }
+/* .quantity-new .quantity__label  { display: none;} */
+.quantity-new .orris-tester-box { display: none;}
+
+.quantity-buybtn { float: left; width: 100%; }
+.quantity-buybtn .product-form { margin: 0; }
+
+
+.buybtn-extra { float: left; width: 100%;}
+.buybtn-extra .product-form { margin-top: 0; }
+/* .buybtn-extra .product-form__submit.button.button--full-width.button--secondary { display: none; } */

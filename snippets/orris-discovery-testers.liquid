@@ -42,28 +42,64 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const box = document.querySelector('.orris-tester-box');
-      if (!box) return;
+  document.addEventListener('DOMContentLoaded', function () {
+    const box = document.querySelector('.orris-tester-box');
+    if (!box) return;
 
-      const form = box.closest('form[action^="/cart/add"]') || document.querySelector('form[action^="/cart/add"]');
-      if (!form) return;
+    const form = box.closest('form[action^="/cart/add"]');
+    if (!form) return;
 
-      const selects = form.querySelectorAll('.orris-tester-select');
-      const warning = form.querySelector('.tester-warning');
+    const selects = box.querySelectorAll('.orris-tester-select');
+    const warning = box.querySelector('.tester-warning');
 
-      form.addEventListener('submit', function (e) {
-        let allSelected = true;
-        selects.forEach(sel => { if (!sel.value) allSelected = false; });
+    function allSelected() {
+      for (const sel of selects) {
+        if (!sel.value) return false;
+      }
+      return true;
+    }
 
-        if (!allSelected) {
-          e.preventDefault();
-          if (warning) warning.style.display = 'block';
-          box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          if (warning) warning.style.display = 'none';
-        }
+    function showWarning() {
+      if (warning) warning.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function hideWarning() {
+      if (warning) warning.style.display = 'none';
+    }
+
+    // 1) Block normal form submit
+    form.addEventListener('submit', function (e) {
+      if (!allSelected()) {
+        e.preventDefault();
+        e.stopPropagation();
+        showWarning();
+        return false;
+      }
+      hideWarning();
+    }, true);
+
+    // 2) Block Dawn AJAX add-to-cart click (capture phase)
+    form.addEventListener('click', function (e) {
+      const btn = e.target.closest('button[type="submit"], input[type="submit"]');
+      if (!btn) return;
+
+      if (!allSelected()) {
+        e.preventDefault();
+        e.stopPropagation();
+        showWarning();
+        return false;
+      }
+      hideWarning();
+    }, true);
+
+    // Hide warning as soon as user completes selections
+    selects.forEach(sel => {
+      sel.addEventListener('change', function () {
+        if (allSelected()) hideWarning();
       });
     });
-  </script>
+  });
+</script>
+
 {%- endif -%}
