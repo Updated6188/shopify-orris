@@ -11,6 +11,18 @@
   "sections": {
     "main": {
       "type": "page-sidebar",
+      "blocks": {
+        "faq_item_8AiNp8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "1",
+            "answer": "<p>2</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_8AiNp8"
+      ],
       "settings": {
         "nav_menu": "menu-for-policy",
         "show_page_title": true,
@@ -20,5 +32,7 @@
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
