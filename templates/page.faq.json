@@ -22,7 +22,7 @@
         "faq2": {
           "type": "faq_item",
           "settings": {
-            "question": "test 1",
+            "question": "test 2",
             "answer": "<p>test 2</p>"
           }
         },
