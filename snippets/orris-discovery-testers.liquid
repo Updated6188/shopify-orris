@@ -1,0 +1,69 @@
+{%- comment -%}
+  Orris – Discovery Box 4 Testers (Line Item Properties)
+  Shows only for specific product titles (change handles/titles if needed)
+{%- endcomment -%}
+
+{%- assign is_discovery = false -%}
+{%- if product.title == 'Discovery Box – 4 Testers' or product.title == 'Discovery Box - 4 Testers' -%}
+  {%- assign is_discovery = true -%}
+{%- endif -%}
+
+{%- if is_discovery -%}
+  {%- assign testers = "Orris Legend (Men)|White Oud (Unisex)|Secret Garden (Women)|Velvet Touch (Men)|Peru (Men)|Rebel Hearts (Women)" | split: "|" -%}
+
+  <div class="orris-tester-box" style="margin-bottom:20px;">
+    <h2 class="ft-size-18 color-black text-capitalize fw-medium mb-2">
+      Select Your 4 Testers (5 ml Each):
+    </h2>
+
+    {%- for i in (1..4) -%}
+      <div class="orris-dropdown" style="margin-bottom:10px;">
+        <label class="ft-size-16 fw-medium color-black" style="display:block;margin-bottom:5px;">
+          Tester {{ i }}:
+        </label>
+
+        <select
+          name="properties[Tester {{ i }}]"
+          class="orris-tester-select"
+          required
+          style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"
+        >
+          <option value="">-- Select Tester {{ i }} --</option>
+          {%- for t in testers -%}
+            <option value="{{ t | escape }}">{{ t }}</option>
+          {%- endfor -%}
+        </select>
+      </div>
+    {%- endfor -%}
+
+    <p class="tester-warning" style="color:red;display:none;">
+      Please select all 4 testers before adding to cart.
+    </p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const box = document.querySelector('.orris-tester-box');
+      if (!box) return;
+
+      const form = box.closest('form[action^="/cart/add"]') || document.querySelector('form[action^="/cart/add"]');
+      if (!form) return;
+
+      const selects = form.querySelectorAll('.orris-tester-select');
+      const warning = form.querySelector('.tester-warning');
+
+      form.addEventListener('submit', function (e) {
+        let allSelected = true;
+        selects.forEach(sel => { if (!sel.value) allSelected = false; });
+
+        if (!allSelected) {
+          e.preventDefault();
+          if (warning) warning.style.display = 'block';
+          box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          if (warning) warning.style.display = 'none';
+        }
+      });
+    });
+  </script>
+{%- endif -%}
