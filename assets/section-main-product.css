@@ -1530,7 +1530,6 @@ a.product__text {
 .quantity-buybtn { float: left; width: 100%; }
 .quantity-buybtn .product-form { margin: 0; }
 
-
 .buybtn-extra { float: left; width: 100%;}
 .buybtn-extra .product-form { margin-top: 0; }
 /* .buybtn-extra .product-form__submit.button.button--full-width.button--secondary { display: none; } */
