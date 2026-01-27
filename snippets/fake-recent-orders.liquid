@@ -1,8 +1,8 @@
 {%- comment -%}
   Fake Recent Orders Popup
   - No flicker: Show -> Hold -> Hide -> Wait -> Next
-  - Single delay setting: settings.fake_orders_delay
-  - Random product each time (from chosen collection)
+  - Single delay: settings.fake_orders_delay
+  - Smooth close: animate out then stop
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
@@ -97,7 +97,7 @@
     .fake-order-close:hover{ opacity: 1; }
 
     .fake-order-popup.is-show{ display:block; animation: foIn .25s ease; }
-    .fake-order-popup.is-hide{ animation: foOut .2s ease; }
+    .fake-order-popup.is-hide{ animation: foOut .22s ease; }
 
     @keyframes foIn{ from{ transform: translateY(10px); opacity:0;} to{ transform: translateY(0); opacity:1;} }
     @keyframes foOut{ from{ transform: translateY(0); opacity:1;} to{ transform: translateY(10px); opacity:0;} }
@@ -156,7 +156,6 @@
       var showFor = Number({{ settings.fake_orders_show_for | json }}) || 5500;
       var delayBetween = Number({{ settings.fake_orders_delay | json }}) || 12000;
 
-      // safety clamps
       if (showFor < 1500) showFor = 1500;
       if (delayBetween < 1000) delayBetween = 1000;
 
@@ -177,7 +176,6 @@
         if (!products || !products.length) return null;
         return products[Math.floor(Math.random() * products.length)];
       }
-
       function setProduct(p){
         if (!p || !p.title) {
           elProd.textContent = "this item";
@@ -189,7 +187,6 @@
         elProd.textContent = p.title;
         linkEl.href = p.url || "#";
         linkEl.style.pointerEvents = p.url ? "auto" : "none";
-
         if (imgEl && imgWrap) {
           if (p.img) {
             imgEl.src = p.img;
@@ -203,9 +200,10 @@
 
       var stopped = false;
       var timer = null;
+      var closing = false;
 
       function showPopup(){
-        if (stopped) return;
+        if (stopped || closing) return;
 
         var p = pickProduct();
         elName.textContent = pick(names, "Someone");
@@ -218,45 +216,49 @@
         popup.style.display = "block";
       }
 
-      function hidePopup(){
+      function hidePopup(callback){
         if (stopped) return;
-
         popup.classList.add("is-hide");
         window.setTimeout(function(){
           popup.classList.remove("is-show");
           popup.classList.remove("is-hide");
           popup.style.display = "none";
-        }, 220);
+          if (typeof callback === "function") callback();
+        }, 230);
       }
 
       function loop(){
-        if (stopped) return;
+        if (stopped || closing) return;
 
         showPopup();
 
-        // Hold visible
         timer = window.setTimeout(function(){
-          hidePopup();
-
-          // Wait after hiding, then next popup
-          timer = window.setTimeout(function(){
-            loop();
-          }, delayBetween);
-
+          hidePopup(function(){
+            timer = window.setTimeout(function(){
+              loop();
+            }, delayBetween);
+          });
         }, showFor);
       }
 
       closeBtn.addEventListener("click", function(e){
         e.preventDefault();
+        if (closing) return;
+        closing = true;
         stopped = true;
+
         window.clearTimeout(timer);
-        popup.style.display = "none";
+
+        // Smooth close: animate out if currently visible
+        if (popup.classList.contains("is-show") && popup.style.display !== "none") {
+          hidePopup(function(){ /* done */ });
+        } else {
+          popup.style.display = "none";
+        }
       });
 
-      // If no products loaded, don't run (select a collection)
       if (!products || !products.length) return;
 
-      // Start cleanly
       timer = window.setTimeout(loop, 1200);
     })();
   </script>
