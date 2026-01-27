@@ -1,21 +1,13 @@
 {%- comment -%}
   Fake Recent Orders Popup (Theme snippet)
-
-  Usage:
-  - Include it in theme.liquid before </body>
-  - Or include only on product pages
-
-  Updated for schema:
-  - fake_orders_min_minutes: 1..121 step 2
-  - fake_orders_names / fake_orders_cities: textarea -> split into arrays
-  - fake_orders_template_suffix: optional text (may be blank)
+  Fix: removed inline display:none (it was blocking the popup)
 {%- endcomment -%}
 
 {%- if settings.fake_orders_enabled -%}
   {%- assign _names = settings.fake_orders_names | newline_to_br | split: '<br />' -%}
   {%- assign _cities = settings.fake_orders_cities | newline_to_br | split: '<br />' -%}
 
-  <div id="fakeOrderPopup" class="fake-order-popup" aria-live="polite" style="display:none;">
+  <div id="fakeOrderPopup" class="fake-order-popup" aria-live="polite">
     <button class="fake-order-close" type="button" aria-label="Close">×</button>
 
     <div class="fake-order-inner">
@@ -47,6 +39,9 @@
   </div>
 
   <style>
+    /* hidden by default */
+    .fake-order-popup{ display:none; }
+
     .fake-order-popup{
       position: fixed;
       left: 16px;
@@ -58,7 +53,7 @@
       border: 1px solid rgba(0,0,0,.12);
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,.12);
-      padding: 12px 12px;
+      padding: 12px;
       font-size: 14px;
       line-height: 1.25;
     }
@@ -77,16 +72,17 @@
       opacity: .65;
     }
     .fake-order-close:hover{ opacity: 1; }
+
     .fake-order-popup.is-show{ display:block; animation: foIn .25s ease; }
     .fake-order-popup.is-hide{ animation: foOut .2s ease; }
+
     @keyframes foIn{ from{ transform: translateY(10px); opacity:0;} to{ transform: translateY(0); opacity:1;} }
     @keyframes foOut{ from{ transform: translateY(0); opacity:1;} to{ transform: translateY(10px); opacity:0;} }
   </style>
 
   <script>
     (function(){
-      // Basic targeting control
-      var showOn = "{{ settings.fake_orders_show_on }}"; // all, product, home
+      var showOn = "{{ settings.fake_orders_show_on }}";
       var pageType = {{ request.page_type | json }};
       var isProduct = pageType === "product";
       var isHome = pageType === "index";
@@ -94,7 +90,6 @@
       if (showOn === "product" && !isProduct) return;
       if (showOn === "home" && !isHome) return;
 
-      // Optional: Only show on specific product template suffix
       var onlySuffix = "{{ settings.fake_orders_template_suffix | escape }}";
       {% if product and product.template_suffix %}
         var currentSuffix = {{ product.template_suffix | json }};
@@ -112,28 +107,19 @@
       var elProd = popup.querySelector(".fo-product");
       var elTime = popup.querySelector(".fo-time");
 
-      // Fake data (textarea -> arrays via Liquid)
       var names = {{ _names | json }};
       var cities = {{ _cities | json }};
 
-      // Minutes range (schema: min 1..121 step 2, max 10..720 step 10)
       var minMinutes = Number({{ settings.fake_orders_min_minutes | json }}) || 5;
       var maxMinutes = Number({{ settings.fake_orders_max_minutes | json }}) || 120;
+      if (minMinutes > maxMinutes) { var t = minMinutes; minMinutes = maxMinutes; maxMinutes = t; }
 
-      // Ensure min <= max (in case user sets weird values)
-      if (minMinutes > maxMinutes) {
-        var tmp = minMinutes; minMinutes = maxMinutes; maxMinutes = tmp;
-      }
-
-      // Product text
       var productTitle = {{ product.title | default: "this item" | escape | json }};
 
-      // Timing
-      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;   // ms
-      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000; // ms
-      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;   // ms
+      var minDelay = Number({{ settings.fake_orders_min_delay | json }}) || 6000;
+      var maxDelay = Number({{ settings.fake_orders_max_delay | json }}) || 14000;
+      var showFor  = Number({{ settings.fake_orders_show_for | json }}) || 5500;
 
-      // Clean arrays (trim + remove empty)
       function clean(arr){
         return (arr || []).map(function(x){ return (x || "").trim(); }).filter(Boolean);
       }
@@ -144,11 +130,9 @@
         if (!arr || !arr.length) return fallback;
         return arr[Math.floor(Math.random() * arr.length)];
       }
-
       function rand(min, max){
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-
       function formatTime(mins){
         if (mins <= 1) return "just now";
         if (mins < 60) return mins + " minutes ago";
@@ -163,14 +147,10 @@
       function showOnce(){
         if (stopped) return;
 
-        var name = pick(names, "Someone");
-        var city = pick(cities, "your area");
-        var mins = rand(minMinutes, maxMinutes);
-
-        elName.textContent = name;
-        elCity.textContent = city;
+        elName.textContent = pick(names, "Someone");
+        elCity.textContent = pick(cities, "your area");
         elProd.textContent = productTitle;
-        elTime.textContent = formatTime(mins);
+        elTime.textContent = formatTime(rand(minMinutes, maxMinutes));
 
         popup.classList.remove("is-hide");
         popup.classList.add("is-show");
@@ -199,7 +179,6 @@
         popup.style.display = "none";
       });
 
-      // Start after a short delay
       setTimeout(showOnce, rand(1500, 3500));
     })();
   </script>
