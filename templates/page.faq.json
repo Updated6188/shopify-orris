@@ -12,15 +12,23 @@
     "main": {
       "type": "page-sidebar",
       "blocks": {
+        "faq_item_74ajLd": {
+          "type": "faq_item",
+          "settings": {
+            "question": "2",
+            "answer": "<p>222</p>"
+          }
+        },
         "faq_item_k9BGHd": {
           "type": "faq_item",
           "settings": {
             "question": "test",
-            "answer": "<p>Your answer here.</p>"
+            "answer": "<p>599589</p>"
           }
         }
       },
       "block_order": [
+        "faq_item_74ajLd",
         "faq_item_k9BGHd"
       ],
       "settings": {
