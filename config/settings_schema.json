@@ -1473,6 +1473,20 @@
       ]
     },
     {
+      "type": "collection",
+      "id": "fake_orders_source_collection",
+      "label": "Product source collection (optional)"
+    },
+    {
+      "type": "range",
+      "id": "fake_orders_products_limit",
+      "label": "How many products to use (higher = more variety)",
+      "min": 5,
+      "max": 100,
+      "step": 5,
+      "default": 30
+    },
+    {
       "type": "checkbox",
       "id": "fake_orders_show_image",
       "label": "Show product image (product pages)",
