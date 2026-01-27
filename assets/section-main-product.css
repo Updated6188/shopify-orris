@@ -1523,7 +1523,7 @@ a.product__text {
 
 
 .quantity-new { /*display: grid; grid-template-columns: 120px 1fr; gap: 10px;*/ margin: 0 0 10px; float: left; width: 100%;}
-.quantity-new .product-form__input { margin-bottom: 0; }
+.quantity-new .product-form__input { margin-bottom: 0; max-width: 120px; min-width: unset;}
 /* .quantity-new .quantity__label  { display: none;} */
 .quantity-new .orris-tester-box { display: none;}
 
