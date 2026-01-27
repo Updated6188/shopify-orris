@@ -1,0 +1,103 @@
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+
+<section class="privacyPg section-{{ section.id }}-padding">
+  
+    <div class="policy_pages w-100 float-start">
+      
+        <div class="sideNav float-start w-100">
+          <ul>
+            {%- if section.settings.nav_menu != blank -%}
+              {%- for link in section.settings.nav_menu.links -%}
+                {%- assign is_active = false -%}
+                {%- if link.url == page.url -%}{%- assign is_active = true -%}{%- endif -%}
+
+                <li class="menu-item menu-item-type-post_type menu-item-object-page{% if is_active %} current-menu-item current_page_item is-active{% endif %}">
+                  <a href="{{ link.url }}" {% if is_active %}aria-current="page"{% endif %}>
+                    {{ link.title | escape }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            {%- else -%}
+              <li class="menu-item">
+                <a href="#">Select a menu in section settings</a>
+              </li>
+            {%- endif -%}
+          </ul>
+        </div>
+
+        <div class="PrivacyDes float-start w-100">
+          <h1 class="ft-size-30 text-uppercase mb-4">
+            {%- if section.settings.custom_title != blank -%}
+              {{ section.settings.custom_title | escape }}
+            {%- else -%}
+              {{ page.title | escape }}
+            {%- endif -%}
+          </h1>
+
+          <div class="rte">
+            {%- if section.settings.custom_content != blank -%}
+              {{ section.settings.custom_content }}
+            {%- else -%}
+              {{ page.content }}
+            {%- endif -%}
+          </div>
+
+        </div>
+    
+    </div>
+  
+</section>
+
+{% schema %}
+{
+  "name": "Privacy sidebar page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "nav_menu",
+      "label": "Left sidebar menu"
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Custom title (optional)"
+    },
+    {
+      "type": "richtext",
+      "id": "custom_content",
+      "label": "Custom content (optional, overrides page content)"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Privacy sidebar page"
+    }
+  ]
+}
+{% endschema %}

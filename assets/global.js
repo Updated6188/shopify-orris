@@ -1330,3 +1330,31 @@ class CartPerformance {
     );
   }
 }
+
+(function () {
+  function initViewers() {
+    var el = document.querySelector(".sv-viewers");
+    if (!el) return;
+
+    var min = parseInt(el.getAttribute("data-viewers-min") || "6", 10);
+    var max = parseInt(el.getAttribute("data-viewers-max") || "28", 10);
+    var refresh = parseInt(el.getAttribute("data-viewers-refresh") || "12", 10) * 1000;
+
+    var numEl = el.querySelector(".sv-viewers__n");
+    if (!numEl) return;
+
+    function pick() {
+      var n = Math.floor(Math.random() * (max - min + 1)) + min;
+      numEl.textContent = n;
+    }
+
+    pick();
+    setInterval(pick, refresh);
+  }
+
+  document.addEventListener("DOMContentLoaded", initViewers);
+
+  // For some themes that re-render sections (Dawn etc.)
+  document.addEventListener("shopify:section:load", initViewers);
+})();
+

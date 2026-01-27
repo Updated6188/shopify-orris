@@ -128,7 +128,7 @@
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
-    "cart_color_scheme": "scheme-1",
+    "cart_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -147,6 +147,11 @@
     "blocks": {
       "15521780835499905587": {
         "type": "shopify://apps/square-instagram-feed/blocks/app-embed/8c9f3786-8bb5-488d-a397-b1285ed978df",
+        "disabled": false,
+        "settings": {}
+      },
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       }

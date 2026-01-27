@@ -168,6 +168,13 @@
   </div>
 {% endif %}
 
+    {% if card_product and card_product.metafields.judgeme.badge != blank %}
+  <div style="{{ jm_style }}" class="jdgm-widget jdgm-preview-badge" data-id="{{ card_product.id }}" data-auto-install="false">
+    {{ card_product.metafields.judgeme.badge }}
+  </div>
+{% endif %}
+
+
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
