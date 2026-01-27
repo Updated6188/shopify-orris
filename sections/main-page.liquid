@@ -5,6 +5,33 @@
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
+  /* Banner layout fixes for Dawn (no Bootstrap) */
+  .section-{{ section.id }}-padding.singleBnr {
+    position: relative;
+    min-height: 420px; /* adjust height */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+  }
+
+  .section-{{ section.id }}-padding.singleBnr .container {
+    position: relative;
+    z-index: 2;
+    width: min(1200px, 100%);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section-{{ section.id }}-padding.singleBnr .singleBnrImg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
