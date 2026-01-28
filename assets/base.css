@@ -1840,7 +1840,7 @@ input[type='checkbox'] {
 /* Form global */
 
 .form__label {
-  display: none;
+  display: block;
   margin-bottom: 0.6rem;
 }
 
@@ -3689,34 +3689,37 @@ details-disclosure > details {
 
 /* mds style end */
 
-
+.orris-tester-box { margin-bottom: 20px;}
+.orris-tester-box h2 { font-size: 16px; color: #000; text-transform: capitalize; font-family: "Outfit"; margin-bottom: 12px; }
 .orris-dropdown { float: left; width: 100%; }
+
 /* Container */
 .orris-dropdown {
   width: 100%;
-  margin-bottom: 10px;
 }
 
 /* Label */
 .orris-dropdown label {
   font-size: 16px;
-  font-weight: 500;
-  color: #111;
+  font-family: 'Outfit';
+  color: #000;
   margin-bottom: 6px;
-  display: block;
+  display: none;
 }
+
+.select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px;}
 
 /* Select */
 .orris-tester-select {
   width: 100%;
   padding: 12px 44px 12px 14px;
-  font-size: 15px;
+  font-size: 1.3rem;
   font-family: inherit;
-  color: #111;
-  background-color: #fff;
+  color: rgba(0,0,0,0.75);
+  background-color: #f7eedf;
 
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid #D7D7D7;
+  border-radius: 0;
   cursor: pointer;
 
   /* Remove native arrow */
@@ -3725,25 +3728,25 @@ details-disclosure > details {
   -moz-appearance: none;
 
   /* Custom arrow in background */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000000' stroke-width='2'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
-  background-size: 14px;
+  background-size: 20px;
 
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Hover */
 .orris-tester-select:hover {
-  border-color: #6366f1;
+  border-color: #000;
 }
 
 /* Focus */
-.orris-tester-select:focus {
+/* .orris-tester-select:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
-}
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.25);
+} */
 
 /* Placeholder option */
 .orris-tester-select option[value=""] {
@@ -3753,4 +3756,7 @@ details-disclosure > details {
 /* Options (limited support) */
 .orris-tester-select option {
   font-size: 15px;
+}
+@media screen and (max-width: 575px) {
+  .select-grid { grid-template-columns: 1fr;} 
 }

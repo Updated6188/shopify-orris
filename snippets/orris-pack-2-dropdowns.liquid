@@ -13,14 +13,14 @@
 
   {%- assign menu_handle = settings.orris_pack2_menu -%}
 
-  <div class="orris-tester-box" style="margin-bottom:20px;">
-    <h2 class="ft-size-18 color-black text-capitalize fw-medium mb-2">
+  <div class="orris-tester-box">
+    <h2>
       Select Your 2 Items:
     </h2>
-
+    <div class="select-grid">
     {%- for i in (1..2) -%}
-      <div class="orris-dropdown" style="margin-bottom:10px;">
-        <label class="ft-size-16 fw-medium color-black" style="display:block;margin-bottom:5px;">
+      <div class="orris-dropdown">
+        <label>
           Selection {{ i }}:
         </label>
 
@@ -28,7 +28,6 @@
           name="properties[Selection {{ i }}]"
           class="orris-tester-select"
           required
-          style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"
         >
           <option value="">-- Select Item {{ i }} --</option>
 
@@ -42,7 +41,7 @@
         </select>
       </div>
     {%- endfor -%}
-
+    </div>
     <p class="tester-warning" style="color:red;display:none;">
       Please select both items before adding to cart.
     </p>

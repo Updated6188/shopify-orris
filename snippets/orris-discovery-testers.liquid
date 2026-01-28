@@ -11,14 +11,14 @@
 {%- if is_discovery -%}
   {%- assign testers = "Orris Legend (Men)|White Oud (Unisex)|Secret Garden (Women)|Velvet Touch (Men)|Peru (Men)|Rebel Hearts (Women)" | split: "|" -%}
 
-  <div class="orris-tester-box" style="margin-bottom:20px;">
-    <h2 class="ft-size-18 color-black text-capitalize fw-medium mb-2">
+  <div class="orris-tester-box">
+    <h2>
       Select Your 4 Testers (5 ml Each):
     </h2>
-
+    <div class="select-grid">
     {%- for i in (1..4) -%}
-      <div class="orris-dropdown" style="margin-bottom:10px;">
-        <label class="ft-size-16 fw-medium color-black" style="display:block;margin-bottom:5px;">
+      <div class="orris-dropdown">
+        <label>
           Tester {{ i }}:
         </label>
 
@@ -26,7 +26,6 @@
           name="properties[Tester {{ i }}]"
           class="orris-tester-select"
           required
-          style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"
         >
           <option value="">-- Select Tester {{ i }} --</option>
           {%- for t in testers -%}
@@ -35,7 +34,7 @@
         </select>
       </div>
     {%- endfor -%}
-
+    </div>
     <p class="tester-warning" style="color:red;display:none;">
       Please select all 4 testers before adding to cart.
     </p>
