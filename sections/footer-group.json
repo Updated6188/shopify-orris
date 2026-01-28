@@ -39,8 +39,8 @@
         "link_list_Xwfxwp": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "Help",
+            "menu": "help-menu"
           }
         },
         "link_list_9FxJtJ": {
