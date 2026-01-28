@@ -22,8 +22,8 @@
     "form": {
       "type": "contact-form",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
+        "heading": "You may ask or say something. Say hello by contacting me! Support hours: Monday-Friday, 7am-3pm",
+        "heading_size": "h2",
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "padding_top": 36,
         "padding_bottom": 36
