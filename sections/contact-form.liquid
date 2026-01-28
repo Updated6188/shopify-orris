@@ -97,7 +97,7 @@
           {{ 'templates.contact.form.post_success' | t }}
         </h2>
       {%- elsif form.errors -%}
-        <div class="form__message">
+        <div class="form__message" style="display:none;">
           <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
             {{- 'icon-error.svg' | inline_asset_content -}}
             {{ 'templates.contact.form.error_heading' | t }}
