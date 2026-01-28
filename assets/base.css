@@ -3688,3 +3688,69 @@ details-disclosure > details {
 
 
 /* mds style end */
+
+
+.orris-dropdown { float: left; width: 100%; }
+/* Container */
+.orris-dropdown {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Label */
+.orris-dropdown label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Select */
+.orris-tester-select {
+  width: 100%;
+  padding: 12px 44px 12px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #111;
+  background-color: #fff;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+
+  /* Remove native arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Custom arrow in background */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px;
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover */
+.orris-tester-select:hover {
+  border-color: #6366f1;
+}
+
+/* Focus */
+.orris-tester-select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+/* Placeholder option */
+.orris-tester-select option[value=""] {
+  color: #9ca3af;
+}
+
+/* Options (limited support) */
+.orris-tester-select option {
+  font-size: 15px;
+}
