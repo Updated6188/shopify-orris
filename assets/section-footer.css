@@ -30,8 +30,8 @@
 
   .footer__content-top {
     padding-bottom: 3rem;
-    padding-left: calc(4rem / var(--font-body-scale));
-    padding-right: calc(4rem / var(--font-body-scale));
+    padding-left: calc(2rem / var(--font-body-scale));
+    padding-right: calc(2rem / var(--font-body-scale));
   }
 }
 
@@ -454,7 +454,7 @@
 }
 
 .copyright__content {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
 .copyright__content a {
