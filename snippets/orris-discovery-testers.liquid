@@ -1,28 +1,24 @@
 {%- comment -%}
-  Orris – Dynamic Tester Selector
-  Supports multiple products + metafield driven options
+  Orris – Discovery Box 4 Testers (Line Item Properties)
+  Shows only for specific product titles (change handles/titles if needed)
 {%- endcomment -%}
 
-{%- assign tester_count = 0 -%}
-
+{%- assign is_discovery = false -%}
 {%- if product.handle == 'discovery-box-4-testers' -%}
-  {%- assign tester_count = 4 -%}
-{%- elsif product.handle == 'pack-of-2-50ml' -%}
-  {%- assign tester_count = 2 -%}
+  {%- assign is_discovery = true -%}
 {%- endif -%}
 
-{%- assign tester_options = product.metafields.custom.tester_options.value -%}
-
-{%- if tester_count > 0 and tester_options != blank -%}
+{%- if is_discovery -%}
+  {%- assign testers = "Orris Legend (Men)|White Oud (Unisex)|Secret Garden (Women)|Velvet Touch (Men)|Peru (Men)|Rebel Hearts (Women)" | split: "|" -%}
 
   <div class="orris-tester-box" style="margin-bottom:20px;">
-    <h2 class="ft-size-18 color-black fw-medium mb-2">
-      Select Your {{ tester_count }} Tester{{ tester_count | pluralize }}:
+    <h2 class="ft-size-18 color-black text-capitalize fw-medium mb-2">
+      Select Your 4 Testers (5 ml Each):
     </h2>
 
-    {%- for i in (1..tester_count) -%}
+    {%- for i in (1..4) -%}
       <div class="orris-dropdown" style="margin-bottom:10px;">
-        <label style="display:block;margin-bottom:5px;">
+        <label class="ft-size-16 fw-medium color-black" style="display:block;margin-bottom:5px;">
           Tester {{ i }}:
         </label>
 
@@ -33,59 +29,77 @@
           style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"
         >
           <option value="">-- Select Tester {{ i }} --</option>
-          {%- for option in tester_options -%}
-            <option value="{{ option | escape }}">{{ option }}</option>
+          {%- for t in testers -%}
+            <option value="{{ t | escape }}">{{ t }}</option>
           {%- endfor -%}
         </select>
       </div>
     {%- endfor -%}
 
     <p class="tester-warning" style="color:red;display:none;">
-      Please select all {{ tester_count }} testers before adding to cart.
+      Please select all 4 testers before adding to cart.
     </p>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const box = document.querySelector('.orris-tester-box');
-      if (!box) return;
+  document.addEventListener('DOMContentLoaded', function () {
+    const box = document.querySelector('.orris-tester-box');
+    if (!box) return;
 
-      const form = box.closest('form[action^="/cart/add"]');
-      if (!form) return;
+    const form = box.closest('form[action^="/cart/add"]');
+    if (!form) return;
 
-      const selects = box.querySelectorAll('.orris-tester-select');
-      const warning = box.querySelector('.tester-warning');
+    const selects = box.querySelectorAll('.orris-tester-select');
+    const warning = box.querySelector('.tester-warning');
 
-      function allSelected() {
-        return [...selects].every(sel => sel.value);
+    function allSelected() {
+      for (const sel of selects) {
+        if (!sel.value) return false;
       }
+      return true;
+    }
 
-      function block(e) {
+    function showWarning() {
+      if (warning) warning.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function hideWarning() {
+      if (warning) warning.style.display = 'none';
+    }
+
+    // 1) Block normal form submit
+    form.addEventListener('submit', function (e) {
+      if (!allSelected()) {
         e.preventDefault();
         e.stopPropagation();
-        warning.style.display = 'block';
-        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        showWarning();
         return false;
       }
+      hideWarning();
+    }, true);
 
-      form.addEventListener('submit', function (e) {
-        if (!allSelected()) return block(e);
-        warning.style.display = 'none';
-      }, true);
+    // 2) Block Dawn AJAX add-to-cart click (capture phase)
+    form.addEventListener('click', function (e) {
+      const btn = e.target.closest('button[type="submit"], input[type="submit"]');
+      if (!btn) return;
 
-      form.addEventListener('click', function (e) {
-        const btn = e.target.closest('button[type="submit"], input[type="submit"]');
-        if (!btn) return;
-        if (!allSelected()) return block(e);
-        warning.style.display = 'none';
-      }, true);
+      if (!allSelected()) {
+        e.preventDefault();
+        e.stopPropagation();
+        showWarning();
+        return false;
+      }
+      hideWarning();
+    }, true);
 
-      selects.forEach(sel => {
-        sel.addEventListener('change', () => {
-          if (allSelected()) warning.style.display = 'none';
-        });
+    // Hide warning as soon as user completes selections
+    selects.forEach(sel => {
+      sel.addEventListener('change', function () {
+        if (allSelected()) hideWarning();
       });
     });
-  </script>
+  });
+</script>
 
 {%- endif -%}

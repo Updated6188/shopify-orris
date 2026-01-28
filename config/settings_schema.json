@@ -1547,6 +1547,16 @@
       "default": 5500
     }
   ]
+},
+{
+  "name": "Orris Bundles Pack of 2",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "orris_pack2_menu",
+      "label": "Pack of 2 dropdown options menu"
+    }
+  ]
 }
 
 ]

@@ -1,0 +1,109 @@
+{%- comment -%}
+  Orris – Pack of 2 (Dynamic dropdowns via Menu links)
+  Product handle: pack-of-2-50ml
+  Options come from a selected link list (menu)
+{%- endcomment -%}
+
+{%- assign is_pack = false -%}
+{%- if product.handle == 'pack-of-2-50ml' -%}
+  {%- assign is_pack = true -%}
+{%- endif -%}
+
+{%- if is_pack -%}
+
+  {%- assign menu_handle = settings.orris_pack2_menu -%}
+
+  <div class="orris-tester-box" style="margin-bottom:20px;">
+    <h2 class="ft-size-18 color-black text-capitalize fw-medium mb-2">
+      Select Your 2 Items:
+    </h2>
+
+    {%- for i in (1..2) -%}
+      <div class="orris-dropdown" style="margin-bottom:10px;">
+        <label class="ft-size-16 fw-medium color-black" style="display:block;margin-bottom:5px;">
+          Selection {{ i }}:
+        </label>
+
+        <select
+          name="properties[Selection {{ i }}]"
+          class="orris-tester-select"
+          required
+          style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;"
+        >
+          <option value="">-- Select Item {{ i }} --</option>
+
+          {%- if linklists[menu_handle] and linklists[menu_handle].links.size > 0 -%}
+            {%- for link in linklists[menu_handle].links -%}
+              <option value="{{ link.title | escape }}">{{ link.title | escape }}</option>
+            {%- endfor -%}
+          {%- else -%}
+            <option value="" disabled>Please select a menu in Theme settings</option>
+          {%- endif -%}
+        </select>
+      </div>
+    {%- endfor -%}
+
+    <p class="tester-warning" style="color:red;display:none;">
+      Please select both items before adding to cart.
+    </p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const box = document.querySelector('.orris-tester-box');
+      if (!box) return;
+
+      const form = box.closest('form[action^="/cart/add"]') || document.querySelector('form[action^="/cart/add"]');
+      if (!form) return;
+
+      const selects = box.querySelectorAll('.orris-tester-select');
+      const warning = box.querySelector('.tester-warning');
+
+      function allSelected() {
+        for (const sel of selects) {
+          if (!sel.value) return false;
+        }
+        return true;
+      }
+
+      function showWarning() {
+        if (warning) warning.style.display = 'block';
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function hideWarning() {
+        if (warning) warning.style.display = 'none';
+      }
+
+      form.addEventListener('submit', function (e) {
+        if (!allSelected()) {
+          e.preventDefault();
+          e.stopPropagation();
+          showWarning();
+          return false;
+        }
+        hideWarning();
+      }, true);
+
+      form.addEventListener('click', function (e) {
+        const btn = e.target.closest('button[type="submit"], input[type="submit"]');
+        if (!btn) return;
+
+        if (!allSelected()) {
+          e.preventDefault();
+          e.stopPropagation();
+          showWarning();
+          return false;
+        }
+        hideWarning();
+      }, true);
+
+      selects.forEach(sel => {
+        sel.addEventListener('change', function () {
+          if (allSelected()) hideWarning();
+        });
+      });
+    });
+  </script>
+
+{%- endif -%}
