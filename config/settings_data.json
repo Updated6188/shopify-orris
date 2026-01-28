@@ -136,6 +136,7 @@
     "fake_orders_min_minutes": 21,
     "fake_orders_delay": 3000,
     "fake_orders_show_for": 4000,
+    "orris_pack2_menu": "pack-of-2",
     "fake_orders_min_delay": 3000,
     "fake_orders_max_delay": 5000,
     "sections": {
@@ -161,11 +162,6 @@
       },
       "14060646107696862457": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
-      "11348531219507317188": {
-        "type": "shopify://apps/eb-easy-bundle-builder/blocks/app-embed/05b1325c-6303-4da5-8e2f-b13ab2a50e1a",
         "disabled": false,
         "settings": {}
       }
