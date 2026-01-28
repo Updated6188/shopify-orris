@@ -23,7 +23,7 @@
         assign show_dynamic_checkout = true
       endif
     -%}
-
+      
     <product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -44,7 +44,6 @@
         data-type: 'add-to-cart-form'
       -%}
        {% render 'orris-discovery-testers', product: product %}
-       {% render 'orris-pack-2-dropdowns', product: product %}
         <input
           type="hidden"
           name="id"
