@@ -1748,7 +1748,7 @@ details[open] > .share-button__fallback {
 }
 
 .field__label,
-.customer .field label {
+.customer .field label { display: none;
   font-size: 1.6rem;
   left: calc(var(--inputs-border-width) + 2rem);
   top: calc(1rem + var(--inputs-border-width));
@@ -1790,7 +1790,7 @@ details[open] > .share-button__fallback {
 
 .field__input::placeholder,
 .customer .field input::placeholder {
-  opacity: 0;
+  opacity: 1;
 }
 
 .field__button {
@@ -1840,7 +1840,7 @@ input[type='checkbox'] {
 /* Form global */
 
 .form__label {
-  display: block;
+  display: none;
   margin-bottom: 0.6rem;
 }
 
