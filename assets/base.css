@@ -3686,6 +3686,9 @@ details-disclosure > details {
 
 .text-center { text-align: center; }
 
+.product__description p {
+	margin-bottom: 15px;
+}
 
 /* mds style end */
 
