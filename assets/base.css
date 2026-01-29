@@ -3675,7 +3675,7 @@ details-disclosure > details {
   padding-top: 10px;
 }
 .fragrance-accords:last-child { margin-bottom:0; }
-.fragrance-accords h2 { font-size:18px; color:var(--black); font-weight: 500; text-transform: capitalize; }
+.fragrance-accords h2 { font-size:20px; color:var(--black); font-weight: 500; text-transform: uppercase; }
 
 .fragrance-accords ul { display:flex; flex-wrap:wrap; gap:14px; }
 .fragrance-accords ul li { /*width:calc(16.6667% - 14px);*/ width: 84px; list-style:none !important; }
