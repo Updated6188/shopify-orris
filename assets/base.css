@@ -3687,7 +3687,7 @@ details-disclosure > details {
 .text-center { text-align: center; }
 
 .product__description p {
-	margin-bottom: 15px;
+	margin-bottom: 15px !important;
 }
 
 /* mds style end */

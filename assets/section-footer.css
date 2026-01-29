@@ -162,7 +162,7 @@
   letter-spacing: 0.5px;
   margin-bottom: 1rem;
 }
-.rte p { margin: 0; font-size: 14px; letter-spacing: 1px; }
+.rte p { margin: 0; /*font-size: 14px;*/ letter-spacing: 1px; }
 .rte p.footer__newsletter-text { margin-bottom: 1rem;}
 
 @media screen and (min-width: 990px) {
