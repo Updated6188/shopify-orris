@@ -1,0 +1,99 @@
+{%- comment -%}
+  Dynamic Fragrance Accord + Notes
+  Metafields:
+  - custom.fragrance_accord (text)
+  - custom.fragrance_notes_top (list of metaobjects)
+  - custom.fragrance_notes_heart (list of metaobjects)
+  - custom.fragrance_notes_base (list of metaobjects)
+{%- endcomment -%}
+
+{%- assign accord = product.metafields.custom.fragrance_accord.value -%}
+{%- assign top_notes = product.metafields.custom.fragrance_notes_top.value -%}
+{%- assign heart_notes = product.metafields.custom.fragrance_notes_heart.value -%}
+{%- assign base_notes = product.metafields.custom.fragrance_notes_base.value -%}
+
+{%- if accord != blank -%}
+  <div class="fragrance-accords">
+    <h2>Fragrance Accord</h2>
+    <p>{{ accord }}</p>
+  </div>
+{%- endif -%}
+
+{%- if top_notes != blank or heart_notes != blank or base_notes != blank -%}
+  <div class="fragrance-accords">
+    <h2>Fragrance Note</h2>
+
+    {%- if top_notes != blank -%}
+      <h3>Top</h3>
+      <ul>
+        {%- for note in top_notes -%}
+          <li>
+            <div class="fragranceNotesBox text-center">
+              <div class="fragranceNotesImg">
+                {%- if note.image != blank -%}
+                  <img
+                    src="{{ note.image | image_url: width: 220 }}"
+                    alt="{{ note.title | escape }}"
+                    width="110"
+                    height="110"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="fragranceNotesName float-start w-100">{{ note.title }}</div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if heart_notes != blank -%}
+      <h3>Heart</h3>
+      <ul>
+        {%- for note in heart_notes -%}
+          <li>
+            <div class="fragranceNotesBox text-center">
+              <div class="fragranceNotesImg">
+                {%- if note.image != blank -%}
+                  <img
+                    src="{{ note.image | image_url: width: 220 }}"
+                    alt="{{ note.title | escape }}"
+                    width="110"
+                    height="110"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="fragranceNotesName float-start w-100">{{ note.title }}</div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if base_notes != blank -%}
+      <h3>Base</h3>
+      <ul>
+        {%- for note in base_notes -%}
+          <li>
+            <div class="fragranceNotesBox text-center">
+              <div class="fragranceNotesImg">
+                {%- if note.image != blank -%}
+                  <img
+                    src="{{ note.image | image_url: width: 220 }}"
+                    alt="{{ note.title | escape }}"
+                    width="110"
+                    height="110"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </div>
+              <div class="fragranceNotesName float-start w-100">{{ note.title }}</div>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+  </div>
+{%- endif -%}
