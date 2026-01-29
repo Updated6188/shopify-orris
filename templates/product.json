@@ -12,6 +12,12 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "custom_liquid_mKgGfa": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% render 'fragrance-notes', product: product %}"
+          }
+        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -62,6 +68,7 @@
         }
       },
       "block_order": [
+        "custom_liquid_mKgGfa",
         "vendor",
         "title",
         "judge_me_reviews_preview_badge_LNPXQa",
