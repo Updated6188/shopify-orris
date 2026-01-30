@@ -80,7 +80,7 @@
       "name": "Marquee Section",
       "settings": {
         "section_color_scheme": "scheme-8ca59509-0a78-4f87-a9bd-d74afb43f526",
-        "padding_top": 12,
+        "padding_top": 16,
         "padding_bottom": 12
       }
     },
