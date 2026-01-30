@@ -12,10 +12,10 @@
     "slideshow_ipcL9R": {
       "type": "slideshow",
       "blocks": {
-        "slide_FzVfHQ": {
+        "slide_4xDmFg": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Perfume-421-scaled.jpg",
+            "image": "shopify://shop_images/Perfume_42.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -27,20 +27,58 @@
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_iUnTjE": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Perfume_29.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_rYaidb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Perfume_31.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d"
           }
         }
       },
       "block_order": [
-        "slide_FzVfHQ"
+        "slide_4xDmFg",
+        "slide_iUnTjE",
+        "slide_rYaidb"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
         "layout": "full_bleed",
         "slide_height": "large",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 3,
         "image_behavior": "none",
         "show_text_below": false,
         "accessibility_info": "Slideshow about our brand"
@@ -252,7 +290,9 @@
       "blocks": {
         "square_instagram_feed_insta_feed_GTpWC6": {
           "type": "shopify://apps/square-instagram-feed/blocks/insta-feed/8c9f3786-8bb5-488d-a397-b1285ed978df",
-          "settings": {}
+          "settings": {
+            "hide_mock_data": false
+          }
         }
       },
       "block_order": [
