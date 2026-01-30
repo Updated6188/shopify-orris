@@ -12,6 +12,24 @@
     "slideshow_ipcL9R": {
       "type": "slideshow",
       "blocks": {
+        "slide_rYaidb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Perfume_31.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d"
+          }
+        },
         "slide_FzVfHQ": {
           "type": "slide",
           "settings": {
@@ -32,6 +50,7 @@
         }
       },
       "block_order": [
+        "slide_rYaidb",
         "slide_FzVfHQ"
       ],
       "name": "t:sections.slideshow.presets.name",
@@ -252,7 +271,9 @@
       "blocks": {
         "square_instagram_feed_insta_feed_GTpWC6": {
           "type": "shopify://apps/square-instagram-feed/blocks/insta-feed/8c9f3786-8bb5-488d-a397-b1285ed978df",
-          "settings": {}
+          "settings": {
+            "hide_mock_data": false
+          }
         }
       },
       "block_order": [
