@@ -65,31 +65,12 @@
             "text_alignment_mobile": "center",
             "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d"
           }
-        },
-        "slide_FzVfHQ": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Perfume-421-scaled.jpg",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": ""
-          }
         }
       },
       "block_order": [
         "slide_4xDmFg",
         "slide_iUnTjE",
-        "slide_rYaidb",
-        "slide_FzVfHQ"
+        "slide_rYaidb"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
