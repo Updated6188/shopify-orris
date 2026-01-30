@@ -12,6 +12,24 @@
     "slideshow_ipcL9R": {
       "type": "slideshow",
       "blocks": {
+        "slide_4iTnTW": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Perfume_30.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
         "slide_rYaidb": {
           "type": "slide",
           "settings": {
@@ -33,6 +51,7 @@
         }
       },
       "block_order": [
+        "slide_4iTnTW",
         "slide_rYaidb"
       ],
       "name": "t:sections.slideshow.presets.name",
