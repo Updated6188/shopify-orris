@@ -16,6 +16,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/Perfume_30.jpg",
+            "image_mobile": "shopify://shop_images/slide_banner_2.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
