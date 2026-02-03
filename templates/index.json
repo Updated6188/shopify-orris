@@ -147,7 +147,7 @@
         "title_GCzDWL": {
           "type": "title",
           "settings": {
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "price_E6TkNh": {
@@ -194,9 +194,9 @@
         "product": "secret-garden",
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "secondary_background": false,
-        "section_title": "Featured product",
-        "section_description": "<p>Add a short description here.</p>",
-        "text_alignment_desktop": "middle",
+        "section_title": "Product of the week",
+        "section_description": "",
+        "text_alignment_desktop": "top",
         "text_alignment_mobile": "top",
         "media_size": "small",
         "constrain_to_viewport": true,
