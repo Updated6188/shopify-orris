@@ -3767,16 +3767,9 @@ details-disclosure > details {
 
 /* pulse menu */
 
-#HeaderMenu-new-arrivals {
-  display: inline-block;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: whiteSmoke;
-  box-shadow: 4px -40px 60px 5px rgb(26, 117, 206) inset;
-}
 
-.list-menu__item link {
+
+#HeaderMenu-new-arrivals {
   animation: list-menu__item link 1s infinite ease-in-out alternate;
 }
 @keyframes list-menu__item link {
