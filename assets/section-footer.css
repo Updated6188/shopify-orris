@@ -519,7 +519,8 @@
 }
 
 
-@media screen and (max-width: 991px) { 
+@media screen and (min-width: 750px) and (max-width: 991px) {
 
+  .footer-block__heading { font-size: 20px;}
 
 }
