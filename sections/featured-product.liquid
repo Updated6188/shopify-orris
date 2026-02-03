@@ -70,7 +70,8 @@
 
   <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
     <div class="page-width section-{{ section.id }}-padding featured-product-wrap{% if section.settings.secondary_background %} isolate{% endif %}">
-      {%- if section.settings.section_title != blank or section.settings.section_description != blank -%}
+      <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %} featured-product-align featured-product-align--{{ section.settings.section_alignment }}">
+        {%- if section.settings.section_title != blank or section.settings.section_description != blank -%}
           <div class="featured-product__section-heading">
             {%- if section.settings.section_title != blank -%}
               <h2 class="featured-product__section-title">
@@ -85,8 +86,6 @@
             {%- endif -%}
           </div>
         {%- endif -%}
-      <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %} featured-product-align featured-product-align--{{ section.settings.section_alignment }}">
-        
         <div class="grid__item product__media-wrapper">
           {%- unless placeholder -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
