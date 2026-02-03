@@ -138,6 +138,7 @@
       "blocks": {
         "text_RjAkNe": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "{{ section.settings.product.vendor }}",
             "text_style": "uppercase"
@@ -173,6 +174,7 @@
         },
         "share_faBxBM": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
