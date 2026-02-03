@@ -133,6 +133,76 @@
         "padding_bottom": 36
       }
     },
+    "featured_product_GtRNER": {
+      "type": "featured-product",
+      "blocks": {
+        "text_RjAkNe": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_GCzDWL": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_E6TkNh": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_aHtUtK": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_kdG6Bf": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_EGKhpA": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_faBxBM": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_RjAkNe",
+        "title_GCzDWL",
+        "price_E6TkNh",
+        "variant_picker_aHtUtK",
+        "quantity_selector_kdG6Bf",
+        "buy_buttons_EGKhpA",
+        "share_faBxBM"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "secret-garden",
+        "color_scheme": "scheme-8ca59509-0a78-4f87-a9bd-d74afb43f526",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -364,6 +434,7 @@
     "slideshow_ipcL9R",
     "marquee_bar_iWdepB",
     "featured_collection_VANH7E",
+    "featured_product_GtRNER",
     "featured_collection",
     "featured_collection_rpUYzg",
     "image_with_text_jx3qLT",
