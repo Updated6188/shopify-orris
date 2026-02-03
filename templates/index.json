@@ -190,7 +190,7 @@
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "secret-garden",
-        "color_scheme": "scheme-8ca59509-0a78-4f87-a9bd-d74afb43f526",
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "secondary_background": false,
         "media_size": "medium",
         "constrain_to_viewport": true,
