@@ -73,3 +73,53 @@
     z-index: 1;
   }
 }
+
+/* New: Section heading (dynamic title and description) */
+.featured-product__section-heading {
+  margin-bottom: 1.2rem;
+}
+
+.featured-product__section-title {
+  margin: 0 0 0.6rem 0;
+}
+
+.featured-product__section-description {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* New: Vertical alignment control for the right text column */
+.featured-product__info-align {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop alignment */
+@media screen and (min-width: 750px) {
+  .featured-product__info-align--top {
+    justify-content: flex-start;
+  }
+
+  .featured-product__info-align--middle {
+    justify-content: center;
+  }
+
+  .featured-product__info-align--bottom {
+    justify-content: flex-end;
+  }
+}
+
+/* Mobile alignment */
+@media screen and (max-width: 749px) {
+  .featured-product__info-align-mobile--top {
+    justify-content: flex-start;
+  }
+
+  .featured-product__info-align-mobile--middle {
+    justify-content: center;
+  }
+
+  .featured-product__info-align-mobile--bottom {
+    justify-content: flex-end;
+  }
+}

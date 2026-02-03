@@ -39,7 +39,7 @@
   .footer__content-top .grid {
     row-gap: 6rem;
     margin-bottom: 0;
-    column-gap: 30px;
+    column-gap: 27px;
   }
 }
 
@@ -516,4 +516,10 @@
       padding-left: 3rem;
     }
   }
+}
+
+
+@media screen and (max-width: 1100px) { 
+
+
 }
