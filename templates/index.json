@@ -246,7 +246,7 @@
         "products_to_show": 4,
         "title": "Explore Women's Perfumes",
         "heading_size": "h1",
-        "description": "",
+        "description": "<p>Discover bold, timeless fragrances crafted to define your signature style and elevate every moment.</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
