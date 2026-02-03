@@ -3763,3 +3763,23 @@ details-disclosure > details {
 @media screen and (max-width: 575px) {
   .select-grid { grid-template-columns: 1fr;} 
 }
+
+
+/* pulse menu */
+
+#HeaderMenu-new-arrivals {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: whiteSmoke;
+  box-shadow: 4px -40px 60px 5px rgb(26, 117, 206) inset;
+}
+
+.list-menu__item link {
+  animation: list-menu__item link 1s infinite ease-in-out alternate;
+}
+@keyframes list-menu__item link {
+  from { transform: scale(0.8); }
+  to { transform: scale(1.2); }
+}
