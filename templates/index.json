@@ -195,6 +195,7 @@
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "secondary_background": false,
         "section_title": "Product of the week",
+        "section_heading_size": "h2",
         "section_description": "",
         "text_alignment_desktop": "top",
         "text_alignment_mobile": "top",
