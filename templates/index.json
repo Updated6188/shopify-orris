@@ -147,7 +147,7 @@
         "title_GCzDWL": {
           "type": "title",
           "settings": {
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "price_E6TkNh": {
@@ -196,7 +196,7 @@
         "secondary_background": false,
         "section_title": "Featured product",
         "section_description": "<p>Add a short description here.</p>",
-        "text_alignment_desktop": "middle",
+        "text_alignment_desktop": "top",
         "text_alignment_mobile": "top",
         "media_size": "small",
         "constrain_to_viewport": true,
