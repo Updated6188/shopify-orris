@@ -93,21 +93,7 @@
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
-            {%- if section.settings.section_title != blank or section.settings.section_description != blank -%}
-              <div class="featured-product__section-heading">
-                {%- if section.settings.section_title != blank -%}
-                  <h2 class="featured-product__section-title">
-                    {{ section.settings.section_title | escape }}
-                  </h2>
-                {%- endif -%}
-
-                {%- if section.settings.section_description != blank -%}
-                  <div class="featured-product__section-description rte">
-                    {{ section.settings.section_description }}
-                  </div>
-                {%- endif -%}
-              </div>
-            {%- endif -%}
+            
 
             {%- for block in section.blocks -%}
               {%- case block.type -%}
