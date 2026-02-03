@@ -193,7 +193,7 @@
       "settings": {
         "product": "secret-garden",
         "color_scheme": "scheme-2",
-        "secondary_background": true,
+        "secondary_background": false,
         "section_title": "Product of The Week",
         "section_heading_size": "h1",
         "section_description": "",
