@@ -46,7 +46,13 @@
     If we're showing product-level "From" pricing (use_variant: false) AND product prices vary,
     we should NOT show compare-at price from any variant on cards.
   endcomment
-  if use_variant == false and product.price_varies
+  assign is_card_price = false
+
+  if use_variant == false and product.price_varies and template.name != 'product'
+    assign is_card_price = true
+  endif
+
+  if is_card_price
     assign compare_at_price = nil
   endif
 -%}
