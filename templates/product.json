@@ -82,10 +82,10 @@
       "settings": {
         "enable_sticky_info": true,
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
-        "media_size": "medium",
+        "media_size": "small",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "columns",
+        "media_fit": "cover",
+        "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "media_position": "left",
         "image_zoom": "lightbox",
