@@ -219,8 +219,7 @@ product-info {
 /* Product info */
 
 .product__info-container > * + * {
-  width: 100%; float: left;
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
 }
 
 .product__info-container iframe {
