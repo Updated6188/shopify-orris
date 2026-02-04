@@ -1,7 +1,16 @@
 {%- comment -%}
-  Orris – Pack of 2 (Dynamic dropdowns via Menu links)
+  Orris – Pack of 2 (Dynamic dropdowns via COLLECTION)
   Product handle: pack-of-2-50ml
-  Options come from a selected link list (menu)
+
+  Requirements:
+  1) In Theme Settings (settings_schema.json) add:
+     {
+       "type": "collection",
+       "id": "orris_pack2_collection",
+       "label": "Pack of 2 dropdown collection"
+     }
+
+  2) Pick a collection in Theme Editor → Theme settings → (your section) → Pack of 2 dropdown collection
 {%- endcomment -%}
 
 {%- assign is_pack = false -%}
@@ -10,38 +19,48 @@
 {%- endif -%}
 
 {%- if is_pack -%}
+  {%- liquid
+    assign pack_collection_setting = settings.orris_pack2_collection
 
-  {%- assign menu_handle = settings.orris_pack2_menu -%}
+    # Shopify "collection" setting usually returns a collection object.
+    # But some setups may return a handle string, so we support both.
+    assign pack_collection = nil
+    if pack_collection_setting != blank
+      if pack_collection_setting.handle != blank
+        assign pack_collection = pack_collection_setting
+      else
+        assign pack_collection = collections[pack_collection_setting]
+      endif
+    endif
+  -%}
 
   <div class="orris-tester-box">
-    <h2>
-      Select Your 2 Items:
-    </h2>
+    <h2>Select Your 2 Items:</h2>
+
     <div class="select-grid">
-    {%- for i in (1..2) -%}
-      <div class="orris-dropdown">
-        <label>
-          Selection {{ i }}:
-        </label>
+      {%- for i in (1..2) -%}
+        <div class="orris-dropdown">
+          <label>Selection {{ i }}:</label>
 
-        <select
-          name="properties[Selection {{ i }}]"
-          class="orris-tester-select"
-          required
-        >
-          <option value="">-- Select Item {{ i }} --</option>
+          <select
+            name="properties[Selection {{ i }}]"
+            class="orris-tester-select"
+            required
+          >
+            <option value="">-- Select Item {{ i }} --</option>
 
-          {%- if linklists[menu_handle] and linklists[menu_handle].links.size > 0 -%}
-            {%- for link in linklists[menu_handle].links -%}
-              <option value="{{ link.title | escape }}">{{ link.title | escape }}</option>
-            {%- endfor -%}
-          {%- else -%}
-            <option value="" disabled>Please select a menu in Theme settings</option>
-          {%- endif -%}
-        </select>
-      </div>
-    {%- endfor -%}
+            {%- if pack_collection and pack_collection.products_count > 0 -%}
+              {%- for p in pack_collection.products -%}
+                <option value="{{ p.title | escape }}">{{ p.title | escape }}</option>
+              {%- endfor -%}
+            {%- else -%}
+              <option value="" disabled>Please select a collection in Theme settings</option>
+            {%- endif -%}
+          </select>
+        </div>
+      {%- endfor -%}
     </div>
+
     <p class="tester-warning" style="color:red;display:none;">
       Please select both items before adding to cart.
     </p>
@@ -52,7 +71,9 @@
       const box = document.querySelector('.orris-tester-box');
       if (!box) return;
 
-      const form = box.closest('form[action^="/cart/add"]') || document.querySelector('form[action^="/cart/add"]');
+      const form =
+        box.closest('form[action^="/cart/add"]') ||
+        document.querySelector('form[action^="/cart/add"]');
       if (!form) return;
 
       const selects = box.querySelectorAll('.orris-tester-select');
@@ -104,5 +125,4 @@
       });
     });
   </script>
-
 {%- endif -%}
