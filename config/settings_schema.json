@@ -1552,9 +1552,9 @@
   "name": "Orris Bundles Pack of 2",
   "settings": [
     {
-      "type": "link_list",
-      "id": "orris_pack2_menu",
-      "label": "Pack of 2 dropdown options menu"
+      "type": "collection",
+      "id": "orris_pack2_collection",
+      "label": "Pack of 2 dropdown collection"
     }
   ]
 }
