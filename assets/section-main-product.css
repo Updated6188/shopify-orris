@@ -218,7 +218,7 @@ product-info {
 
 /* Product info */
 
-.product__info-container > * + * { 
+.product__info-container > * + * {
   margin: 0 0 1.5rem;
 }
 
