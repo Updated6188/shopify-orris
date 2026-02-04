@@ -3765,14 +3765,30 @@ details-disclosure > details {
 }
 
 
-/* pulse menu */
-
-
+/* pulse menu start */
 
 #HeaderMenu-new-arrivals {
-  animation: list-menu__item link 1s infinite ease-in-out alternate;
+  position: relative;
+  animation: newArrivalsPulse 1.8s infinite;
+  color: #b6713e;
 }
-@keyframes list-menu__item link {
-  from { transform: scale(0.8); }
-  to { transform: scale(1.2); }
+
+/* Keyframes */
+@keyframes newArrivalsPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
+
+#HeaderMenu-new-arrivals:hover {
+  animation-play-state: paused;
+}
+
+
+/* pulse menu end */
