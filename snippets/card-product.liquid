@@ -60,7 +60,14 @@
         {%- if card_product.featured_media -%}
           <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
             <div class="media media--transparent media--hover-effect">
-              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+              {% render 'price',
+  product: card_product,
+  use_variant: false,
+  show_badges: false,
+  price_class: '',
+  show_compare_at_price: card_product.price_varies == false
+%}
+
               <img
                 srcset="
                   {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
@@ -471,7 +478,14 @@
                             class="quick-add__product-media"
                           >
                             <div class="quick-add__product-container global-media-settings">
-                              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                              {% render 'price',
+  product: card_product,
+  use_variant: false,
+  show_badges: false,
+  price_class: '',
+  show_compare_at_price: card_product.price_varies == false
+%}
+
                               <img
                                 srcset="
                                   {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
