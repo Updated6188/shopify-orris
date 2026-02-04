@@ -259,7 +259,7 @@ a.product__text {
 
 
 .product-inspired-by {margin-bottom: 6px;	font-size: 14px;	letter-spacing: 0.5px; }
-.sv-viewers{ margin: 0; font-size: 14px;}
+.sv-viewers{ margin: 0; font-size: 14px; margin-top: 30px; }
 .sv-viewers strong{ font-weight: 600;}
 .shipping_info { float: left; width: 100%; margin: 0; }
 .shipping_info ul{ float: left; width: 100%; border: 1px solid #D7D7D7; max-width: 500px; list-style: none; padding: 0; }
