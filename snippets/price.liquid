@@ -37,8 +37,47 @@
     assign money_price_max = price_max | money_with_currency
   endif
 
+  comment
+    If we're rendering product-level pricing (use_variant: false) and the product has variants,
+    we normally show "From min price".
+    BUT if we are also showing compare-at price and there is a sale variant, we should display
+    compare-at + the matching sale price (not the min "From" price).
+  endcomment
+
   if target == product and product.price_varies
-    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+    assign sale_variant = null
+
+    if show_compare_at_price
+      for v in product.variants
+        if v.available and v.compare_at_price and v.compare_at_price > v.price
+          assign sale_variant = v
+          break
+        endif
+      endfor
+
+      if sale_variant == null
+        for v in product.variants
+          if v.compare_at_price and v.compare_at_price > v.price
+            assign sale_variant = v
+            break
+          endif
+        endfor
+      endif
+    endif
+
+    if sale_variant
+      assign price = sale_variant.price
+      assign compare_at_price = sale_variant.compare_at_price
+      assign available = sale_variant.available | default: false
+
+      if settings.currency_code_enabled
+        assign money_price = price | money_with_currency
+      else
+        assign money_price = price | money
+      endif
+    else
+      assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+    endif
   endif
 -%}
 
