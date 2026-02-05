@@ -20,6 +20,10 @@
   else
     assign target = product
   endif
+    if show_compare_at_price == nil
+    assign show_compare_at_price = true
+  endif
+
 
   assign compare_at_price = target.compare_at_price
   assign price = target.price | default: 1999
