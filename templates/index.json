@@ -133,6 +133,34 @@
         "padding_bottom": 36
       }
     },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "men",
+        "products_to_show": 8,
+        "title": "Our Premium Men Perfumes",
+        "heading_size": "h1",
+        "description": "<p>Experience the art of modern perfumery with fragrances inspired by global icons and crafted with the soulful warmth of our homeland. Every scent tells a story of passion, character, and identity.</p>",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
     "featured_product_GtRNER": {
       "type": "featured-product",
       "blocks": {
@@ -210,34 +238,6 @@
         "padding_bottom": 36
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "men",
-        "products_to_show": 8,
-        "title": "Our Premium Men Perfumes",
-        "heading_size": "h1",
-        "description": "<p>Experience the art of modern perfumery with fragrances inspired by global icons and crafted with the soulful warmth of our homeland. Every scent tells a story of passion, character, and identity.</p>",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "standard",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    },
     "featured_collection_rpUYzg": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -260,7 +260,7 @@
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "standard",
+        "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -441,8 +441,8 @@
     "slideshow_ipcL9R",
     "marquee_bar_iWdepB",
     "featured_collection_VANH7E",
-    "featured_product_GtRNER",
     "featured_collection",
+    "featured_product_GtRNER",
     "featured_collection_rpUYzg",
     "image_with_text_jx3qLT",
     "customer_love_XnzffX",
