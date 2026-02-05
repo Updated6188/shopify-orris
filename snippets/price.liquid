@@ -40,15 +40,6 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
-
-  comment
-    IMPORTANT FIX:
-    If we're showing product-level "From" pricing (use_variant: false) AND product prices vary,
-    we should NOT show compare-at price from any variant on cards.
-  endcomment
-  if use_variant == false and product.price_varies
-    assign compare_at_price = nil
-  endif
 -%}
 
 {%- unless target == null and placeholder == null -%}
