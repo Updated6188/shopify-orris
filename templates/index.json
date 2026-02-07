@@ -325,7 +325,7 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Now",
-            "button_link": "shopify://products/discovery-box-4-testers",
+            "button_link": "shopify://collections/all-collections",
             "button_style_secondary": false
           }
         }
