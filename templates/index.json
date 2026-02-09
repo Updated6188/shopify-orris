@@ -356,6 +356,24 @@
     "customer_love_XnzffX": {
       "type": "customer-love",
       "blocks": {
+        "design_share_slide_cRLrrf": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/Saba Sami (1).mp4"
+          }
+        },
+        "design_share_slide_y8RgDY": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/WhatsApp Video 2026-02-05 at 7.13.25 PM.mp4"
+          }
+        },
+        "design_share_slide_KywXgn": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/Fahad Ch.mp4"
+          }
+        },
         "design_share_slide_rcm7f4": {
           "type": "design_share_slide",
           "settings": {
@@ -385,21 +403,17 @@
           "settings": {
             "video_file": "shopify://files/videos/orris-4.mp4"
           }
-        },
-        "design_share_slide_RHXNzM": {
-          "type": "design_share_slide",
-          "settings": {
-            "video_file": "shopify://files/videos/Hijab Khalil.mp4"
-          }
         }
       },
       "block_order": [
+        "design_share_slide_cRLrrf",
+        "design_share_slide_y8RgDY",
+        "design_share_slide_KywXgn",
         "design_share_slide_rcm7f4",
         "design_share_slide_kb6Qdm",
         "design_share_slide_HcdH9A",
         "design_share_slide_B979Pb",
-        "design_share_slide_nQaFWi",
-        "design_share_slide_RHXNzM"
+        "design_share_slide_nQaFWi"
       ],
       "name": "Customer Love",
       "settings": {
