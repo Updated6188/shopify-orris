@@ -1,7 +1,15 @@
+{% comment %}
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'newsletter-section.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag: preload: true }}
+ {% endcomment %}
+
+<link rel="stylesheet" href="{{ 'section-image-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-newsletter.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'newsletter-section.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-email-signup-banner.css' | asset_url }}" media="print" onload="this.media='all'">
+
 
 {%- style -%}
   #Banner-{{ section.id }}::after {

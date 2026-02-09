@@ -1,4 +1,8 @@
+{% comment %}
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag: preload: true }}
+ {% endcomment %}
+
+<link rel="stylesheet" href="{{ 'quick-order-list.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
 

@@ -1,5 +1,10 @@
+{% comment %}
 {{ 'component-accordion.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'collapsible-content.css' | asset_url | stylesheet_tag: preload: true }}
+ {% endcomment %}
+
+<link rel="stylesheet" href="{{ 'component-accordion.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'collapsible-content.css' | asset_url }}" media="print" onload="this.media='all'">
 
 {%- style -%}
   .section-{{ section.id }}-padding {
