@@ -356,6 +356,12 @@
     "customer_love_XnzffX": {
       "type": "customer-love",
       "blocks": {
+        "design_share_slide_RHXNzM": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/Hijab Khalil.mp4"
+          }
+        },
         "design_share_slide_kb6Qdm": {
           "type": "design_share_slide",
           "settings": {
@@ -388,6 +394,7 @@
         }
       },
       "block_order": [
+        "design_share_slide_RHXNzM",
         "design_share_slide_kb6Qdm",
         "design_share_slide_HcdH9A",
         "design_share_slide_B979Pb",
