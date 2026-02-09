@@ -1,9 +1,5 @@
 
-{% comment %}
-{{ 'section-contact-form.css' | asset_url | stylesheet_tag: preload: true }}
- {% endcomment %}
-
-<link rel="stylesheet" href="{{ 'section-contact-form.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
 
 
 {%- style -%}

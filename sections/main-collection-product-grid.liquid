@@ -1,13 +1,13 @@
-{{ 'template-collection.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-card.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-price.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
-  {{ 'mask-blobs.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
 {%- unless section.settings.quick_add == 'none' -%}
-  {{ 'quick-add.css' | asset_url | stylesheet_tag: preload: true }}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
 
 {%- if section.settings.quick_add == 'standard' -%}
@@ -98,7 +98,7 @@
     {%- endif -%}
 
     <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
-      {{ 'component-facets.css' | asset_url | stylesheet_tag: preload: true }}
+      {{ 'component-facets.css' | asset_url | stylesheet_tag }}
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside

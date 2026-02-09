@@ -1,17 +1,9 @@
-{% comment %}
-{{ 'collage.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-card.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-price.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-modal-video.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-deferred-media.css' | asset_url | stylesheet_tag: preload: true }}
- {% endcomment %}
-
-<link rel="stylesheet" href="{{ 'collage.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-modal-video.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
-
+{{ 'collage.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+ 
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
