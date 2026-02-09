@@ -1,6 +1,6 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {% comment %} {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }} {% endcomment %}
-{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-page.css' | asset_url | stylesheet_tag: preload: true }}
 
 {%- assign bg_image = nil -%}
 
