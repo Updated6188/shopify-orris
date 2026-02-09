@@ -3,7 +3,8 @@
 {{ 'component-newsletter.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag: preload: true }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag: preload: true }}
+  <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
+  {% comment %}{{ 'component-list-social.css' | asset_url | stylesheet_tag: preload: true }}{% endcomment %}
 
 {%- style -%}
   .footer {
