@@ -356,6 +356,12 @@
     "customer_love_XnzffX": {
       "type": "customer-love",
       "blocks": {
+        "design_share_slide_kdpqpX": {
+          "type": "design_share_slide",
+          "settings": {
+            "video_file": "shopify://files/videos/202602070524.mp4"
+          }
+        },
         "design_share_slide_cRLrrf": {
           "type": "design_share_slide",
           "settings": {
@@ -406,6 +412,7 @@
         }
       },
       "block_order": [
+        "design_share_slide_kdpqpX",
         "design_share_slide_cRLrrf",
         "design_share_slide_y8RgDY",
         "design_share_slide_KywXgn",
