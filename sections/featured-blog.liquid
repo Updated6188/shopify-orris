@@ -1,7 +1,7 @@
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
-{{ 'section-featured-blog.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-card.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-article-card.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'section-featured-blog.css' | asset_url | stylesheet_tag: preload: true }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {

@@ -1,8 +1,8 @@
-{{ 'collage.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
-{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+{{ 'collage.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-card.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-price.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-modal-video.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag: preload: true }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
