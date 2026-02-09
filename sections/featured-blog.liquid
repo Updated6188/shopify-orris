@@ -1,12 +1,11 @@
 {% comment %}
-{{ 'component-slider.css' | asset_url | stylesheet_tag: preload: true }}
+
 {{ 'component-card.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'section-featured-blog.css' | asset_url | stylesheet_tag: preload: true }}
  {% endcomment %}
 
-
-<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+ {{ 'component-slider.css' | asset_url | stylesheet_tag: preload: true }}
 <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-article-card.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'section-featured-blog.css' | asset_url }}" media="print" onload="this.media='all'">
