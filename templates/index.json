@@ -156,9 +156,9 @@
       "settings": {
         "collection": "orris-mini",
         "products_to_show": 4,
-        "title": "Orris Mini – Big Scents in Small Bottles",
+        "title": "",
         "heading_size": "h1",
-        "description": "<p>Discover your favorite <strong>Orris fragrances in sleek 10ML mini bottles</strong>, designed for those who love luxury on the go. These pocket-sized perfumes are perfect for travel, everyday carry, or sampling new scents before you commit to the full size. Each mini bottle delivers the same long-lasting Orris experience — compact, elegant, and easy to take anywhere.<br/><br/></p>",
+        "description": "",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
@@ -166,7 +166,7 @@
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
@@ -206,6 +206,23 @@
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "image_banner_77tj3Q": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/unisex-banner.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
       }
     },
     "featured_product_GtRNER": {
@@ -266,10 +283,10 @@
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "product": "imperial-oud",
+        "product": "alpha",
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "secondary_background": false,
-        "section_title": "Product of The Week",
+        "section_title": "",
         "section_heading_size": "h1",
         "section_description": "",
         "text_alignment_desktop": "middle",
@@ -518,6 +535,7 @@
     "image_banner_ERqfrA",
     "featured_collection_BATrRC",
     "featured_collection_rpUYzg",
+    "image_banner_77tj3Q",
     "featured_product_GtRNER",
     "featured_collection",
     "image_with_text_jx3qLT",
