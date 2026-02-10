@@ -215,8 +215,8 @@
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/unisex-banner.jpg",
-        "show_link": false,
-        "link_url": "",
+        "show_link": true,
+        "link_url": "shopify://collections/unisex",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
