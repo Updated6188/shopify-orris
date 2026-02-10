@@ -138,6 +138,8 @@
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/big-scent.png",
+        "show_link": false,
+        "link_url": "",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
@@ -213,6 +215,8 @@
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/unisex-banner.jpg",
+        "show_link": true,
+        "link_url": "shopify://pages/contact",
         "image_overlay_opacity": 0,
         "image_height": "adapt",
         "image_behavior": "none",
