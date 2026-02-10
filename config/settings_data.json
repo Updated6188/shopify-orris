@@ -165,6 +165,16 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "11068332061543699368": {
+        "type": "shopify://apps/booster-page-speed-optimizer/blocks/app-embed/d920faf3-7c60-423a-9636-22618b5561b5",
+        "disabled": false,
+        "settings": {}
+      },
+      "6610233760104865948": {
+        "type": "shopify://apps/pushowl-brevo/blocks/pushowl-app-embed-3d2ff2b5/fa20c3ba-38bf-43e0-ba5c-431f6ae07d95",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
