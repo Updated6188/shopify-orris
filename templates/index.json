@@ -138,7 +138,7 @@
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/big-scent.png",
-        "image_overlay_opacity": 0,
+        "image_overlay_opacity": 50,
         "image_height": "adapt",
         "image_behavior": "none",
         "desktop_content_position": "middle-center",
