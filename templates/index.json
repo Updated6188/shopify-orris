@@ -12,30 +12,10 @@
     "slideshow_ipcL9R": {
       "type": "slideshow",
       "blocks": {
-        "slide_4iTnTW": {
+        "slide_pTKQjh": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Perfume_30.jpg",
-            "image_mobile": "shopify://shop_images/slide_banner_2.jpg",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-1"
-          }
-        },
-        "slide_rYaidb": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/Perfume_31.jpg",
-            "image_mobile": "shopify://shop_images/mobile_bnr_1.jpg",
+            "image": "shopify://shop_images/Group_18152.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -52,8 +32,7 @@
         }
       },
       "block_order": [
-        "slide_4iTnTW",
-        "slide_rYaidb"
+        "slide_pTKQjh"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
