@@ -283,10 +283,10 @@
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "product": "imperial-oud",
+        "product": "alpha",
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
         "secondary_background": false,
-        "section_title": "Product of The Week",
+        "section_title": "",
         "section_heading_size": "h1",
         "section_description": "",
         "text_alignment_desktop": "middle",
