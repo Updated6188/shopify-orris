@@ -156,9 +156,9 @@
       "settings": {
         "collection": "orris-mini",
         "products_to_show": 4,
-        "title": "Orris Mini – Big Scents in Small Bottles",
+        "title": "",
         "heading_size": "h1",
-        "description": "<p>Discover your favorite <strong>Orris fragrances in sleek 10ML mini bottles</strong>, designed for those who love luxury on the go. These pocket-sized perfumes are perfect for travel, everyday carry, or sampling new scents before you commit to the full size. Each mini bottle delivers the same long-lasting Orris experience — compact, elegant, and easy to take anywhere.<br/><br/></p>",
+        "description": "",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
