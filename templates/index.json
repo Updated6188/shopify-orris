@@ -133,6 +133,23 @@
         "padding_bottom": 36
       }
     },
+    "image_banner_ERqfrA": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/big-scent.png",
+        "image_overlay_opacity": 50,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
     "featured_collection_BATrRC": {
       "type": "featured-collection",
       "name": "t:sections.featured-collection.presets.name",
@@ -498,6 +515,7 @@
     "slideshow_ipcL9R",
     "marquee_bar_iWdepB",
     "featured_collection_VANH7E",
+    "image_banner_ERqfrA",
     "featured_collection_BATrRC",
     "featured_collection_rpUYzg",
     "featured_product_GtRNER",
