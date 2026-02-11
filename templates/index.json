@@ -510,6 +510,56 @@
         "padding_top": 36,
         "padding_bottom": 0
       }
+    },
+    "image_with_columns_enwiL3": {
+      "type": "image-with-columns",
+      "blocks": {
+        "image_akYiQg": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/imperial-oud-mini.jpg",
+            "link": "shopify://products/orris-royal-oud-trio-pack-of-3-perfumes",
+            "link_label": "Open link"
+          }
+        },
+        "image_Qi9enk": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/white-oud-mini.jpg",
+            "link": "",
+            "link_label": "Open link"
+          }
+        },
+        "image_aUkeR7": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/oud-mirage-mini.jpg",
+            "link": "",
+            "link_label": "Open link"
+          }
+        }
+      },
+      "block_order": [
+        "image_akYiQg",
+        "image_Qi9enk",
+        "image_aUkeR7"
+      ],
+      "name": "Image with Columns",
+      "settings": {
+        "title": "",
+        "description": "",
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+        "text_alignment": "left",
+        "columns": 3,
+        "column_gap": 0,
+        "image_ratio": "adapt",
+        "container": "full",
+        "stack_on_mobile": true,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
     }
   },
   "order": [
@@ -525,6 +575,7 @@
     "image_with_text_jx3qLT",
     "customer_love_XnzffX",
     "17700373546c757222",
-    "instagram_feed_QGig8r"
+    "instagram_feed_QGig8r",
+    "image_with_columns_enwiL3"
   ]
 }
