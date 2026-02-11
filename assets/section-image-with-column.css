@@ -92,7 +92,7 @@
   height: auto;
   display: block;
 }
-.iwc-media--adapt .iwc-img:hover { transform: scale(1.1);}
+.iwc-media--adapt .iwc-img:hover { transform: scale(1.05); transition: all 0.4s ease-in-out 0s; }
 .iwc-placeholder{
   background: rgba(0,0,0,.04);
   padding: 24px;
