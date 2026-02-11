@@ -39,66 +39,79 @@
       Please select all 4 testers before adding to cart.
     </p>
   </div>
-
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const box = document.querySelector('.orris-tester-box');
-    if (!box) return;
+document.addEventListener('DOMContentLoaded', function () {
+  const box = document.querySelector('.orris-tester-box');
+  if (!box) return;
 
-    const form = box.closest('form[action^="/cart/add"]');
-    if (!form) return;
+  const form =
+    box.closest('form[action^="/cart/add"]') ||
+    document.querySelector('form[action^="/cart/add"]');
+  if (!form) return;
 
-    const selects = box.querySelectorAll('.orris-tester-select');
-    const warning = box.querySelector('.tester-warning');
+  const selects = box.querySelectorAll('.orris-tester-select');
+  const warning = box.querySelector('.tester-warning');
 
-    function allSelected() {
-      for (const sel of selects) {
-        if (!sel.value) return false;
-      }
-      return true;
-    }
+  function validateSelections() {
+    let valid = true;
 
-    function showWarning() {
-      if (warning) warning.style.display = 'block';
-      box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function hideWarning() {
-      if (warning) warning.style.display = 'none';
-    }
-
-    // 1) Block normal form submit
-    form.addEventListener('submit', function (e) {
-      if (!allSelected()) {
-        e.preventDefault();
-        e.stopPropagation();
-        showWarning();
-        return false;
-      }
-      hideWarning();
-    }, true);
-
-    // 2) Block Dawn AJAX add-to-cart click (capture phase)
-    form.addEventListener('click', function (e) {
-      const btn = e.target.closest('button[type="submit"], input[type="submit"]');
-      if (!btn) return;
-
-      if (!allSelected()) {
-        e.preventDefault();
-        e.stopPropagation();
-        showWarning();
-        return false;
-      }
-      hideWarning();
-    }, true);
-
-    // Hide warning as soon as user completes selections
     selects.forEach(sel => {
-      sel.addEventListener('change', function () {
-        if (allSelected()) hideWarning();
-      });
+      if (!sel.value) {
+        valid = false;
+        sel.style.border = '2px solid red';
+      } else {
+        sel.style.border = ''; // reset to theme default
+      }
+    });
+
+    return valid;
+  }
+
+  function showWarning() {
+    if (warning) warning.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function hideWarning() {
+    if (warning) warning.style.display = 'none';
+  }
+
+  function handleValidation(e) {
+    if (!validateSelections()) {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarning();
+      return false;
+    }
+    hideWarning();
+  }
+
+  // 1) Block normal submit
+  form.addEventListener('submit', handleValidation, true);
+
+  // 2) Block Add to cart click
+  form.addEventListener('click', function (e) {
+    const btn = e.target.closest('button[type="submit"], input[type="submit"]');
+    if (!btn) return;
+    handleValidation(e);
+  }, true);
+
+  // 3) Block Buy Now (dynamic checkout button)
+  form.addEventListener('click', function (e) {
+    const payBtn = e.target.closest(
+      '.shopify-payment-button__button, .shopify-payment-button button, .shopify-payment-button input'
+    );
+    if (!payBtn) return;
+    handleValidation(e);
+  }, true);
+
+  // 4) Remove red border immediately when selected
+  selects.forEach(sel => {
+    sel.addEventListener('change', function () {
+      if (sel.value) sel.style.border = '';
+      if (validateSelections()) hideWarning();
     });
   });
+});
 </script>
-
 {%- endif -%}
