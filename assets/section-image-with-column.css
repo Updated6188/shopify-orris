@@ -91,6 +91,7 @@
   width: 100%;
   height: auto;
   display: block;
+   transition: all 0.4s ease-in-out 0s;
 }
 .iwc-media--adapt .iwc-img:hover { transform: scale(1.05); transition: all 0.4s ease-in-out 0s; }
 .iwc-placeholder{
