@@ -66,7 +66,7 @@
     </p>
   </div>
 
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', function () {
   const box = document.querySelector('.orris-tester-box');
   if (!box) return;
@@ -79,11 +79,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const selects = box.querySelectorAll('.orris-tester-select');
   const warning = box.querySelector('.tester-warning');
 
-  function allSelected() {
-    for (const sel of selects) {
-      if (!sel.value) return false;
-    }
-    return true;
+  function validateSelections() {
+    let valid = true;
+
+    selects.forEach(sel => {
+      if (!sel.value) {
+        valid = false;
+        sel.style.border = '2px solid red';
+      } else {
+        sel.style.border = '1px solid #ddd';
+      }
+    });
+
+    return valid;
   }
 
   function showWarning() {
@@ -95,53 +103,42 @@ document.addEventListener('DOMContentLoaded', function () {
     if (warning) warning.style.display = 'none';
   }
 
-  // 1) Normal add-to-cart submit (covers Enter key / standard flow)
-  form.addEventListener('submit', function (e) {
-    if (!allSelected()) {
+  function handleValidation(e) {
+    if (!validateSelections()) {
       e.preventDefault();
       e.stopPropagation();
       showWarning();
       return false;
     }
     hideWarning();
-  }, true);
+  }
 
-  // 2) Normal add-to-cart button click (covers Dawn AJAX)
+  // Normal form submit
+  form.addEventListener('submit', handleValidation, true);
+
+  // Add to cart button
   form.addEventListener('click', function (e) {
-    const submitBtn = e.target.closest('button[type="submit"], input[type="submit"]');
-    if (!submitBtn) return;
-
-    // If it's the dynamic checkout button, it may still have type=submit in some themes
-    if (!allSelected()) {
-      e.preventDefault();
-      e.stopPropagation();
-      showWarning();
-      return false;
-    }
-    hideWarning();
+    const btn = e.target.closest('button[type="submit"], input[type="submit"]');
+    if (!btn) return;
+    handleValidation(e);
   }, true);
 
-  // 3) Dynamic "Buy it now" button (Shopify payment button) interception
-  // The payment button is usually inside .shopify-payment-button
+  // Dynamic Buy Now button
   form.addEventListener('click', function (e) {
     const payBtn = e.target.closest(
       '.shopify-payment-button__button, .shopify-payment-button button, .shopify-payment-button input'
     );
     if (!payBtn) return;
-
-    if (!allSelected()) {
-      e.preventDefault();
-      e.stopPropagation();
-      showWarning();
-      return false;
-    }
-    hideWarning();
+    handleValidation(e);
   }, true);
 
-  // Hide warning when selections complete
+  // Remove red border instantly when user selects value
   selects.forEach(sel => {
     sel.addEventListener('change', function () {
-      if (allSelected()) hideWarning();
+      if (sel.value) {
+        sel.style.border = '1px solid #ddd';
+      }
+      if (validateSelections()) hideWarning();
     });
   });
 });
