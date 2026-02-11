@@ -1,157 +1,127 @@
 {{ 'section-image-with-column.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign container_class = 'page-width'
+  if section.settings.container == 'full'
+    assign container_class = 'iwc-container--full'
+  endif
+
+  assign align_class = 'iwc-align-left'
+  if section.settings.text_alignment == 'center'
+    assign align_class = 'iwc-align-center'
+  elsif section.settings.text_alignment == 'right'
+    assign align_class = 'iwc-align-right'
+  endif
+
+  assign columns = section.settings.columns | default: 3
+-%}
+
 {%- style -%}
-  .iwc-{{ section.id }} {
+  .section-{{ section.id }}{
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
     margin-top: {{ section.settings.margin_top }}px;
     margin-bottom: {{ section.settings.margin_bottom }}px;
   }
 
-  .iwc-{{ section.id }} .iwc-inner {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-  }
-
-  .iwc-{{ section.id }} .iwc-header {
-    text-align: {{ section.settings.text_align }};
-    margin-bottom: 22px;
-  }
-
-  .iwc-{{ section.id }} .iwc-grid {
-    display: grid;
+  .section-{{ section.id }} .iwc-grid{
     gap: {{ section.settings.column_gap }}px;
-    grid-template-columns: repeat({{ section.settings.columns }}, minmax(0, 1fr));
   }
 
-  /* Mobile */
-  @media screen and (max-width: 767px) {
-    .iwc-{{ section.id }} .iwc-grid {
-      {%- if section.settings.stack_on_mobile -%}
-        grid-template-columns: 1fr;
-      {%- else -%}
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      {%- endif -%}
+  @media (min-width: 990px){
+    .section-{{ section.id }} .iwc-grid{
+      grid-template-columns: repeat({{ columns }}, minmax(0, 1fr));
     }
-  }
-
-  /* Image behavior */
-  .iwc-{{ section.id }} .iwc-item {
-    position: relative;
-    width: 100%;
-  }
-
-  .iwc-{{ section.id }} .iwc-item a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .iwc-{{ section.id }} .iwc-media {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 12px;
-    background: rgba(0,0,0,0.03);
-  }
-
-  .iwc-{{ section.id }} .iwc-media::before {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
-
-  .iwc-{{ section.id }} .iwc-media img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 {%- endstyle -%}
 
-<section class="iwc-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
-  <div class="{% if section.settings.container == 'page' %}page-width{% endif %} iwc-inner">
-
+<section class="section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="{{ container_class }}">
     {%- if section.settings.title != blank or section.settings.description != blank -%}
-      <div class="iwc-header">
+      <div class="iwc-header {{ align_class }}">
         {%- if section.settings.title != blank -%}
-          <h2 class="h1">{{ section.settings.title | escape }}</h2>
+          <h2 class="iwc-title">{{ section.settings.title | escape }}</h2>
         {%- endif -%}
 
         {%- if section.settings.description != blank -%}
-          <div class="rte">
-            {{ section.settings.description }}
-          </div>
+          <div class="iwc-desc rte">{{ section.settings.description }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
 
-    <div class="iwc-grid" role="list">
+    <div class="iwc-grid{% if section.settings.stack_on_mobile %} iwc-stack-mobile{% endif %}">
       {%- for block in section.blocks -%}
-        {%- assign desktop_img = block.settings.image_desktop -%}
-        {%- assign mobile_img = block.settings.image_mobile | default: desktop_img -%}
+        {%- liquid
+          assign desktop_img = block.settings.image_desktop
+          assign mobile_img  = block.settings.image_mobile
+          assign link_url    = block.settings.link
 
-        {%- assign block_link = block.settings.link -%}
-        {%- if block.settings.custom_link != blank -%}
-          {%- assign block_link = block.settings.custom_link -%}
-        {%- endif -%}
+          capture sizes_str
+            echo '(min-width: 990px) calc((100vw - 120px) / '
+            echo columns
+            echo '), 50vw'
+          endcapture
+        -%}
 
-        <div class="iwc-item" {{ block.shopify_attributes }} role="listitem">
-          {%- if block_link != blank -%}
-            <a href="{{ block_link }}">
+        <div class="iwc-item" {{ block.shopify_attributes }}>
+          {%- if link_url != blank -%}
+            <a class="iwc-link" href="{{ link_url }}" aria-label="{{ block.settings.link_label | escape }}">
           {%- endif -%}
 
-          <div class="iwc-media">
+          <div class="iwc-media iwc-media--{{ section.settings.image_ratio }}">
             {%- if desktop_img != blank -%}
               <picture>
                 {%- if mobile_img != blank -%}
                   <source
                     media="(max-width: 767px)"
                     srcset="
-                      {%- if mobile_img.width >= 375 -%}{{ mobile_img | image_url: width: 375 }} 375w,{%- endif -%}
-                      {%- if mobile_img.width >= 550 -%}{{ mobile_img | image_url: width: 550 }} 550w,{%- endif -%}
-                      {%- if mobile_img.width >= 750 -%}{{ mobile_img | image_url: width: 750 }} 750w,{%- endif -%}
-                      {{ mobile_img | image_url: width: 1100 }} 1100w
+                      {{ mobile_img | image_url: width: 360 }} 360w,
+                      {{ mobile_img | image_url: width: 540 }} 540w,
+                      {{ mobile_img | image_url: width: 750 }} 750w,
+                      {{ mobile_img | image_url: width: 900 }} 900w
                     "
                     sizes="100vw"
                   >
                 {%- endif -%}
-                {%- if desktop_img != blank -%}
-                    {{
-                        desktop_img
-                        | image_url: width: 2000
-                        | image_tag:
-                            loading: 'lazy',
-                            sizes: "(min-width: 990px) calc((100vw - 120px) / " | append: section.settings.columns | append: "), 50vw",
-                            widths: "375, 550, 750, 1100, 1500, 2000"
-                    }}
-                    {%- endif -%}
+
+                {{
+                  desktop_img
+                  | image_url: width: 2000
+                  | image_tag:
+                      loading: 'lazy',
+                      widths: '375, 550, 750, 1100, 1500, 2000',
+                      sizes: sizes_str,
+                      class: 'iwc-img',
+                      alt: desktop_img.alt
+                }}
               </picture>
             {%- else -%}
-              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              <div class="iwc-placeholder">
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
             {%- endif -%}
           </div>
 
-          {%- if block_link != blank -%}
+          {%- if link_url != blank -%}
             </a>
           {%- endif -%}
         </div>
       {%- endfor -%}
     </div>
-
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Image with columns",
+  "name": "Image with Columns",
   "tag": "section",
   "class": "section",
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "text",
       "id": "title",
-      "label": "Title"
+      "label": "Title",
+      "default": "Image with Columns"
     },
     {
       "type": "richtext",
@@ -166,9 +136,9 @@
     },
     {
       "type": "select",
-      "id": "text_align",
+      "id": "text_alignment",
       "label": "Alignment (title + description)",
-      "default": "center",
+      "default": "left",
       "options": [
         { "value": "left", "label": "Left" },
         { "value": "center", "label": "Center" },
@@ -182,7 +152,7 @@
       "min": 1,
       "max": 10,
       "step": 1,
-      "default": 4
+      "default": 3
     },
     {
       "type": "range",
@@ -192,7 +162,18 @@
       "max": 60,
       "step": 2,
       "unit": "px",
-      "default": 16
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image height",
+      "default": "adapt",
+      "options": [
+        { "value": "adapt", "label": "Adaptive" },
+        { "value": "square", "label": "1:1" },
+        { "value": "portrait", "label": "2:3" }
+      ]
     },
     {
       "type": "select",
@@ -205,67 +186,59 @@
       ]
     },
     {
+      "type": "checkbox",
+      "id": "stack_on_mobile",
+      "label": "Stack images on mobile",
+      "default": true
+    },
+    {
       "type": "header",
-      "content": "Section padding"
+      "content": "Section spacing"
     },
     {
       "type": "range",
       "id": "padding_top",
+      "label": "Padding top",
       "min": 0,
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
-      "default": 36
+      "default": 40
     },
     {
       "type": "range",
       "id": "padding_bottom",
+      "label": "Padding bottom",
       "min": 0,
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
-      "default": 36
-    },
-    {
-      "type": "header",
-      "content": "Section margin"
+      "default": 40
     },
     {
       "type": "range",
       "id": "margin_top",
+      "label": "Margin top",
       "min": 0,
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top margin",
       "default": 0
     },
     {
       "type": "range",
       "id": "margin_bottom",
+      "label": "Margin bottom",
       "min": 0,
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom margin",
       "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Mobile"
-    },
-    {
-      "type": "checkbox",
-      "id": "stack_on_mobile",
-      "label": "Stack images on mobile",
-      "default": true
     }
   ],
   "blocks": [
     {
-      "type": "image_column",
+      "type": "image",
       "name": "Image",
       "settings": [
         {
@@ -276,29 +249,29 @@
         {
           "type": "image_picker",
           "id": "image_mobile",
-          "label": "Mobile image"
+          "label": "Mobile image (below 767px)"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Link (product/collection/page/blog/article)"
+          "label": "Link (product/collection/page or custom URL)"
         },
         {
-          "type": "url",
-          "id": "custom_link",
-          "label": "Custom link (overrides link above)"
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label (for accessibility)",
+          "default": "Open link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Image with columns",
+      "name": "Image with Columns",
       "blocks": [
-        { "type": "image_column" },
-        { "type": "image_column" },
-        { "type": "image_column" },
-        { "type": "image_column" }
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
       ]
     }
   ]
