@@ -67,62 +67,83 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const box = document.querySelector('.orris-tester-box');
-      if (!box) return;
+document.addEventListener('DOMContentLoaded', function () {
+  const box = document.querySelector('.orris-tester-box');
+  if (!box) return;
 
-      const form =
-        box.closest('form[action^="/cart/add"]') ||
-        document.querySelector('form[action^="/cart/add"]');
-      if (!form) return;
+  const form =
+    box.closest('form[action^="/cart/add"]') ||
+    document.querySelector('form[action^="/cart/add"]');
+  if (!form) return;
 
-      const selects = box.querySelectorAll('.orris-tester-select');
-      const warning = box.querySelector('.tester-warning');
+  const selects = box.querySelectorAll('.orris-tester-select');
+  const warning = box.querySelector('.tester-warning');
 
-      function allSelected() {
-        for (const sel of selects) {
-          if (!sel.value) return false;
-        }
-        return true;
-      }
+  function allSelected() {
+    for (const sel of selects) {
+      if (!sel.value) return false;
+    }
+    return true;
+  }
 
-      function showWarning() {
-        if (warning) warning.style.display = 'block';
-        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  function showWarning() {
+    if (warning) warning.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-      function hideWarning() {
-        if (warning) warning.style.display = 'none';
-      }
+  function hideWarning() {
+    if (warning) warning.style.display = 'none';
+  }
 
-      form.addEventListener('submit', function (e) {
-        if (!allSelected()) {
-          e.preventDefault();
-          e.stopPropagation();
-          showWarning();
-          return false;
-        }
-        hideWarning();
-      }, true);
+  // 1) Normal add-to-cart submit (covers Enter key / standard flow)
+  form.addEventListener('submit', function (e) {
+    if (!allSelected()) {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarning();
+      return false;
+    }
+    hideWarning();
+  }, true);
 
-      form.addEventListener('click', function (e) {
-        const btn = e.target.closest('button[type="submit"], input[type="submit"]');
-        if (!btn) return;
+  // 2) Normal add-to-cart button click (covers Dawn AJAX)
+  form.addEventListener('click', function (e) {
+    const submitBtn = e.target.closest('button[type="submit"], input[type="submit"]');
+    if (!submitBtn) return;
 
-        if (!allSelected()) {
-          e.preventDefault();
-          e.stopPropagation();
-          showWarning();
-          return false;
-        }
-        hideWarning();
-      }, true);
+    // If it's the dynamic checkout button, it may still have type=submit in some themes
+    if (!allSelected()) {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarning();
+      return false;
+    }
+    hideWarning();
+  }, true);
 
-      selects.forEach(sel => {
-        sel.addEventListener('change', function () {
-          if (allSelected()) hideWarning();
-        });
-      });
+  // 3) Dynamic "Buy it now" button (Shopify payment button) interception
+  // The payment button is usually inside .shopify-payment-button
+  form.addEventListener('click', function (e) {
+    const payBtn = e.target.closest(
+      '.shopify-payment-button__button, .shopify-payment-button button, .shopify-payment-button input'
+    );
+    if (!payBtn) return;
+
+    if (!allSelected()) {
+      e.preventDefault();
+      e.stopPropagation();
+      showWarning();
+      return false;
+    }
+    hideWarning();
+  }, true);
+
+  // Hide warning when selections complete
+  selects.forEach(sel => {
+    sel.addEventListener('change', function () {
+      if (allSelected()) hideWarning();
     });
-  </script>
+  });
+});
+</script>
 {%- endif -%}
