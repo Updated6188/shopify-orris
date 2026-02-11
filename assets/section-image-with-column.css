@@ -1,0 +1,93 @@
+/* =========================================
+   Image with Columns – Orris Custom Section
+   ========================================= */
+
+.iwc-inner {
+  width: 100%;
+}
+
+/* Header */
+.iwc-header h2 {
+  margin: 0 0 12px;
+}
+
+.iwc-header .rte {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Grid */
+.iwc-grid {
+  width: 100%;
+}
+
+/* Item */
+.iwc-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.iwc-item:hover {
+  transform: translateY(-4px);
+}
+
+/* Media Wrapper */
+.iwc-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Maintain square ratio by default */
+.iwc-media::before {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+/* Image */
+.iwc-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* Subtle zoom */
+.iwc-item:hover .iwc-media img {
+  transform: scale(1.05);
+}
+
+/* Links */
+.iwc-item a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Responsive Improvements */
+@media screen and (max-width: 767px) {
+  .iwc-header .rte {
+    max-width: 100%;
+  }
+}
+
+/* Optional: tighter layout for many columns */
+@media screen and (min-width: 1200px) {
+  .iwc-grid {
+    align-items: stretch;
+  }
+}
+
+/* Optional: remove zoom on touch devices */
+@media (hover: none) {
+  .iwc-item:hover {
+    transform: none;
+  }
+  .iwc-item:hover .iwc-media img {
+    transform: none;
+  }
+}

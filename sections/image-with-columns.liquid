@@ -1,0 +1,306 @@
+{{ 'section-image-with-column.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .iwc-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+
+  .iwc-{{ section.id }} .iwc-inner {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .iwc-{{ section.id }} .iwc-header {
+    text-align: {{ section.settings.text_align }};
+    margin-bottom: 22px;
+  }
+
+  .iwc-{{ section.id }} .iwc-grid {
+    display: grid;
+    gap: {{ section.settings.column_gap }}px;
+    grid-template-columns: repeat({{ section.settings.columns }}, minmax(0, 1fr));
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 767px) {
+    .iwc-{{ section.id }} .iwc-grid {
+      {%- if section.settings.stack_on_mobile -%}
+        grid-template-columns: 1fr;
+      {%- else -%}
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      {%- endif -%}
+    }
+  }
+
+  /* Image behavior */
+  .iwc-{{ section.id }} .iwc-item {
+    position: relative;
+    width: 100%;
+  }
+
+  .iwc-{{ section.id }} .iwc-item a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .iwc-{{ section.id }} .iwc-media {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.03);
+  }
+
+  .iwc-{{ section.id }} .iwc-media::before {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  .iwc-{{ section.id }} .iwc-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+{%- endstyle -%}
+
+<section class="iwc-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="{% if section.settings.container == 'page' %}page-width{% endif %} iwc-inner">
+
+    {%- if section.settings.title != blank or section.settings.description != blank -%}
+      <div class="iwc-header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="h1">{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          <div class="rte">
+            {{ section.settings.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="iwc-grid" role="list">
+      {%- for block in section.blocks -%}
+        {%- assign desktop_img = block.settings.image_desktop -%}
+        {%- assign mobile_img = block.settings.image_mobile | default: desktop_img -%}
+
+        {%- assign block_link = block.settings.link -%}
+        {%- if block.settings.custom_link != blank -%}
+          {%- assign block_link = block.settings.custom_link -%}
+        {%- endif -%}
+
+        <div class="iwc-item" {{ block.shopify_attributes }} role="listitem">
+          {%- if block_link != blank -%}
+            <a href="{{ block_link }}">
+          {%- endif -%}
+
+          <div class="iwc-media">
+            {%- if desktop_img != blank -%}
+              <picture>
+                {%- if mobile_img != blank -%}
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="
+                      {%- if mobile_img.width >= 375 -%}{{ mobile_img | image_url: width: 375 }} 375w,{%- endif -%}
+                      {%- if mobile_img.width >= 550 -%}{{ mobile_img | image_url: width: 550 }} 550w,{%- endif -%}
+                      {%- if mobile_img.width >= 750 -%}{{ mobile_img | image_url: width: 750 }} 750w,{%- endif -%}
+                      {{ mobile_img | image_url: width: 1100 }} 1100w
+                    "
+                    sizes="100vw"
+                  >
+                {%- endif -%}
+                {%- if desktop_img != blank -%}
+                    {{
+                        desktop_img
+                        | image_url: width: 2000
+                        | image_tag:
+                            loading: 'lazy',
+                            sizes: "(min-width: 990px) calc((100vw - 120px) / " | append: section.settings.columns | append: "), 50vw",
+                            widths: "375, 550, 750, 1100, 1500, 2000"
+                    }}
+                    {%- endif -%}
+              </picture>
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+          {%- if block_link != blank -%}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image with columns",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alignment (title + description)",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Number of columns",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container",
+      "default": "page",
+      "options": [
+        { "value": "page", "label": "Page width" },
+        { "value": "full", "label": "Full width" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Section margin"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_on_mobile",
+      "label": "Stack images on mobile",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_column",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "Desktop image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Mobile image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (product/collection/page/blog/article)"
+        },
+        {
+          "type": "url",
+          "id": "custom_link",
+          "label": "Custom link (overrides link above)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with columns",
+      "blocks": [
+        { "type": "image_column" },
+        { "type": "image_column" },
+        { "type": "image_column" },
+        { "type": "image_column" }
+      ]
+    }
+  ]
+}
+{% endschema %}
