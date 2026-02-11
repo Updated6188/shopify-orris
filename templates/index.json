@@ -231,7 +231,7 @@
         "text_alignment": "left",
         "columns": 3,
         "column_gap": 20,
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "container": "page",
         "stack_on_mobile": true,
         "padding_top": 40,
