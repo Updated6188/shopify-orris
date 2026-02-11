@@ -57,7 +57,7 @@
   color: inherit;
 }
 
-.iwc-link:hover img { transform: scale(1.1);}
+
 
 .iwc-media{
   position: relative;
@@ -92,7 +92,7 @@
   height: auto;
   display: block;
 }
-
+.iwc-media--adapt .iwc-img:hover { transform: scale(1.1);}
 .iwc-placeholder{
   background: rgba(0,0,0,.04);
   padding: 24px;
