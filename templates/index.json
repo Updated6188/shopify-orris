@@ -197,7 +197,7 @@
           "type": "image",
           "settings": {
             "image_desktop": "shopify://shop_images/imperial-oud-mini.jpg",
-            "link": "shopify://products/orris-royal-oud-trio-pack-of-3-perfumes",
+            "link": "shopify://products/imperial-oud-10-ml-mini-pocket-perfumes",
             "link_label": "Open link"
           }
         },
@@ -205,7 +205,7 @@
           "type": "image",
           "settings": {
             "image_desktop": "shopify://shop_images/white-oud-mini.jpg",
-            "link": "",
+            "link": "shopify://products/white-oud-10-ml-mini-pocket-perfumes",
             "link_label": "Open link"
           }
         },
@@ -213,7 +213,7 @@
           "type": "image",
           "settings": {
             "image_desktop": "shopify://shop_images/oud-mirage-mini.jpg",
-            "link": "",
+            "link": "shopify://products/oud-mirage-10-ml-mini-pocket-perfumes",
             "link_label": "Open link"
           }
         }
