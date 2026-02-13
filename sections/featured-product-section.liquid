@@ -81,7 +81,26 @@
         </div>
       {% endif %}
     </slider-component>
+    {%- if section.settings.show_view_all 
+    and section.settings.view_all_collection != blank -%}
 
+        <div class="center collection__view-all">
+            <a
+            href="{{ section.settings.view_all_collection.url }}"
+            class="
+                {% if section.settings.view_all_style == 'link' %}
+                link underlined-link
+                {% elsif section.settings.view_all_style == 'solid' %}
+                button
+                {% else %}
+                button button--secondary
+                {% endif %}
+            "
+            >
+            View all
+            </a>
+        </div>
+    c{%- endif -%}
   </div>
 </div>
 
@@ -219,7 +238,34 @@
       "default": 36,
       "unit": "px",
       "label": "Padding bottom"
+    },
+    {
+    "type": "header",
+    "content": "View All Button"
+    },
+    {
+    "type": "collection",
+    "id": "view_all_collection",
+    "label": "Collection for View All button"
+    },
+    {
+    "type": "checkbox",
+    "id": "show_view_all",
+    "default": true,
+    "label": "Show View All button"
+    },
+    {
+    "type": "select",
+    "id": "view_all_style",
+    "default": "solid",
+    "label": "Button style",
+    "options": [
+        { "value": "link", "label": "Link" },
+        { "value": "outline", "label": "Outline" },
+        { "value": "solid", "label": "Solid" }
+    ]
     }
+
   ],
   "blocks": [
     {
