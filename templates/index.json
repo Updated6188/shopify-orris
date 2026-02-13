@@ -209,7 +209,7 @@
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "none",
+        "quick_add": "standard",
         "color_scheme": "scheme-8ca59509-0a78-4f87-a9bd-d74afb43f526",
         "full_width": false,
         "padding_top": 36,
