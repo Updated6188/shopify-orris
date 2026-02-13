@@ -161,8 +161,63 @@
         "padding_bottom": 36
       }
     },
+    "featured_product_section_yWqVxj": {
+      "type": "featured-product-section",
+      "blocks": {
+        "product_bRdq6K": {
+          "type": "product",
+          "settings": {
+            "product": "envy"
+          }
+        },
+        "product_8nqwfX": {
+          "type": "product",
+          "settings": {
+            "product": "rebel-hearts"
+          }
+        },
+        "product_WCtYLe": {
+          "type": "product",
+          "settings": {
+            "product": "cloud"
+          }
+        },
+        "product_c8dg9D": {
+          "type": "product",
+          "settings": {
+            "product": "secret-garden"
+          }
+        }
+      },
+      "block_order": [
+        "product_bRdq6K",
+        "product_8nqwfX",
+        "product_WCtYLe",
+        "product_c8dg9D"
+      ],
+      "name": "Featured Product Section",
+      "settings": {
+        "title": "Explore Women's Perfumes",
+        "heading_size": "h1",
+        "text_alignment": "center",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
+        "full_width": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection_rpUYzg": {
       "type": "featured-collection",
+      "disabled": true,
       "name": "t:sections.featured-collection.presets.name",
       "settings": {
         "collection": "women",
@@ -549,6 +604,7 @@
     "featured_collection_VANH7E",
     "image_banner_ERqfrA",
     "featured_collection_BATrRC",
+    "featured_product_section_yWqVxj",
     "featured_collection_rpUYzg",
     "image_with_columns_enwiL3",
     "featured_product_GtRNER",
