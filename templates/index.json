@@ -149,7 +149,7 @@
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
@@ -157,6 +157,60 @@
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_section_3YwtfM": {
+      "type": "featured-product-section",
+      "blocks": {
+        "product_bNMRVg": {
+          "type": "product",
+          "settings": {
+            "product": "rise-10-ml-mini-pocket-perfumes"
+          }
+        },
+        "product_TitMid": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_wrJLaQ": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        },
+        "product_TDJxUG": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_bNMRVg",
+        "product_TitMid",
+        "product_wrJLaQ",
+        "product_TDJxUG"
+      ],
+      "name": "Featured Product Section",
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "text_alignment": "center",
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "portrait",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "color_scheme": "scheme-8ca59509-0a78-4f87-a9bd-d74afb43f526",
+        "full_width": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -604,6 +658,7 @@
     "featured_collection_VANH7E",
     "image_banner_ERqfrA",
     "featured_collection_BATrRC",
+    "featured_product_section_3YwtfM",
     "featured_product_section_yWqVxj",
     "featured_collection_rpUYzg",
     "image_with_columns_enwiL3",
