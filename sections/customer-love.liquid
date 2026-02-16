@@ -1,8 +1,7 @@
-<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer></script>
 
 {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag: preload: true }}
 {{ 'section-customer-love.css' | asset_url | stylesheet_tag: preload: true }}
- 
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -20,60 +19,57 @@
 
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }} share_design_sect share_design_sect--home">
-    <div class="page-width-full">
-        {%- if section.settings.heading != blank -%}
-            <h2>{{ section.settings.heading }}</h2>
-        {%- endif -%}
-        {%- if section.settings.description != blank -%}
-            <p>{{ section.settings.description }}</p>
-        {%- endif -%}
-        <div class="share_design_Sldr">
-            <div class="swiper-wrapper">
-                {% for block in section.blocks %}
-                <div class="swiper-slide">
-                    <div class="share_designSldes">
-                        {% if block.settings.video_file != blank %}
-                            <video
-                            class="swiper-video"
-                            playsinline
-                            preload="none"
-                            >
-                            {%- for source in block.settings.video_file.sources -%}
-                                <source src="{{ source.url }}" type="{{ source.mime_type }}">
-                            {%- endfor -%}
-                            </video>
+  <div class="page-width-full">
 
-                            <div class="play-layer">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                    <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
-                                </svg>
-                            </div>
-                        {% else %}
-                            <p>No video uploaded.</p>
-                        {% endif %}
-                    </div>
-                    {% comment %} <div class="share_designSldes float-start w-100 position-relative">
-                        {% if block.settings.video_file %}
-                            <video class="swiper-video">
-                                <source src="{{block.settings.video_file.sources[0].url}}" type="{{block.settings.video_file.sources[0].mime_type}}">
-                            </video> 
-                            <div class="play-layer">Play Video</div>
-                        {% else %}
-                            <p>No video uploaded.</p>
-                        {% endif %}
-                    </div> {% endcomment %}
+    {%- if section.settings.heading != blank -%}
+      <h2>{{ section.settings.heading }}</h2>
+    {%- endif -%}
 
-                </div>
-                {%- endfor -%}
-            </div>
-            <!-- Add Pagination
-            <div class="swiper-pagination"></div> -->
-            <!-- Add Navigation -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+    {%- if section.settings.description != blank -%}
+      <p>{{ section.settings.description }}</p>
+    {%- endif -%}
+
+    <div class="share_design_Sldr">
+      <div class="swiper-wrapper">
+
+        {% for block in section.blocks %}
+        <div class="swiper-slide">
+          <div class="share_designSldes">
+
+            {% if block.settings.video_file != blank %}
+
+              <!-- TRUE LAZY VIDEO -->
+              <video
+                class="swiper-video"
+                playsinline
+                preload="none"
+                data-video-url="{{ block.settings.video_file.sources[0].url }}"
+                data-video-type="{{ block.settings.video_file.sources[0].mime_type }}"
+              ></video>
+
+              <div class="play-layer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
+                </svg>
+              </div>
+
+            {% else %}
+              <p>No video uploaded.</p>
+            {% endif %}
+
+          </div>
         </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
     </div>
+  </div>
 </div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -86,10 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loop: false,
     speed: 1000,
     keyboard: { enabled: true },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
@@ -114,9 +106,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
   layers.forEach((layer, index) => {
     layer.addEventListener('click', function () {
+
       resetVideos();
 
       const video = videos[index];
+
+      // LOAD VIDEO ONLY WHEN CLICKED
+      if (!video.querySelector('source')) {
+        const source = document.createElement('source');
+        source.src = video.dataset.videoUrl;
+        source.type = video.dataset.videoType;
+        video.appendChild(source);
+        video.load();
+      }
+
       layer.style.display = 'none';
 
       const playPromise = video.play();
@@ -125,10 +128,12 @@ document.addEventListener('DOMContentLoaded', function () {
           layer.style.display = 'flex';
         });
       }
+
     });
   });
 
   videos.forEach((video, index) => {
+
     video.addEventListener('click', function () {
       video.pause();
       layers[index].style.display = 'flex';
@@ -137,79 +142,8 @@ document.addEventListener('DOMContentLoaded', function () {
     video.addEventListener('pause', function () {
       layers[index].style.display = 'flex';
     });
+
   });
 
 });
 </script>
-
-
-
-{% schema %}
-{
-  "name": "Customer Love",
-  "tag": "section",
-  "class": "section designShare",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "settings":[
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Heading Text"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "description",
-      "label": "Description",
-      "default": "Customer Love Description"
-    },
-    {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 36
-    },
-  ],
-  "blocks": [
-    {
-      "type": "design_share_slide",
-      "name": "Customer Video",
-      "settings": [
-        {
-            "type": "video",
-            "id": "video_file",
-            "label": "Upload Video",
-            "info": "Upload a video file in MP4 format.",
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Customer Love",
-    }
-  ]
-}
-{% endschema %}
