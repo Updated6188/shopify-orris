@@ -11,7 +11,9 @@
     <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
   {%- endif -%}
 
-  <!-- 🔥 Removed unused fonts preconnect -->
+  {%- comment -%}
+  Removed unused fonts preconnect to fix Lighthouse warning
+  {%- endcomment -%}
 
   <title>
     {{ page_title }}
@@ -26,7 +28,7 @@
 
   {% render 'meta-tags' %}
 
-  <!-- 🔥 Defer theme JS (kept intact) -->
+  <!-- Theme JS (Deferred - Safe) -->
   <script src="{{ 'constants.js' | asset_url }}" defer></script>
   <script src="{{ 'pubsub.js' | asset_url }}" defer></script>
   <script src="{{ 'global.js' | asset_url }}" defer></script>
@@ -64,23 +66,12 @@
         --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
       }
     {% endfor %}
-
-    html {
-      box-sizing: border-box;
-      font-size: calc(var(--font-body-scale) * 62.5%);
-    }
-
-    body {
-      margin: 0;
-      font-family: var(--font-body-family);
-      font-weight: var(--font-body-weight);
-    }
   {% endstyle %}
 
-  <!-- 🔥 Critical CSS stays blocking -->
+  <!-- Critical CSS (Keep Blocking) -->
   {{ 'critical.css' | asset_url | stylesheet_tag }}
 
-  <!-- 🔥 Async non-critical CSS -->
+  <!-- Non-Critical CSS (Async Safe) -->
   <link rel="stylesheet"
         href="{{ 'component-cart-items.css' | asset_url }}"
         media="print"
@@ -130,6 +121,7 @@
     }
   </script>
 </head>
+
 
 
 
