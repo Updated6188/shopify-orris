@@ -12,7 +12,7 @@
   {%- endif -%}
 
   {%- comment -%}
-  Removed unused fonts preconnect to fix Lighthouse warning
+  Removed unused fonts preconnect (safe Lighthouse improvement)
   {%- endcomment -%}
 
   <title>
@@ -28,17 +28,16 @@
 
   {% render 'meta-tags' %}
 
-  <!-- Theme JS (Deferred - Safe) -->
-  <script src="{{ 'constants.js' | asset_url }}" defer></script>
-  <script src="{{ 'pubsub.js' | asset_url }}" defer></script>
-  <script src="{{ 'global.js' | asset_url }}" defer></script>
-  <script src="{{ 'details-disclosure.js' | asset_url }}" defer></script>
-  <script src="{{ 'details-modal.js' | asset_url }}" defer></script>
-  <script src="{{ 'search-form.js' | asset_url }}" defer></script>
-  <script src="{{ 'jquery.js' | asset_url }}" defer></script>
+  <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'jquery.js' | asset_url }}" defer="defer"></script>
 
   {%- if settings.animations_reveal_on_scroll -%}
-    <script src="{{ 'animations.js' | asset_url }}" defer></script>
+    <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
   {{ content_for_header }}
@@ -63,21 +62,56 @@
       {%- endif %}
       .color-{{ scheme.id }} {
         --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+        {% if scheme.settings.background_gradient != empty %}
+          --gradient-background: {{ scheme.settings.background_gradient }};
+        {% else %}
+          --gradient-background: {{ scheme.settings.background }};
+        {% endif %}
+
+        {% liquid
+          assign background_color = scheme.settings.background
+          assign background_color_brightness = background_color | color_brightness
+          if background_color_brightness <= 26
+            assign background_color_contrast = background_color | color_lighten: 50
+          elsif background_color_brightness <= 65
+            assign background_color_contrast = background_color | color_lighten: 5
+          else
+            assign background_color_contrast = background_color | color_darken: 25
+          endif
+        %}
+
         --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+        --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
+        --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+        --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
+        --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
+        --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+        --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+        --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+        --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+        --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+        --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+        --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
       }
     {% endfor %}
+
+    {{ scheme_classes | prepend: 'body' }} {
+      color: rgba(var(--color-foreground), 0.75);
+      background-color: rgb(var(--color-background));
+    }
+
+    /* KEEP ALL REMAINING VARIABLES EXACTLY AS YOU HAD THEM */
   {% endstyle %}
 
-  <!-- Critical CSS (Keep Blocking) -->
   {{ 'critical.css' | asset_url | stylesheet_tag }}
 
-  <!-- Non-Critical CSS (Async Safe) -->
   <link rel="stylesheet"
         href="{{ 'component-cart-items.css' | asset_url }}"
         media="print"
         onload="this.media='all'">
 
   {%- if settings.cart_type == 'drawer' -%}
+    <!-- SAFE ASYNC LOAD -->
     <link rel="stylesheet"
           href="{{ 'component-cart-drawer.css' | asset_url }}"
           media="print"
@@ -85,27 +119,26 @@
   {%- endif -%}
 
   {%- unless settings.type_body_font.system? -%}
-    <link rel="preload"
-          as="font"
+    <link rel="preload" as="font"
           href="{{ settings.type_body_font | font_url }}"
           type="font/woff2"
           crossorigin>
   {%- endunless -%}
 
   {%- unless settings.type_header_font.system? -%}
-    <link rel="preload"
-          as="font"
+    <link rel="preload" as="font"
           href="{{ settings.type_header_font | font_url }}"
           type="font/woff2"
           crossorigin>
   {%- endunless -%}
 
   {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
+    <!-- SAFE ASYNC LOAD -->
     <link rel="stylesheet"
           href="{{ 'component-localization-form.css' | asset_url }}"
           media="print"
           onload="this.media='all'">
-    <script src="{{ 'localization-form.js' | asset_url }}" defer></script>
+    <script src="{{ 'localization-form.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
   {%- if settings.predictive_search_enabled -%}
@@ -121,11 +154,7 @@
     }
   </script>
 </head>
-
-
-
-
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+<body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
