@@ -412,6 +412,7 @@
         "buy_buttons_EGKhpA",
         "share_faBxBM"
       ],
+      "disabled": true,
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "alpha",
