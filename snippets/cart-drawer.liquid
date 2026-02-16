@@ -5,8 +5,12 @@
   {% render 'cart-drawer' %}
 {% endcomment %}
 
-{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
+<link rel="preload" as="style" href="{{ 'quantity-popover.css' | asset_url }}" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="{{ 'component-card.css' | asset_url }}" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+</noscript>
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
