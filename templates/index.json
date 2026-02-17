@@ -580,6 +580,7 @@
       "block_order": [
         "square_instagram_feed_insta_feed_GTpWC6"
       ],
+      "disabled": true,
       "name": "Instagram Feed",
       "settings": {
         "section_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
