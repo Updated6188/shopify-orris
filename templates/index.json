@@ -15,8 +15,8 @@
         "slide_pTKQjh": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Perfume_31_70d92098-6eba-4c44-90a9-aca7ef9ab4f5.jpg",
-            "image_mobile": "shopify://shop_images/slide_banner_2.jpg",
+            "image": "shopify://shop_images/ramzan-mubarak.jpg",
+            "image_mobile": "shopify://shop_images/ramzan-mubarak-mobile-2.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -130,36 +130,6 @@
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
-      }
-    },
-    "featured_collection_BATrRC": {
-      "type": "featured-collection",
-      "disabled": true,
-      "name": "t:sections.featured-collection.presets.name",
-      "settings": {
-        "collection": "orris-mini",
-        "products_to_show": 4,
-        "title": "",
-        "heading_size": "h1",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
       }
     },
     "featured_product_section_3YwtfM": {
@@ -412,6 +382,7 @@
         "buy_buttons_EGKhpA",
         "share_faBxBM"
       ],
+      "disabled": true,
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "alpha",
@@ -612,7 +583,7 @@
       "name": "Instagram Feed",
       "settings": {
         "section_color_scheme": "scheme-5aa05b30-6421-4256-b44a-9ea6652fca3d",
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 0
       }
     }
@@ -622,7 +593,6 @@
     "marquee_bar_iWdepB",
     "featured_collection_VANH7E",
     "image_banner_ERqfrA",
-    "featured_collection_BATrRC",
     "featured_product_section_3YwtfM",
     "featured_product_section_yWqVxj",
     "featured_collection_rpUYzg",
