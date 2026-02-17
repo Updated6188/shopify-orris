@@ -1,0 +1,39 @@
+{% for group in robots.default_groups %}
+  {{ group.user_agent }}
+
+  {% for rule in group.rules %}
+    {{ rule }}
+  {% endfor %}
+
+  {% if group.sitemap != blank %}
+    {{ group.sitemap }}
+  {% endif %}
+{% endfor %}
+
+# -------------------------------
+# Custom Cleanup Rules (Orris)
+# -------------------------------
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /xmlrpc.php
+Disallow: /author/
+Disallow: /uncategorized/
+Disallow: /elementor-hf/
+Disallow: /sample-page/
+Disallow: /feed/
+Disallow: /review/
+Disallow: /b
+Disallow: /wpm
+Disallow: /v1/
+Disallow: /cdn
+
+# Block parameter junk
+Disallow: /*?add-to-wishlist*
+Disallow: /*?add-to-cart*
+Disallow: /*?add-to-compare*
+Disallow: /*?replytocom*
+
