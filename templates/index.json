@@ -117,7 +117,7 @@
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "image": "shopify://shop_images/perfume.png",
+        "image": "shopify://shop_images/mini-perfumes.png",
         "show_link": false,
         "link_url": "",
         "image_overlay_opacity": 0,
