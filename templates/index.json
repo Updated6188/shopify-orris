@@ -37,7 +37,7 @@
           "type": "slide",
           "settings": {
             "link2": "https://orris.pk/products/orris-royal-oud-trio-pack-of-3-perfumes",
-            "link2_active": false,
+            "link2_active": true,
             "image": "shopify://shop_images/Group_18375_1.jpg",
             "image_mobile": "shopify://shop_images/Group_18368.png",
             "image_overlay_opacity": 0,
