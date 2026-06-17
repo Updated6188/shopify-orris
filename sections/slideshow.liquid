@@ -144,11 +144,12 @@
             
 
             <picture style="position:absolute; inset:0; width:100%; height:100%; display:block;">
-              {% if block.settings.link2 != blank %}
+              {% if block.settings.link2 != blank and block.settings.link2_active %}
                 <a href="{{ block.settings.link2 }}" 
                   style="position:absolute; width:100%; height:100%; display:block; z-index: 9999;">
                 </a>
               {% endif %}
+              
               <source
                 media="(max-width: 767px)"
                 srcset="
@@ -401,6 +402,12 @@
           "type": "url",
           "id": "link2",
           "label": "Slide Show image link"
+        },
+        {
+          "type": "checkbox",
+          "id": "link2_active",
+          "label": "Enable Slide Link",
+          "default": true
         },
         {
           "type": "image_picker",
