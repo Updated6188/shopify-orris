@@ -12,6 +12,27 @@
     "slideshow_ipcL9R": {
       "type": "slideshow",
       "blocks": {
+        "slide_HFCXDj": {
+          "type": "slide",
+          "settings": {
+            "link2": "shopify://collections",
+            "link2_active": true,
+            "image": "shopify://shop_images/image_504.png",
+            "image_mobile": "shopify://shop_images/Group_18381.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
         "slide_yJcMX4": {
           "type": "slide",
           "settings": {
@@ -77,6 +98,7 @@
         }
       },
       "block_order": [
+        "slide_HFCXDj",
         "slide_yJcMX4",
         "slide_rYYGXd",
         "slide_pTKQjh"
