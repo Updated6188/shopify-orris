@@ -14,6 +14,7 @@
       "blocks": {
         "slide_HFCXDj": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "link2": "shopify://collections/all-collections",
             "link2_active": true,
@@ -35,6 +36,7 @@
         },
         "slide_QGLBHR": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "link2": "shopify://collections/all-collections",
             "link2_active": true,
@@ -56,6 +58,7 @@
         },
         "slide_yJcMX4": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "link2": "https://orris.pk/products/pack-of-2-50ml",
             "link2_active": true,
